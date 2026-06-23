@@ -1,0 +1,24 @@
+{
+  "name": "K2E Local \u2014 Home Energy Simulator",
+  "short_name": "K2E Local",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#020807",
+  "theme_color": "#03100f",
+  "description": "Kilowatts to Efficiency: a local-first home energy simulator with appliance insights and accessible charts.",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "version": "1.6.0"
+}
