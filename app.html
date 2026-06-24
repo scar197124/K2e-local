@@ -574,6 +574,56 @@ button:hover {
 }
 
 
+/* === K2E Local v1.7 Feature 1: Confidence Meter === */
+.k2e-confidence-card{
+  margin-top:10px;
+  padding:12px 14px;
+  border:1px solid var(--card-br);
+  border-radius:14px;
+  background:linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,.025));
+  box-shadow:0 10px 24px rgba(0,0,0,.16);
+}
+.k2e-confidence-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.k2e-confidence-title{font-weight:900; letter-spacing:.01em;}
+.k2e-confidence-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 10px;
+  border-radius:999px;
+  border:1px solid var(--input-br);
+  background:var(--input-bg);
+  font-weight:900;
+}
+.k2e-confidence-stars{
+  margin-top:8px;
+  font-size:18px;
+  letter-spacing:2px;
+  color:var(--accent-2);
+}
+.k2e-confidence-reasons{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+.k2e-confidence-reason{
+  border:1px solid var(--input-br);
+  border-radius:10px;
+  padding:8px 9px;
+  background:rgba(255,255,255,.035);
+  font-size:12px;
+  color:var(--muted);
+}
+.k2e-confidence-reason strong{display:block; color:var(--text); font-size:13px; margin-bottom:2px;}
+@media(max-width:700px){.k2e-confidence-reasons{grid-template-columns:1fr}}
+
 /* v27.9 separate homepage: visible back-to-welcome control */
 .myvera-welcome-return{
   display:inline-flex;
@@ -849,7 +899,7 @@ html[data-density="compact"]
 }
 @media(max-width:760px){.myvera-setup-steps{grid-template-columns:1fr;}}
 </style>
-<meta content="k2e-local-v1.6.9-theme-aware-ui-logo" name="myvera-build"/>
+<meta content="k2e-local-v1.7.2-offline-charts-clarity-polish" name="myvera-build"/>
 <style id="myvera-v2874-single-card-layer">
 /* K2E Local v28.7.6 — dynamic themed header backgrounds and contrast-safe branding */
 .myvera-single-card-shell{
@@ -1401,8 +1451,8 @@ html.myvera-reduce-motion *,html.myvera-reduce-motion *::before,html.myvera-redu
 }
 </style>
 
-<style id="k2e-v167-ui-header-logo">
-/* K2E Local v1.6.7 — landing-page logo carried into the existing UI header only */
+<style id="k2e-v1610-ui-text-wordmark">
+/* K2E Local v1.6.10 — detailed logo stays on landing page; app header uses theme-native text wordmark */
 .myvera-header-brand-logo{
   display:flex!important;
   align-items:center!important;
@@ -1410,36 +1460,56 @@ html.myvera-reduce-motion *,html.myvera-reduce-motion *::before,html.myvera-redu
   min-width:0!important;
   text-decoration:none!important;
   padding:0!important;
+  gap:0!important;
 }
-.myvera-header-logo-image{
+.k2e-header-wordmark{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  line-height:1!important;
+  min-width:0!important;
+}
+.k2e-header-wordmark-title{
   display:block!important;
-  width:min(310px,32vw)!important;
-  max-height:88px!important;
-  height:auto!important;
-  object-fit:contain!important;
-  object-position:left center!important;
-  filter:drop-shadow(0 8px 18px rgba(0,0,0,.24));
+  color:var(--mv-head-text)!important;
+  font-weight:950!important;
+  font-size:clamp(1.18rem,2.4vw,1.78rem)!important;
+  letter-spacing:-.045em!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.10),0 12px 30px rgba(0,0,0,.14)!important;
+}
+.k2e-header-wordmark-tagline{
+  display:block!important;
+  margin-top:6px!important;
+  color:var(--mv-head-muted)!important;
+  font-size:clamp(.62rem,1.05vw,.78rem)!important;
+  font-weight:850!important;
+  letter-spacing:.15em!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+}
+[data-theme="high-contrast"] .k2e-header-wordmark-title,
+[data-theme="high-contrast"] .k2e-header-wordmark-tagline{
+  color:#fff!important;
+  text-shadow:none!important;
 }
 @media(max-width:860px){
   .myvera-header-brand-logo{justify-content:center!important}
-  .myvera-header-logo-image{width:min(300px,72vw)!important;max-height:82px!important;object-position:center!important}
+  .k2e-header-wordmark{align-items:center!important;text-align:center!important}
 }
 @media(max-width:560px){
-  .myvera-header-logo-image{width:min(250px,78vw)!important;max-height:68px!important}
+  .k2e-header-wordmark-title{font-size:1.24rem!important}
+  .k2e-header-wordmark-tagline{font-size:.58rem!important;letter-spacing:.10em!important}
 }
-.myvera-header-logo-light{display:none!important}
-[data-theme="light"] .myvera-header-logo-night,
-[data-theme="solar"] .myvera-header-logo-night{display:none!important}
-[data-theme="light"] .myvera-header-logo-light,
-[data-theme="solar"] .myvera-header-logo-light{display:block!important;filter:drop-shadow(0 5px 12px rgba(0,0,0,.18))}
-[data-theme="high-contrast"] .myvera-header-logo-image{filter:contrast(1.15) drop-shadow(0 0 2px #fff)}
 </style>
 </head>
 <body><a class="myvera-skip-link" href="#myvera-main-content">Skip to dashboard</a><div aria-live="polite" aria-atomic="true" class="myvera-visually-hidden" id="myvera-global-status"></div>
 <main aria-label="K2E Local home energy simulator" class="myvera-single-card-shell" id="myvera-main-content" tabindex="-1"><header class="myvera-unified-header" id="myvera-unified-header">
 <a aria-label="K2E Local home" class="myvera-header-brand myvera-header-brand-logo" href="./index.html">
-<img class="myvera-header-logo-image myvera-header-logo-night" src="./assets/k2e-local-brand-night.png" alt="K2E Local — Kilowatts to Efficiency">
-<img class="myvera-header-logo-image myvera-header-logo-light" src="./assets/k2e-local-brand-light.png" alt="" aria-hidden="true">
+<span class="k2e-header-wordmark" aria-hidden="true">
+<span class="k2e-header-wordmark-title">K2E Local</span>
+<span class="k2e-header-wordmark-tagline">Kilowatts to Efficiency</span>
+</span>
 </a>
 <nav aria-label="K2E Local interface navigation" class="myvera-header-nav">
 <button aria-label="Welcome" class="myvera-header-btn" id="header-welcome" type="button">
@@ -1601,13 +1671,13 @@ html.myvera-reduce-motion *,html.myvera-reduce-motion *::before,html.myvera-redu
 <div class="section">
 <div class="ai-foundation-head">
 <div>
-<div class="ai-kicker">K2E Local AI Layer · Foundation</div>
+<div class="ai-kicker">K2E Local Advisor Layer · Local Foundation</div>
 <h3 class="section-title">Energy Advisor</h3>
-<p class="muted small">Local analysis remains the default. Online mode is consent-first and runs in mock mode until a provider is connected.</p>
+<p class="muted small">Local analysis is the default. The structured preview also stays on this device and uses only the current simulator data.</p>
 </div>
 <div aria-label="Advisor mode" class="ai-mode-switch" role="tablist">
 <button aria-selected="true" class="myvera-btn ai-mode active" id="ai-mode-local" role="tab" type="button">Local Advisor</button>
-<button aria-selected="false" class="myvera-btn ai-mode" id="ai-mode-online" role="tab" type="button">AI Advisor</button>
+<button aria-selected="false" class="myvera-btn ai-mode" id="ai-mode-online" role="tab" type="button">Structured Advisor</button>
 </div>
 </div>
 <div class="ai-panel" id="ai-local-panel" role="tabpanel">
@@ -1880,7 +1950,7 @@ html.myvera-reduce-motion *,html.myvera-reduce-motion *::before,html.myvera-redu
 </details>
 </div></main>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js?v33"></script>
+<script src="./assets/chart.umd.js?v=1.7.2"></script>
 <script>
 // === K2E Local v29 Preview: Smart Devices (Bridge stub + Demo mode) ===
 (function(){
@@ -2002,7 +2072,7 @@ html.myvera-reduce-motion *,html.myvera-reduce-motion *::before,html.myvera-redu
 })();
 
 
-// === K2E Local AI Advisor (Preview): local heuristics for savings tips ===
+// === K2E Local Structured Energy Advisor (Preview): local heuristics for savings tips ===
 (function(){
   const $ = (id)=>document.getElementById(id);
   const tipsBox = $('ai-tips');
@@ -2507,6 +2577,38 @@ function currentParts(){
   return {labels, kwhs, shares, costs, totalK, rate};
 }
 
+function updateConfidenceMeter(daily, monthProj, billProj, rate){
+  const label = document.getElementById('k2e-confidence-label');
+  const note = document.getElementById('k2e-confidence-note');
+  const stars = document.getElementById('k2e-confidence-stars');
+  const dev = document.getElementById('k2e-conf-devices');
+  const usage = document.getElementById('k2e-conf-usage');
+  const rateEl = document.getElementById('k2e-conf-rate');
+  if(!label || !stars) return;
+
+  const count = Array.isArray(devices) ? devices.length : 0;
+  let score = 0;
+  if(count >= 1) score++;
+  if(count >= 3) score++;
+  if(daily > 0) score++;
+  if(monthProj > 0 && billProj > 0) score++;
+  if(rate > 0 && Math.abs(rate - 0.15) > 0.001) score++;
+
+  let text = 'Not enough data';
+  let helper = 'Add device details, usage hours, your electricity rate, and schedules to improve confidence.';
+  if(score >= 5){ text = 'High confidence'; helper = 'Strong planning estimate based on several devices, calculated usage, and a custom electricity rate.'; }
+  else if(score >= 3){ text = 'Moderate confidence'; helper = 'Useful planning estimate. Refine device hours, schedules, or your electricity rate to strengthen it.'; }
+  else if(score >= 1){ text = 'Low confidence'; helper = 'Early planning estimate. Add device details, real usage hours, and your local electricity rate.'; }
+
+  label.textContent = text;
+  note.textContent = helper;
+  stars.textContent = '★★★★★'.slice(0, score) + '☆☆☆☆☆'.slice(score);
+  stars.setAttribute('aria-label', `${score} out of 5 confidence`);
+  if(dev) dev.textContent = count ? `${count} device${count===1?'':'s'} included` : 'No devices yet';
+  if(usage) usage.textContent = daily > 0 ? `${daily.toFixed(2)} daily kWh calculated` : 'Waiting for kWh';
+  if(rateEl) rateEl.textContent = Math.abs(rate - 0.15) > 0.001 ? `$${rate.toFixed(2)}/kWh custom rate` : '$0.15/kWh default rate';
+}
+
 function renderSummaryAndTable(){
   const rate = parseFloat(document.getElementById('grid-rate')?.value || '0.15') || 0.15;
   const now = new Date(), dim = daysInMonth(now);
@@ -2519,6 +2621,7 @@ function renderSummaryAndTable(){
   if (sd) sd.textContent = daily.toFixed(2);
   if (sm) sm.textContent = monthProj.toFixed(0);
   if (sb) sb.textContent = '$'+billProj.toFixed(2);
+  updateConfidenceMeter(daily, monthProj, billProj, rate);
 
   const tbody = document.getElementById('comp-rows');
   if (!tbody) return;
@@ -3056,7 +3159,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })();
 
 
-// === K2E Local AI Advisor (Preview): local heuristics for savings tips ===
+// === K2E Local Structured Energy Advisor (Preview): local heuristics for savings tips ===
 (function(){
   const $ = (id)=>document.getElementById(id);
   const tipsBox = $('ai-tips');
@@ -3413,7 +3516,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </div>
 </div>
 </div>
-<!-- K2E Local AI Advisor resilient init -->
+<!-- K2E Local Structured Energy Advisor resilient init -->
 <script id="density-toggle-logic">
 (function(){
   const root = document.documentElement;
@@ -3472,7 +3575,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 })();
 </script>
-<!-- === Auto AI Tips v2: run advisor whenever devices change (idempotent) === -->
+<!-- === Automatic Advisor Tips v2: run advisor whenever devices change (idempotent) === -->
 <script>
 (function(){
   if (window.__myveraAutoAITipsPatched) return;
@@ -5940,10 +6043,10 @@ html, body{
   setTimeout(polishDeviceRows, 300);
 })();
 </script>
-<!-- K2E Local v27.8.7 — AI Advisor Local Intelligence Pass -->
+<!-- K2E Local v27.8.7 — Structured Energy Advisor Local Intelligence Pass -->
 <style id="myvera-v2787-ai-advisor-local-intelligence">
 /*
-  Local AI Advisor polish: no cloud/API calls. Uses the current device list only.
+  Local structured advisor polish: no cloud/API calls. Uses the current device list only.
   Goal: make the Advisor feel useful, contained, and responsive like the locked device cards.
 */
 #pane-ai{
@@ -6106,7 +6209,7 @@ html, body{
 }
 </style>
 <script id="myvera-v2787-ai-advisor-local-intelligence">
-// K2E Local v27.8.10 — Local AI Advisor: clearer language + status tags from current on-page device data only.
+// K2E Local v27.8.10 — Local Structured Advisor: clearer language + status tags from current on-page device data only.
 (function(){
   if (window.__myveraV2787AIAdvisorLocalIntelligence) return;
   window.__myveraV2787AIAdvisorLocalIntelligence = true;
@@ -6217,7 +6320,7 @@ html, body{
     }
 
     box.innerHTML = `
-      <div class="ai-advisor-summary" aria-label="AI Advisor summary">
+      <div class="ai-advisor-summary" aria-label="Structured Energy Advisor summary">
         <div class="ai-summary-tile"><div class="muted">Devices</div><div class="big">${rows.length}</div></div>
         <div class="ai-summary-tile"><div class="muted">Monthly kWh</div><div class="big">${one(totalKwh)}</div></div>
         <div class="ai-summary-tile"><div class="muted">Est. Cost</div><div class="big">${money(totalCost)}</div></div>
@@ -6282,7 +6385,7 @@ html, body{
   });
 })();
 </script>
-<!-- K2E Local v27.8.8 — AI Advisor Summary Card Wrap Polish -->
+<!-- K2E Local v27.8.8 — Structured Energy Advisor Summary Card Wrap Polish -->
 <style id="myvera-v2788-ai-advisor-summary-card-wrap">
 /*
   Advisor summary card wrap polish.
@@ -6676,7 +6779,7 @@ html, body{
 })();
 </script>
 <script id="myvera-v140-ai-advisor-v1">
-/* K2E Local v1.4.0 AI Advisor v1 — structured explanation and reviewable scenarios */
+/* K2E Local v1.4.0 Structured Energy Advisor v1 — structured explanation and reviewable scenarios */
 (function(){
   "use strict";
   const $=(id)=>document.getElementById(id);
@@ -8599,10 +8702,10 @@ body, .app, main, section, .section, .myvera-card, #pane-ai, #mini-list, .mini-r
 })();
 </script>
 </html>
-<!-- K2E Local v27.8.9 — AI Advisor Visible Inner Borders Lock -->
+<!-- K2E Local v27.8.9 — Structured Energy Advisor Visible Inner Borders Lock -->
 <style id="myvera-v2789-ai-advisor-visible-inner-borders">
 /*
-  AI Advisor visible inner borders polish.
+  Structured Energy Advisor visible inner borders polish.
   Purpose: stop the Advisor from reading like one large text page by giving
   the summary shell, stat tiles, insight cards, and local note clear theme-safe
   card boundaries across Sunburst / Solar / Ocean / Dark / Light.
@@ -8718,7 +8821,7 @@ body, .app, main, section, .section, .myvera-card, #pane-ai, #mini-list, .mini-r
   }
 }
 </style>
-<!-- K2E Local v27.8.10 — AI Advisor Language + Status Tag Polish -->
+<!-- K2E Local v27.8.10 — Structured Energy Advisor Language + Status Tag Polish -->
 <style id="myvera-v27810-ai-advisor-language-status-tags">
 /*
   Advisor-only polish. Adds stronger status labels and reading hierarchy
@@ -9050,7 +9153,7 @@ body, .app, main, section, .section, .myvera-card, #pane-ai, #mini-list, .mini-r
       adjPill = 'schedule';
     }
     box.innerHTML = `
-      <div class="ai-advisor-summary" aria-label="AI Advisor summary">
+      <div class="ai-advisor-summary" aria-label="Structured Energy Advisor summary">
         <div class="ai-summary-tile"><div class="muted">Devices</div><div class="big">${sorted.length}</div></div>
         <div class="ai-summary-tile"><div class="muted">Monthly kWh</div><div class="big">${one(totalKwh)}</div></div>
         <div class="ai-summary-tile"><div class="muted">Est. Cost</div><div class="big">${money(totalCost)}</div></div>

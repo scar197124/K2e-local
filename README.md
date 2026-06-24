@@ -1,8 +1,20 @@
 # K2E Local
 
+Current build: v1.7.2 — Offline Charts and Clarity Polish
+
 **Kilowatts to Efficiency**
 
 K2E Local is a local-first home energy simulator with appliance insights, accessible charts, offline support, and privacy-focused analysis.
+
+
+## v1.7.2 — Offline Charts and Clarity Polish
+
+- Bundles Chart.js locally so charts work without an internet connection.
+- Adds the local chart library to the service-worker application shell.
+- Replaces visible “AI Advisor” wording with clearer “Structured Advisor” language while preserving existing internal IDs and behavior.
+- Adds a landing-page trust line: runs locally, no account, and household data stays on this device.
+- Clarifies what improves estimate confidence: device details, usage hours, electricity rate, and schedules.
+- Preserves calculations, modes, themes, saved homes, scenarios, and browser-stored data.
 
 ## v1.6.0 — Brand Foundation
 
@@ -88,13 +100,13 @@ node scripts/validate-release.mjs
 
 This checks required files, metadata alignment, local asset references, and basic release markers.
 
-## Known boundary
+## Offline boundary
 
-Chart.js is loaded from jsDelivr. The rest of the application is packaged locally, but charts require network access unless Chart.js is vendored in a later release.
+Chart.js 4.4.0 is bundled at `assets/chart.umd.js` and cached with the application shell. The landing page, simulator, and charts can run without a live network connection after the first successful load.
 
 ## Next development layer
 
-Read [`docs/NEXT_HANDOFF.md`](docs/NEXT_HANDOFF.md). The recommended next layer is **v29.0 Product Architecture**, beginning with named homes, scenario comparison, import/export, and structured onboarding. AI Advisor v2 follows after the data model is stable.
+Read [`docs/NEXT_HANDOFF.md`](docs/NEXT_HANDOFF.md). The recommended next layer is **v29.0 Product Architecture**, beginning with named homes, scenario comparison, import/export, and structured onboarding. A future advisor layer should follow only after the data model is stable.
 
 ## Licensing
 

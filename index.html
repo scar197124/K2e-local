@@ -96,14 +96,94 @@ h1 span{background:linear-gradient(100deg,var(--green),var(--teal),var(--blue));
 .reassurance-bar{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);color:#d5e3ef;font-size:14px;font-weight:760;flex-wrap:wrap}
 .reassurance-bar span{display:inline-flex;align-items:center;gap:8px}.reassurance-bar .dot{width:10px;height:10px;border-radius:50%;background:var(--green)}.reassurance-bar .blue-dot{background:var(--blue)}
 footer{padding:0 0 8px;text-align:center;color:#9eb2c5;font-size:12px}
+
+/* v1.6.11 Landing Lights: separated containers + subtle borders */
+.landing-panel{
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));
+  box-shadow:0 14px 34px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.copy-panel.landing-panel{
+  padding:22px;
+}
+.copy-inner{
+  padding:18px;
+  border:1px solid rgba(162,190,213,.14);
+  border-radius:20px;
+  background:rgba(2,7,12,.24);
+}
+.mode-area.landing-panel{
+  padding:18px;
+}
+.mode-grid{
+  align-items:stretch;
+}
+.mode-card{
+  outline:1px solid rgba(255,255,255,.035);
+}
+.section-shell{
+  margin-top:16px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.028));
+  box-shadow:0 12px 28px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.section-kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 12px;
+  color:#dce8f2;
+  font-size:13px;
+  font-weight:850;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.section-kicker::before{
+  content:"";
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--green),var(--blue));
+  box-shadow:0 0 18px rgba(125,220,67,.35);
+}
+.support-card{
+  outline:1px solid rgba(255,255,255,.035);
+}
+.reassurance-bar{
+  margin-top:16px;
+  padding:14px 16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+footer .site{
+  padding:8px 12px;
+  border:1px solid rgba(162,190,213,.12);
+  border-radius:14px;
+  background:rgba(5,10,16,.42);
+}
+
 @media (min-width:981px){body{overflow:hidden}}
 @media(max-width:1150px){.support-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:980px){body{overflow:auto}header{padding-top:8px}.header-inner{flex-direction:column;align-items:flex-start}.trust-row{justify-content:flex-start}.top-layout{grid-template-columns:1fr}.copy-panel{padding:6px 4px 0}.copy-inner{padding-right:0;border-right:0;border-bottom:1px solid var(--line);padding-bottom:16px}.mode-grid{max-width:760px;margin:0 auto}.support-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.site{width:min(100% - 16px,1220px)}main{padding:8px 0 12px}.header-inner,.shell{padding:14px}.brand{align-items:flex-start;flex-direction:column;gap:10px}.logo-chip{padding:0}.brand-logo{width:210px;max-width:70vw}.tagline{padding:0;border:0}.trust-pill{font-size:12px;padding:8px 10px}h1{font-size:clamp(34px,11vw,50px)}.lead{font-size:15px}.mode-grid,.support-grid{grid-template-columns:1fr}.mode-card{min-height:0}.reassurance-bar{gap:12px;font-size:13px}}
 @media(max-height:860px) and (min-width:981px){header{padding:8px 0 6px}.header-inner{padding:10px 16px}.logo-chip{padding:0}.brand-logo{width:226px}.tagline{font-size:13px}.trust-pill{padding:8px 11px;font-size:12px}.shell{padding:14px}.top-layout{gap:14px}.eyebrow{margin-bottom:10px}h1{font-size:clamp(32px,3.8vw,50px)}.lead{font-size:15px;line-height:1.45;margin-top:12px}.prompt{padding:8px 11px;font-size:13px}.mode-card{min-height:282px;padding:18px 18px 16px}.mode-icon{width:58px;height:58px;margin-bottom:8px}.mode-card h2{font-size:21px}.mode-card p,.mode-card li{font-size:13px}.support-card{padding:12px}.support-card h3{font-size:15px}.support-card p{font-size:12px}.support-grid{gap:10px}.reassurance-bar{margin-top:10px;padding-top:10px;font-size:13px}}
+
+@media(max-width:980px){.copy-panel.landing-panel{padding:16px}.mode-area.landing-panel{padding:14px}.section-shell{padding:14px}.copy-inner{padding:16px;border:1px solid rgba(162,190,213,.14);border-radius:18px}}
+@media(max-width:700px){.copy-panel.landing-panel{padding:12px}.mode-area.landing-panel{padding:12px}.section-shell{padding:12px}.section-kicker{font-size:12px}.reassurance-bar{padding:12px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
-<meta name="k2e-local-build" content="v1.6.8-landing-and-ui-logo-restored">
+<meta name="k2e-local-build" content="v1.7.2-offline-charts-clarity-polish">
+
+<style id="k2e-v172-clarity-polish">
+.local-trust-line{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:18px 0 0;padding:11px 14px;border:1px solid rgba(52,211,153,.28);border-radius:999px;background:rgba(2,18,17,.62);color:#d8fff1;font-size:13px;line-height:1.4;box-shadow:0 0 24px rgba(45,212,191,.08)}
+.local-trust-line strong{color:#f3fffb;font-weight:800}.local-trust-line span{color:#5eead4}
+@media(max-width:640px){.local-trust-line{border-radius:16px;justify-content:center;text-align:center}}
+</style>
 </head>
 <body>
 <a class="skip" href="#experience">Skip to mode selection</a>
@@ -126,16 +206,17 @@ footer{padding:0 0 8px;text-align:center;color:#9eb2c5;font-size:12px}
   <div class="site">
     <div class="shell">
       <section class="top-layout" aria-labelledby="page-title">
-        <div class="copy-panel">
+        <div class="copy-panel landing-panel">
           <div class="copy-inner">
             <div class="eyebrow">Local-first household planning</div>
             <h1 id="page-title">Plan your household energy use with <span>confidence.</span></h1>
             <p class="lead">K2E Local helps you explore and understand household energy use privately and offline—just choose a mode and continue into the simulator.</p>
+            <div class="local-trust-line" role="note" aria-label="Privacy and offline assurance"><strong>Runs locally</strong><span>·</span><strong>No account</strong><span>·</span><strong>Your household data stays on this device</strong></div>
             <div class="prompt">Choose Simple Mode or Advanced Mode to enter the existing K2E Local dashboard.</div>
           </div>
         </div>
 
-        <nav class="mode-area" id="experience" aria-label="Choose a K2E Local mode">
+        <nav class="mode-area landing-panel" id="experience" aria-label="Choose a K2E Local mode">
           <div class="mode-grid">
             <a class="mode-card simple" href="./app.html#mode=simple">
               <span class="mode-icon" aria-hidden="true">⌂</span>
@@ -166,7 +247,9 @@ footer{padding:0 0 8px;text-align:center;color:#9eb2c5;font-size:12px}
 
       <div class="divider" aria-hidden="true"></div>
 
-      <section class="support-grid" aria-label="How K2E Local helps">
+      <section class="section-shell" aria-label="How K2E Local helps">
+        <div class="section-kicker">How K2E Local helps</div>
+        <div class="support-grid">
         <article class="support-card step">
           <span class="mini" aria-hidden="true">1</span>
           <h3>Build your space</h3>
@@ -190,6 +273,7 @@ footer{padding:0 0 8px;text-align:center;color:#9eb2c5;font-size:12px}
           <h3>Offline ready</h3>
           <p>No problem. Continue using the landing page and simulator without a live connection.</p>
         </article>
+        </div>
       </section>
 
       <div class="reassurance-bar" aria-label="K2E Local assurances">
