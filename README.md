@@ -195,3 +195,6 @@ The customer-facing build now hides unfinished/internal interface elements by de
 - Reset Thickness is disabled at the default value and activates only after adjustment.
 - Reduced visual weight of the appearance card and improved mobile chart-header stacking.
 - Added reduced-motion handling for chart-view button transitions.
+
+
+Vercel production connection refreshed 
