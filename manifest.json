@@ -1,5 +1,5 @@
 {
-  "name": "K2E Local \u2014 Home Energy Simulator",
+  "name": "K2E Local — Home Energy Simulator",
   "short_name": "K2E Local",
   "id": "./",
   "start_url": "./index.html",
@@ -7,7 +7,7 @@
   "display": "standalone",
   "background_color": "#020807",
   "theme_color": "#03100f",
-  "description": "Local-first household energy simulator with offline charts, scenario comparison, and transparent estimate ranges.",
+  "description": "Local-first household energy simulator with ranked action plans, printable reports, offline charts, and transparent estimates.",
   "icons": [
     {
       "src": "./icon-192.png",
@@ -20,5 +20,5 @@
       "type": "image/png"
     }
   ],
-  "version": "1.8.1"
+  "version": "1.10.0"
 }

@@ -4,7 +4,16 @@ Current build: v1.7.2 — Offline Charts and Clarity Polish
 
 **Kilowatts to Efficiency**
 
-## v1.8.1 — Scenario Comparison and Estimate Trust
+## v1.10.0 — Action Plan and Report
+
+K2E Local now turns the active household model into three ranked, reviewable actions and a printable/downloadable local energy report. Recommendations show impact, effort, confidence, assumptions, and uncertainty without claiming guaranteed savings.
+
+
+## v1.9.1 — Full-Height Bar Card Fill
+
+The visible vertical-bar renderer now fills the entire fixed chart panel. The former 294 px inner cap was removed, eliminating the large blank area beneath the chart while keeping the Quick Read card anchored at the bottom.
+
+## v1.8.9 — Full Chart Card Utilization
 
 - Compares any two saved scenarios from the active home.
 - Shows monthly and annualized planning differences.
