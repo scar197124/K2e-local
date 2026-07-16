@@ -899,7 +899,7 @@ html[data-density="compact"]
 }
 @media(max-width:760px){.myvera-setup-steps{grid-template-columns:1fr;}}
 </style>
-<meta content="k2e-local-v1.7.2-offline-charts-clarity-polish" name="myvera-build"/>
+<meta content="k2e-local-v1.8.1-offline-charts-clarity-polish" name="myvera-build"/>
 <style id="myvera-v2874-single-card-layer">
 /* K2E Local v28.7.6 — dynamic themed header backgrounds and contrast-safe branding */
 .myvera-single-card-shell{
@@ -7301,8 +7301,8 @@ html[data-theme="high-contrast"] #ai-local-panel::before{
     $('myvera-home-select')?.addEventListener('change',e=>{persist(true);model.activeHomeId=e.target.value;model.activeScenarioId=activeHome().scenarios[0].id;loadActive();persist(true);});
     $('myvera-scenario-select')?.addEventListener('change',e=>{persist(true);model.activeScenarioId=e.target.value;loadActive();persist(true);});
     $('myvera-new-home')?.addEventListener('click',()=>{const name=cleanName(prompt('Name this home:','New Home'),'New Home');if(!name)return;persist(true);const h={id:uid('home'),name,type:'home',archived:false,createdAt:now(),updatedAt:now(),scenarios:[{id:uid('scenario'),name:'Current Usage',createdAt:now(),updatedAt:now(),snapshot:snapshot()}]};model.homes.push(h);model.activeHomeId=h.id;model.activeScenarioId=h.scenarios[0].id;renderSelectors();persist(true);status('Created '+name);});
-    $('myvera-new-scenario')?.addEventListener('click',()=>{const h=activeHome();if(!h)return;const name=cleanName(prompt('Name this scenario:','Energy-Saving Plan'),'New Scenario');if(!name)return;persist(true);const sc={id:uid('scenario'),name,createdAt:now(),updatedAt:now(),snapshot:snapshot()};h.scenarios.push(sc);model.activeScenarioId=sc.id;renderSelectors();persist(true);status('Created scenario '+name);});
-    $('myvera-duplicate-scenario')?.addEventListener('click',()=>{const h=activeHome(),src=activeScenario();if(!h||!src)return;persist(true);const name=cleanName(prompt('Name the duplicate:',src.name+' Copy'),src.name+' Copy');const sc={id:uid('scenario'),name,createdAt:now(),updatedAt:now(),snapshot:clone(src.snapshot)};h.scenarios.push(sc);model.activeScenarioId=sc.id;renderSelectors();persist(true);closeMenu();status('Scenario duplicated');});
+    $('myvera-new-scenario')?.addEventListener('click',()=>{const h=activeHome();if(!h)return;const name=cleanName(prompt('Name this scenario:','Proposed Change'),'New Scenario');if(!name)return;persist(true);const sc={id:uid('scenario'),name,createdAt:now(),updatedAt:now(),snapshot:snapshot()};h.scenarios.push(sc);model.activeScenarioId=sc.id;renderSelectors();persist(true);status('Created scenario '+name);});
+    $('myvera-duplicate-scenario')?.addEventListener('click',()=>{const h=activeHome(),src=activeScenario();if(!h||!src)return;persist(true);const name=cleanName(prompt('Name the duplicate:','Proposed Change'),src.name+' Copy');const sc={id:uid('scenario'),name,createdAt:now(),updatedAt:now(),snapshot:clone(src.snapshot)};h.scenarios.push(sc);model.activeScenarioId=sc.id;renderSelectors();persist(true);closeMenu();status('Scenario duplicated');});
     $('myvera-rename-home')?.addEventListener('click',()=>{const h=activeHome();if(!h)return;const n=cleanName(prompt('Rename home:',h.name),h.name);h.name=n;renderSelectors();persist(true);closeMenu();});
     $('myvera-rename-scenario')?.addEventListener('click',()=>{const sc=activeScenario();if(!sc)return;const n=cleanName(prompt('Rename scenario:',sc.name),sc.name);sc.name=n;renderSelectors();persist(true);closeMenu();});
     $('myvera-archive-home')?.addEventListener('click',()=>{const h=activeHome(),available=model.homes.filter(x=>!x.archived);if(!h||available.length<2){alert('Create another home before archiving this one.');return;}if(!confirm('Archive “'+h.name+'”? Its scenarios remain in exported data.'))return;persist(true);h.archived=true;const next=model.homes.find(x=>!x.archived);model.activeHomeId=next.id;model.activeScenarioId=next.scenarios[0].id;loadActive();persist(true);closeMenu();});
@@ -8582,6 +8582,113 @@ summary:focus-visible{
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();
+})();
+</script>
+
+
+<style id="k2e-v180-scenario-trust-style">
+.k2e-v180-panel{margin:0 10px 12px;padding:14px;border:1px solid color-mix(in srgb,var(--card-br) 70%,var(--accent) 30%);border-radius:16px;background:linear-gradient(145deg,color-mix(in srgb,var(--card) 95%,var(--accent) 5%),var(--card));box-shadow:0 12px 30px rgba(0,0,0,.12)}
+.k2e-v180-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.k2e-v180-head h2{margin:0;font-size:18px}.k2e-v180-head p{margin:4px 0 0;color:var(--muted);font-size:12px}.k2e-v180-badge{padding:5px 9px;border-radius:999px;background:color-mix(in srgb,var(--accent) 15%,var(--card));border:1px solid color-mix(in srgb,var(--accent) 55%,var(--card-br));font-size:11px;font-weight:900;white-space:nowrap}
+.k2e-v180-controls{display:grid;grid-template-columns:1fr 1fr auto;gap:9px;align-items:end}.k2e-v180-field{display:grid;gap:4px}.k2e-v180-field label{font-size:11px;font-weight:850;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.k2e-v180-field select{width:100%}
+.k2e-v180-results{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:12px}.k2e-v180-metric{padding:11px;border:1px solid var(--card-br);border-radius:13px;background:color-mix(in srgb,var(--card) 94%,var(--accent) 6%)}.k2e-v180-metric span{display:block;color:var(--muted);font-size:11px;font-weight:800}.k2e-v180-metric strong{display:block;margin-top:5px;font-size:18px}.k2e-v180-metric small{display:block;margin-top:3px;color:var(--muted)}
+.k2e-v180-summary{margin-top:10px;padding:12px;border-radius:13px;border-left:4px solid var(--accent);background:color-mix(in srgb,var(--card) 90%,var(--accent) 10%);line-height:1.5}.k2e-v180-trust{display:grid;grid-template-columns:1.2fr 1fr;gap:10px;margin-top:10px}.k2e-v180-trust-card{padding:12px;border:1px solid var(--card-br);border-radius:13px}.k2e-v180-trust-card h3{margin:0 0 7px;font-size:14px}.k2e-v180-trust-card ul{margin:0;padding-left:18px;color:var(--muted);font-size:12px;line-height:1.55}.k2e-v180-range{font-size:20px;font-weight:900}.k2e-v180-empty{color:var(--muted);font-size:12px;margin-top:10px}
+@media(max-width:850px){.k2e-v180-results{grid-template-columns:1fr 1fr}.k2e-v180-trust{grid-template-columns:1fr}}
+@media(max-width:560px){.k2e-v180-panel{margin:0 8px 10px;padding:11px}.k2e-v180-head{flex-direction:column}.k2e-v180-controls{grid-template-columns:1fr}.k2e-v180-results{grid-template-columns:1fr 1fr}.k2e-v180-metric strong{font-size:16px}}
+body.ui-simple #k2e-v180-panel{display:none!important}
+</style>
+<script id="k2e-v180-scenario-trust-script">
+(function(){
+'use strict';
+const STORE='myvera-product-state-v1';
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat(undefined,{style:'currency',currency:'CAD',maximumFractionDigits:2}).format(Number(n)||0);
+const num=(n,d=1)=>Number(n||0).toFixed(d);
+function monthly(snapshot){
+ const days=new Date(new Date().getFullYear(),new Date().getMonth()+1,0).getDate();
+ const list=Array.isArray(snapshot?.devices)?snapshot.devices:[];
+ const kwh=list.reduce((sum,d)=>sum+((Number(d.watts)||0)*(Number(d.hoursPerDay)||0)*((Number(d.duty)||100)/100)*(Number(d.quantity)||1)/1000)*days,0);
+ const rate=Math.max(0,Number(snapshot?.electricityRate)||.15);
+ return {kwh,cost:kwh*rate,rate,count:list.length};
+}
+function read(){try{return JSON.parse(localStorage.getItem(STORE)||'null')}catch(e){return null}}
+function activeHome(model){return model?.homes?.find(h=>h.id===model.activeHomeId)||model?.homes?.find(h=>!h.archived)||model?.homes?.[0]}
+function ensure(){
+ if($('k2e-v180-panel'))return;
+ const anchor=$('myvera-workspace-bar'); if(!anchor)return;
+ const panel=document.createElement('section'); panel.id='k2e-v180-panel'; panel.className='k2e-v180-panel'; panel.setAttribute('aria-label','Scenario comparison and estimate trust');
+ panel.innerHTML=`<div class="k2e-v180-head"><div><h2>Compare a Change</h2><p>Start with your current setup, change one or two inputs in a copy, then review the estimated difference.</p></div><span class="k2e-v180-badge">LOCAL · PRIVATE</span></div>
+ <div class="k2e-v180-controls"><div class="k2e-v180-field"><label for="k2e-v180-base">Current setup</label><select class="myvera-input" id="k2e-v180-base"></select></div><div class="k2e-v180-field"><label for="k2e-v180-plan">Proposed change</label><select class="myvera-input" id="k2e-v180-plan"></select></div><button class="myvera-btn primary-action" id="k2e-v180-refresh" type="button">Update comparison</button></div>
+ <div id="k2e-v180-output" aria-live="polite"></div>`;
+ anchor.insertAdjacentElement('afterend',panel);
+ $('k2e-v180-base').addEventListener('change',render);
+ $('k2e-v180-plan').addEventListener('change',render);
+ $('k2e-v180-refresh').addEventListener('click',render);
+ }
+function confidence(m){let score=0;if(m.count>=1)score++;if(m.count>=3)score++;if(m.kwh>0)score++;if(m.cost>0)score++;if(Math.abs(m.rate-.15)>.001)score++;return score}
+function render(){
+ ensure(); const model=read(),home=activeHome(model),baseSel=$('k2e-v180-base'),planSel=$('k2e-v180-plan'),out=$('k2e-v180-output'); if(!baseSel||!planSel||!out)return;
+ const scenarios=home?.scenarios||[]; const oldBase=baseSel.value,oldPlan=planSel.value;
+ baseSel.innerHTML='';planSel.innerHTML=''; scenarios.forEach(sc=>{baseSel.add(new Option(sc.name,sc.id));planSel.add(new Option(sc.name,sc.id));});
+ baseSel.value=scenarios.some(s=>s.id===oldBase)?oldBase:(scenarios[0]?.id||'');
+ planSel.value=scenarios.some(s=>s.id===oldPlan)?oldPlan:(scenarios.find(s=>s.id===model?.activeScenarioId)?.id||scenarios[1]?.id||scenarios[0]?.id||'');
+ if(scenarios.length<2){out.innerHTML='<p class="k2e-v180-empty"><strong>Create a proposed change first.</strong> Use “Duplicate Scenario,” give the copy a clear name, and change only one or two inputs. Your original setup remains untouched.</p>';return;}
+ const a=scenarios.find(s=>s.id===baseSel.value)||scenarios[0],b=scenarios.find(s=>s.id===planSel.value)||scenarios[1],am=monthly(a.snapshot),bm=monthly(b.snapshot);
+ if(a.id===b.id){out.innerHTML='<p class="k2e-v180-empty"><strong>Choose two different scenarios.</strong> Select your present setup on the left and the proposed change on the right.</p>';return;}
+ const dk=bm.kwh-am.kwh,dc=bm.cost-am.cost,saving=-dc,percent=am.kwh?(-dk/am.kwh*100):0;
+ const direction=saving>0.005?'saves':saving<-.005?'adds':'changes';
+ const headline=saving>0.005?`This change may reduce the modeled cost by about ${money(saving)} per month.`:saving<-.005?`This change may increase the modeled cost by about ${money(Math.abs(saving))} per month.`:`These two setups produce nearly the same modeled monthly cost.`;
+ const conf=Math.min(confidence(am),confidence(bm)); const label=conf>=5?'High':conf>=3?'Moderate':conf>=1?'Low':'Not enough data';
+ const uncertainty=Math.max(am.cost,bm.cost)*(.22-(Math.min(conf,5)*.025)); const low=Math.max(0,bm.cost-uncertainty),high=bm.cost+uncertainty;
+ out.innerHTML=`<div class="k2e-v180-results"><div class="k2e-v180-metric"><span>Current setup</span><strong>${num(am.kwh)} kWh/mo</strong><small>${money(am.cost)} estimated</small></div><div class="k2e-v180-metric"><span>Proposed change</span><strong>${num(bm.kwh)} kWh/mo</strong><small>${money(bm.cost)} estimated</small></div><div class="k2e-v180-metric"><span>Monthly difference</span><strong>${dk>0?'+':''}${num(dk)} kWh</strong><small>${dc>0?'+':''}${money(dc)}</small></div><div class="k2e-v180-metric"><span>Modeled change</span><strong>${percent>0?'-':''}${num(Math.abs(percent))}%</strong><small>${direction} ${money(Math.abs(saving))}/mo</small></div></div>
+ <div class="k2e-v180-summary"><strong>${headline}</strong> Annualized planning difference: <strong>${money(Math.abs(saving)*12)} ${saving>=0?'potential savings':'additional cost'}</strong>. Compare against real bills before making a purchase decision.</div>
+ <div class="k2e-v180-trust"><div class="k2e-v180-trust-card"><h3>How much to trust this result</h3><ul><li>${label} confidence (${conf}/5) based on device count, calculated usage, cost output, and whether a custom rate is entered.</li><li>Accuracy improves with real runtime, duty cycle, quantity, schedules, and the current utility rate.</li><li>Weather, seasonal heating/cooling, standby behavior, taxes, fixed fees, and utility billing rules may not be fully represented.</li></ul></div><div class="k2e-v180-trust-card"><h3>Planning range for the proposed change</h3><div class="k2e-v180-range">${money(low)}–${money(high)}/mo</div><p class="muted small">The center estimate can move as seasons, runtime, rates, taxes, and fixed utility charges change. This is not a bill forecast or utility quote.</p></div></div>`;
+ }
+ document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{ensure();render();const original=window.renderAll;if(typeof original==='function'&&!window.__k2eV180Wrapped){window.__k2eV180Wrapped=true;window.renderAll=function(){const r=original.apply(this,arguments);setTimeout(render,0);return r;}}document.addEventListener('change',e=>{if(e.target?.id==='myvera-home-select'||e.target?.id==='myvera-scenario-select')setTimeout(render,20)});},120)});
+})();
+</script>
+
+
+<!-- K2E Local v1.8.1 — Guided Comparison Refinement -->
+<style id="k2e-v181-guided-comparison-style">
+.k2e-v181-guide{margin:0 10px 12px;padding:14px;border:1px solid var(--card-br);border-radius:16px;background:color-mix(in srgb,var(--card) 94%,var(--accent) 6%)}
+.k2e-v181-guide-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.k2e-v181-guide h2{margin:0;font-size:17px}.k2e-v181-guide p{margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.5}.k2e-v181-progress{font-size:12px;font-weight:900;padding:5px 9px;border:1px solid var(--card-br);border-radius:999px;white-space:nowrap}
+.k2e-v181-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:11px}.k2e-v181-step{padding:10px;border:1px solid var(--card-br);border-radius:12px;background:var(--card);min-height:88px}.k2e-v181-step strong{display:block;font-size:12px}.k2e-v181-step span{display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.4}.k2e-v181-step.is-done{border-color:color-mix(in srgb,var(--accent) 70%,var(--card-br));background:color-mix(in srgb,var(--accent) 11%,var(--card))}.k2e-v181-step.is-current{box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 24%,transparent)}
+.k2e-v181-next{margin-top:10px;padding:10px 12px;border-left:4px solid var(--accent);border-radius:10px;background:color-mix(in srgb,var(--accent) 9%,var(--card));font-size:12px;line-height:1.5}.k2e-v181-next strong{display:block;margin-bottom:2px}
+.k2e-v181-principle{margin-top:8px;color:var(--muted);font-size:11px}.k2e-v181-principle b{color:var(--text)}
+body.ui-simple #k2e-v181-guide{display:none!important}
+@media(max-width:820px){.k2e-v181-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.k2e-v181-guide{margin:0 8px 10px;padding:11px}.k2e-v181-guide-head{flex-direction:column}.k2e-v181-steps{grid-template-columns:1fr}.k2e-v181-step{min-height:0}}
+</style>
+<script id="k2e-v181-guided-comparison-script">
+(function(){
+'use strict';
+const STORE='myvera-product-state-v1';
+const $=id=>document.getElementById(id);
+function read(){try{return JSON.parse(localStorage.getItem(STORE)||'null')}catch(e){return null}}
+function home(m){return m?.homes?.find(h=>h.id===m.activeHomeId)||m?.homes?.find(h=>!h.archived)||m?.homes?.[0]}
+function activeScenario(m,h){return h?.scenarios?.find(s=>s.id===m?.activeScenarioId)||h?.scenarios?.[0]}
+function hasUsefulInputs(sc){const devices=Array.isArray(sc?.snapshot?.devices)?sc.snapshot.devices:[];return devices.some(d=>(Number(d.watts)||0)>0&&(Number(d.hoursPerDay)||0)>0)}
+function ensure(){
+ if($('k2e-v181-guide'))return;
+ const anchor=$('myvera-workspace-bar'); if(!anchor)return;
+ const el=document.createElement('section'); el.id='k2e-v181-guide';el.className='k2e-v181-guide';el.setAttribute('aria-label','Guided scenario comparison');
+ el.innerHTML='<div class="k2e-v181-guide-head"><div><h2>A simple four-step comparison</h2><p>Use comparisons to answer one practical question at a time—not to predict an exact future bill.</p></div><span class="k2e-v181-progress" id="k2e-v181-progress">Step 1 of 4</span></div><div class="k2e-v181-steps"><div class="k2e-v181-step" data-step="1"><strong>1. Build current setup</strong><span>Add devices, realistic runtime, and your electricity rate.</span></div><div class="k2e-v181-step" data-step="2"><strong>2. Duplicate it</strong><span>Create a safe copy so the original remains unchanged.</span></div><div class="k2e-v181-step" data-step="3"><strong>3. Change one thing</strong><span>Adjust one or two inputs so the reason for the difference stays clear.</span></div><div class="k2e-v181-step" data-step="4"><strong>4. Compare direction</strong><span>Review energy, cost, confidence, assumptions, and uncertainty.</span></div></div><div class="k2e-v181-next" id="k2e-v181-next"></div><div class="k2e-v181-principle"><b>Decision rule:</b> a comparison supports a decision; it does not guarantee savings.</div>';
+ anchor.insertAdjacentElement('afterend',el);
+}
+function render(){
+ ensure(); const m=read(),h=home(m),sc=activeScenario(m,h),count=h?.scenarios?.length||0,useful=hasUsefulInputs(sc);
+ let step=1,title='Start with the present setup',text='Add at least one device with realistic wattage and daily runtime. Enter your actual electricity rate when available.';
+ if(useful&&count<2){step=2;title='Protect the original';text='Choose “Duplicate Scenario.” Name the copy after the change you are testing, such as “Shorter dryer use.”';}
+ else if(useful&&count>=2){step=3;title='Make the comparison understandable';text='Open the copied scenario and change only one or two inputs. Then use Compare a Change below.';}
+ const base=$('k2e-v180-base'),plan=$('k2e-v180-plan');
+ if(useful&&count>=2&&base&&plan&&base.value&&plan.value&&base.value!==plan.value){step=4;title='Read the result as a range';text='Focus on the direction, size of the difference, and confidence. Large decisions deserve real bills, meter data, or professional review.';}
+ document.querySelectorAll('#k2e-v181-guide [data-step]').forEach(el=>{const n=Number(el.dataset.step);el.classList.toggle('is-done',n<step);el.classList.toggle('is-current',n===step)});
+ const progress=$('k2e-v181-progress'),next=$('k2e-v181-next');if(progress)progress.textContent='Step '+step+' of 4';if(next)next.innerHTML='<strong>'+title+'</strong>'+text;
+}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(render,160));
+document.addEventListener('change',()=>setTimeout(render,40));
+document.addEventListener('click',e=>{if(e.target?.closest?.('#myvera-new-scenario,#myvera-duplicate-scenario,#k2e-v180-refresh'))setTimeout(render,120)});
+const timer=setInterval(()=>{if(document.body){render();clearInterval(timer)}},200);
 })();
 </script>
 

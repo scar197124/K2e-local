@@ -4,6 +4,14 @@ Current build: v1.7.2 — Offline Charts and Clarity Polish
 
 **Kilowatts to Efficiency**
 
+## v1.8.1 — Scenario Comparison and Estimate Trust
+
+- Compares any two saved scenarios from the active home.
+- Shows monthly and annualized planning differences.
+- Explains confidence inputs and displays a transparent estimate range.
+- Keeps the feature local, offline-capable, and compatible with existing saved data.
+- Restores the documented validation script, handoff document, and GitHub Pages workflow.
+
 K2E Local is a local-first home energy simulator with appliance insights, accessible charts, offline support, and privacy-focused analysis.
 
 
@@ -195,6 +203,3 @@ The customer-facing build now hides unfinished/internal interface elements by de
 - Reset Thickness is disabled at the default value and activates only after adjustment.
 - Reduced visual weight of the appearance card and improved mobile chart-header stacking.
 - Added reduced-motion handling for chart-view button transitions.
-
-
-Vercel production connection refreshed 
