@@ -6,5 +6,5 @@ const version=fs.readFileSync("VERSION","utf8").trim();
 const app=fs.readFileSync("app.html","utf8");
 if(!app.includes("k2e-v180-scenario-trust-script")) throw new Error("v1.8 comparison module missing");
 if(!app.includes("k2e-v110-action-report-script")) throw new Error("v1.10 action plan/report module missing");
-if(version!=="1.10.0") throw new Error("VERSION mismatch");
-console.log("K2E Local v1.10.0 release validation passed.");
+if(version!=="1.11.2") throw new Error("VERSION mismatch");
+console.log("K2E Local v1.11.2 release validation passed.");

@@ -4,7 +4,7 @@ Current build: v1.7.2 — Offline Charts and Clarity Polish
 
 **Kilowatts to Efficiency**
 
-## v1.10.0 — Action Plan and Report
+## v1.11.1 — Action Plan and Report
 
 K2E Local now turns the active household model into three ranked, reviewable actions and a printable/downloadable local energy report. Recommendations show impact, effort, confidence, assumptions, and uncertainty without claiming guaranteed savings.
 
