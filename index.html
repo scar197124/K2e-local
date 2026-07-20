@@ -176,6 +176,58 @@ footer .site{
 @media(max-width:980px){.copy-panel.landing-panel{padding:16px}.mode-area.landing-panel{padding:14px}.section-shell{padding:14px}.copy-inner{padding:16px;border:1px solid rgba(162,190,213,.14);border-radius:18px}}
 @media(max-width:700px){.copy-panel.landing-panel{padding:12px}.mode-area.landing-panel{padding:12px}.section-shell{padding:12px}.section-kicker{font-size:12px}.reassurance-bar{padding:12px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* v1.11.7 Welcome Home border visibility polish */
+:root{
+  --line:rgba(162,190,213,.34);
+  --line-strong:rgba(162,190,213,.48);
+}
+.header-inner,
+.shell,
+.landing-panel,
+.section-shell,
+.support-card,
+.reassurance-bar,
+.trust-pill,
+.prompt{
+  border-color:var(--line);
+}
+.copy-inner{
+  border-color:rgba(162,190,213,.30);
+}
+.mode-card{
+  border-color:rgba(162,190,213,.38);
+  outline-color:rgba(255,255,255,.075);
+}
+.mode-card.simple{
+  border-color:rgba(125,220,67,.58);
+}
+.mode-card.advanced{
+  border-color:rgba(58,167,255,.58);
+}
+.mode-icon{
+  border-width:1.5px;
+}
+.simple .mode-icon{
+  border-color:rgba(125,220,67,.48);
+}
+.advanced .mode-icon{
+  border-color:rgba(58,167,255,.48);
+}
+.support-card{
+  outline-color:rgba(255,255,255,.07);
+}
+.local-trust-line{
+  border-color:rgba(52,211,153,.44);
+}
+footer .site{
+  border-color:rgba(162,190,213,.25);
+}
+@media(max-width:980px){
+  .copy-inner{border-color:rgba(162,190,213,.30)}
+}
+
 </style>
 <meta name="k2e-local-build" content="v1.7.2-offline-charts-clarity-polish">
 
