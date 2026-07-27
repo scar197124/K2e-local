@@ -1,3 +1,15 @@
+## v1.12.2 — Trust and Guidance Polish
+
+- Collapsed Trust and Recovery with compact setup-health status.
+- Clickable Best Next Action and expandable estimate-quality explanation.
+- No calculation-engine or layout redesign.
+
+## v1.12.1 — Bottom Containment and Code-Leak Repair
+
+- Fixes visible JavaScript at the bottom of the interface
+- Aligns Trust and Recovery with the unified application shell
+- Preserves v1.12.0 Household Intelligence and Smart Devices Preview
+
 # K2E Local
 
 Current build: v1.7.2 — Offline Charts and Clarity Polish
@@ -212,3 +224,19 @@ The customer-facing build now hides unfinished/internal interface elements by de
 - Reset Thickness is disabled at the default value and activates only after adjustment.
 - Reduced visual weight of the appearance card and improved mobile chart-header stacking.
 - Added reduced-motion handling for chart-view button transitions.
+
+## v1.12.0 — Household Intelligence Foundation
+
+This release begins the next K2E Local product phase without redesigning the stable interface. A new Household Snapshot provides a five-second overview of the active home. The existing Smart Devices prototype is preserved and exposed only in Advanced Mode as a clearly labelled preview. Demo Mode is functional; real discovery requires a separate local bridge and is not claimed as part of the standard website build.
+
+
+## v1.12.3 — Live Snapshot Wiring Fix
+- Wired Household Snapshot monthly energy and energy cost directly to the active device model.
+- Uses the same projected-month formula as the main estimate panel.
+- Ranks Largest Contributor from live calculated device energy.
+- Bases Estimate Quality on active modeled device inputs.
+- Refreshes after device, rate, scenario, home, import, and smart-device changes through the existing render and event hooks.
+
+## v1.12.4 — Live Rate Synchronization Fix
+- Electricity-rate edits now update the estimated bill immediately while typing.
+- Household Snapshot and the main daily/monthly estimate cards use one synchronized calculation result.

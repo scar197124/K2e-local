@@ -11610,6 +11610,151 @@ html:not(.myvera-developer-mode) .ai-provider-details {
 })();
 </script>
 
+
+<!-- K2E Local v1.12.4 — Live Rate Synchronization Fix -->
+<style id="k2e-v1122-trust-guidance-style">
+#k2e-trust-section.is-collapsed{padding-bottom:14px}
+#k2e-trust-section.is-collapsed .k2e-trust-actions{display:none!important}
+#k2e-trust-section .k2e-setup-health{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;align-items:center}
+#k2e-trust-section .k2e-health-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid color-mix(in srgb,var(--card-br) 70%,var(--accent) 30%);border-radius:999px;background:color-mix(in srgb,var(--card) 94%,var(--accent) 6%);font-size:11px;font-weight:800;line-height:1.2}
+#k2e-trust-section .k2e-health-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 9px color-mix(in srgb,var(--accent) 72%,transparent)}
+#k2e-trust-section .k2e-health-chip[data-state="review"] .k2e-health-dot{background:#d59b24;box-shadow:0 0 9px rgba(213,155,36,.55)}
+#k2e-trust-section .k2e-health-chip[data-state="good"] .k2e-health-dot{background:#59c47a;box-shadow:0 0 9px rgba(89,196,122,.55)}
+#k2e-trust-section .k2e-trust-toggle{font-weight:850}
+.k2e-snapshot-action,.k2e-snapshot-quality{cursor:pointer;position:relative;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.k2e-snapshot-action:hover,.k2e-snapshot-quality:hover,.k2e-snapshot-action:focus-visible,.k2e-snapshot-quality:focus-visible{transform:translateY(-1px);border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 18%,transparent),0 10px 22px rgba(0,0,0,.13);outline:none}
+.k2e-snapshot-action::after,.k2e-snapshot-quality::after{content:'Open';position:absolute;right:9px;top:8px;color:var(--accent-2);font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;opacity:.78}
+#k2e-quality-details{grid-column:1/-1;padding:11px 12px;border:1px solid color-mix(in srgb,var(--accent) 42%,var(--card-br));border-radius:12px;background:color-mix(in srgb,var(--card) 95%,var(--accent) 5%);font-size:12px;line-height:1.5}
+#k2e-quality-details[hidden]{display:none!important}
+#k2e-quality-details strong{display:block;margin-bottom:4px}
+#k2e-quality-details ul{margin:7px 0 0 18px;padding:0;color:var(--muted)}
+.k2e-guidance-highlight{animation:k2eGuidancePulse 1.5s ease-out 1;outline:3px solid color-mix(in srgb,var(--accent) 58%,transparent)!important;outline-offset:4px}
+@keyframes k2eGuidancePulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 45%,transparent)}70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:none}}
+@media(max-width:560px){#k2e-trust-section .k2e-setup-health{gap:6px}#k2e-trust-section .k2e-health-chip{width:100%;justify-content:flex-start}.k2e-snapshot-action::after,.k2e-snapshot-quality::after{position:static;display:block;margin-top:7px}}
+@media(prefers-reduced-motion:reduce){.k2e-snapshot-action,.k2e-snapshot-quality{transition:none}.k2e-guidance-highlight{animation:none}}
+</style>
+<script id="k2e-v1122-trust-guidance-script">
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function setTrustCollapsed(value){
+ const section=$('k2e-trust-section'),body=$('k2e-trust-body'),toggle=$('k2e-trust-toggle');if(!section||!body||!toggle)return;
+ body.hidden=value;section.classList.toggle('is-collapsed',value);toggle.setAttribute('aria-expanded',String(!value));toggle.textContent=value?'Open Audit & Backup':'Collapse';localStorage.setItem('k2e-trust-collapsed',value?'1':'0');
+}
+function healthSummary(){
+ const section=$('k2e-trust-section');if(!section)return;
+ let summary=section.querySelector('.k2e-setup-health');if(!summary){summary=document.createElement('div');summary.className='k2e-setup-health';summary.setAttribute('aria-live','polite');section.querySelector('.k2e-trust-head>div:first-child')?.appendChild(summary)}
+ const auditItems=[...section.querySelectorAll('.k2e-audit-item')],reviews=auditItems.filter(x=>x.dataset.level==='review').length,infos=auditItems.filter(x=>x.dataset.level==='info').length;
+ const tests=[...section.querySelectorAll('.k2e-test-row .k2e-pass')],passed=tests.filter(x=>/pass/i.test(x.textContent||'')).length;
+ const last=localStorage.getItem('k2e-last-backup-at');
+ const setupState=reviews?'review':'good',setupText=reviews?reviews+' setup item'+(reviews===1?'':'s')+' to review':infos?infos+' setup suggestion'+(infos===1?'':'s'):'Setup looks clear';
+ summary.innerHTML='<span class="k2e-health-chip" data-state="'+setupState+'"><i class="k2e-health-dot" aria-hidden="true"></i>'+esc(setupText)+'</span><span class="k2e-health-chip" data-state="'+(tests.length&&passed===tests.length?'good':'review')+'"><i class="k2e-health-dot" aria-hidden="true"></i>Calculations '+(tests.length?passed+'/'+tests.length+' passed':'checking')+'</span><span class="k2e-health-chip" data-state="'+(last?'good':'review')+'"><i class="k2e-health-dot" aria-hidden="true"></i>'+(last?'Backup recorded':'Backup not created')+'</span>';
+}
+function findGuidanceTarget(name){
+ const needle=String(name||'').trim().toLowerCase();
+ const candidates=[...document.querySelectorAll('.device-card,.mini-device,.device-row,table tbody tr,.myvera-html-bar-row,.k2e-action-card')];
+ return candidates.find(el=>needle&&el.textContent.toLowerCase().includes(needle))||$('k2e-action-plan')||document.querySelector('.device-card,.device-row,table tbody tr');
+}
+function openBestAction(){
+ const name=$('k2e-snap-driver')?.textContent?.trim(),target=findGuidanceTarget(name);if(!target)return;
+ target.scrollIntoView({behavior:'smooth',block:'center'});target.classList.add('k2e-guidance-highlight');setTimeout(()=>target.classList.remove('k2e-guidance-highlight'),1900);
+}
+function qualityCopy(){
+ const level=$('k2e-snap-quality')?.textContent?.trim()||'Starting point',note=$('k2e-snap-quality-note')?.textContent?.trim()||'';
+ const count=document.querySelectorAll('.device-card,.mini-device,.device-row').length;
+ return '<strong>How this estimate quality was judged</strong><div>'+esc(note)+'</div><ul><li>'+esc(count+' modeled device input'+(count===1?'':'s')+' detected')+'</li><li>Quality improves when major loads, wattage, quantity, runtime and duty cycle are confirmed.</li><li>This is a planning confidence signal—not a utility-grade measurement or guarantee.</li></ul><div style="margin-top:7px"><strong>Current level: '+esc(level)+'</strong></div>';
+}
+function wireSnapshot(){
+ const grid=document.querySelector('#k2e-household-snapshot .k2e-snapshot-grid');if(!grid)return;
+ const action=$('k2e-snap-action')?.closest('.k2e-snapshot-tile'),quality=$('k2e-snap-quality')?.closest('.k2e-snapshot-tile');
+ if(action&&!action.dataset.guidanceWired){action.dataset.guidanceWired='1';action.classList.add('k2e-snapshot-action');action.tabIndex=0;action.setAttribute('role','button');action.setAttribute('aria-label','Open the best next action');action.addEventListener('click',openBestAction);action.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openBestAction()}})}
+ let details=$('k2e-quality-details');if(!details){details=document.createElement('div');details.id='k2e-quality-details';details.hidden=true;grid.appendChild(details)}
+ if(quality&&!quality.dataset.guidanceWired){quality.dataset.guidanceWired='1';quality.classList.add('k2e-snapshot-quality');quality.tabIndex=0;quality.setAttribute('role','button');quality.setAttribute('aria-controls','k2e-quality-details');quality.setAttribute('aria-expanded','false');const toggle=()=>{details.innerHTML=qualityCopy();details.hidden=!details.hidden;quality.setAttribute('aria-expanded',String(!details.hidden))};quality.addEventListener('click',toggle);quality.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}})}
+ if(details&&!details.hidden)details.innerHTML=qualityCopy();
+}
+function wireTrust(){
+ const section=$('k2e-trust-section'),toggle=$('k2e-trust-toggle');if(!section||!toggle)return;
+ if(!localStorage.getItem('k2e-v1122-trust-initialized')){localStorage.setItem('k2e-v1122-trust-initialized','1');setTrustCollapsed(true)}else setTrustCollapsed(localStorage.getItem('k2e-trust-collapsed')!=='0');
+ if(!toggle.dataset.v1122Wired){toggle.dataset.v1122Wired='1';toggle.onclick=()=>setTrustCollapsed(!section.classList.contains('is-collapsed'))}
+ healthSummary();
+}
+function run(){wireSnapshot();wireTrust();healthSummary()}
+function boot(){run();let n=0;const timer=setInterval(()=>{run();if(++n>18)clearInterval(timer)},250);document.addEventListener('change',()=>setTimeout(run,90),true);document.addEventListener('click',()=>setTimeout(run,140),true)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+})();
+</script>
+
+<!-- K2E Local v1.12.0 — Household Intelligence Foundation -->
+<style id="k2e-v1120-foundation-style">
+.k2e-household-snapshot{grid-column:1/-1;margin:10px 0 2px;padding:14px;border:2px solid color-mix(in srgb,var(--accent) 58%,var(--card-br));border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 8%,var(--card)),var(--card));box-shadow:0 12px 28px rgba(0,0,0,.12)}
+.k2e-snapshot-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:11px}.k2e-snapshot-head h2{margin:0;font-size:18px}.k2e-snapshot-head p{margin:3px 0 0;color:var(--muted);font-size:12px;line-height:1.4}.k2e-snapshot-badge{padding:5px 9px;border:1px solid var(--accent);border-radius:999px;color:var(--accent-2);font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.k2e-snapshot-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.k2e-snapshot-tile{min-width:0;padding:10px;border:1px solid color-mix(in srgb,var(--card-br) 74%,var(--accent) 26%);border-radius:12px;background:color-mix(in srgb,var(--card) 94%,var(--accent) 6%)}.k2e-snapshot-tile span{display:block;color:var(--muted);font-size:10px;font-weight:850;letter-spacing:.05em;text-transform:uppercase}.k2e-snapshot-tile strong{display:block;margin-top:5px;font-size:17px;line-height:1.22;overflow-wrap:anywhere}.k2e-snapshot-tile small{display:block;margin-top:4px;color:var(--muted);font-size:10px;line-height:1.35}
+body.ui-advanced #theme-toolbar #btn-connect{display:inline-flex!important}body.ui-simple #theme-toolbar #btn-connect{display:none!important}#btn-connect::after{content:' Preview';font-size:.82em;opacity:.75}#sd-modal .k2e-smart-preview-note{margin:8px 0 12px;padding:9px 10px;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--card-br));border-radius:10px;background:color-mix(in srgb,var(--accent) 7%,var(--card));font-size:12px;line-height:1.45}
+@media(max-width:900px){.k2e-snapshot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.k2e-snapshot-tile:last-child{grid-column:1/-1}}
+@media(max-width:560px){.k2e-household-snapshot{padding:11px}.k2e-snapshot-head{display:block}.k2e-snapshot-badge{display:inline-flex;margin-top:8px}.k2e-snapshot-grid{grid-template-columns:1fr 1fr}.k2e-snapshot-tile strong{font-size:15px}}
+</style>
+<script id="k2e-v1120-foundation-script">
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+function liveSnapshotData(){
+ const list=(typeof devices!=='undefined'&&Array.isArray(devices))?devices:[];
+ const now=new Date(),days=(typeof daysInMonth==='function'?daysInMonth(now):new Date(now.getFullYear(),now.getMonth()+1,0).getDate());
+ const rawRate=Number($('grid-rate')?.value);
+ const rate=Number.isFinite(rawRate)&&rawRate>=0?rawRate:0.15;
+ const rows=list.map((d,index)=>{const daily=(typeof dailyKwh==='function'?dailyKwh(d):((Number(d?.watts)||0)*(Number(d?.hoursPerDay)||0)*((Number(d?.duty)||100)/100)*(Number(d?.quantity)||1)/1000));return {index,name:String(d?.name||'Device '+(index+1)),daily,monthly:daily*days};}).sort((a,b)=>b.monthly-a.monthly);
+ const monthly=rows.reduce((sum,row)=>sum+row.monthly,0);
+ const daily=rows.reduce((sum,row)=>sum+row.daily,0);
+ return {rows,daily,monthly,cost:monthly*rate,rate,count:list.length,activeCount:rows.filter(row=>row.monthly>0).length};
+}
+function findTopContributor(data=liveSnapshotData()){return data.rows[0]?.monthly>0?data.rows[0].name:'Add or review devices'}
+function quality(data=liveSnapshotData()){
+ const complete=data.rows.filter(row=>row.monthly>0).length;
+ return complete>=6?['Good',complete+' active device inputs are contributing to the estimate.']:complete>=2?['Developing',complete+' active device inputs are modeled; confirm major household loads.']:['Starting point',complete?'Add more major household loads to strengthen the estimate.':'Build the household to improve confidence.'];
+}
+function moneyCAD(value){try{return new Intl.NumberFormat('en-CA',{style:'currency',currency:'CAD',minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(value)||0)}catch(_){return '$'+(Number(value)||0).toFixed(2)}}
+function ensure(){
+ if($('k2e-household-snapshot'))return;
+ const workspace=$('myvera-workspace-bar'); if(!workspace)return;
+ const box=document.createElement('section');box.id='k2e-household-snapshot';box.className='k2e-household-snapshot';box.setAttribute('aria-label','Household snapshot');
+ box.innerHTML='<div class="k2e-snapshot-head"><div><h2>Household Snapshot</h2><p>A five-second view of the active home and the strongest next step.</p></div><span class="k2e-snapshot-badge">Local estimate</span></div><div class="k2e-snapshot-grid"><div class="k2e-snapshot-tile"><span>Monthly energy</span><strong id="k2e-snap-kwh">—</strong><small>Modeled from the active setup</small></div><div class="k2e-snapshot-tile"><span>Monthly energy cost</span><strong id="k2e-snap-cost">—</strong><small>Energy estimate, not the full utility bill</small></div><div class="k2e-snapshot-tile"><span>Largest contributor</span><strong id="k2e-snap-driver">—</strong><small>The input most likely to move the result</small></div><div class="k2e-snapshot-tile"><span>Estimate quality</span><strong id="k2e-snap-quality">—</strong><small id="k2e-snap-quality-note">—</small></div><div class="k2e-snapshot-tile"><span>Best next action</span><strong id="k2e-snap-action">Review the largest contributor</strong><small>Confirm wattage and daily runtime before comparing a change</small></div></div>';
+ workspace.insertAdjacentElement('afterend',box);
+ const modal=$('sd-modal');if(modal&&!modal.querySelector('.k2e-smart-preview-note')){const note=document.createElement('div');note.className='k2e-smart-preview-note';note.innerHTML='<strong>Advanced preview:</strong> Demo Mode is available now. Real discovery requires a separate local bridge and is not active in the standard website build.';modal.querySelector('.muted.small')?.insertAdjacentElement('afterend',note)}
+}
+function setText(id,value){const el=$(id);if(el&&el.textContent!==value)el.textContent=value}
+function update(){
+ ensure();
+ const data=liveSnapshotData();
+ setText('k2e-snap-kwh',data.monthly.toFixed(0)+' kWh');
+ setText('k2e-snap-cost',moneyCAD(data.cost));
+ setText('k2e-snap-driver',findTopContributor(data));
+ const q=quality(data);setText('k2e-snap-quality',q[0]);setText('k2e-snap-quality-note',q[1]);
+ // Keep every visible estimate synchronized from the same live calculation.
+ setText('sum-daily',data.daily.toFixed(2));
+ setText('sum-month',data.monthly.toFixed(0));
+ setText('sum-bill',moneyCAD(data.cost));
+ if(typeof updateConfidenceMeter==='function')updateConfidenceMeter(data.daily,data.monthly,data.cost,data.rate);
+}
+function refreshAll(){
+ try{if(typeof renderSummaryAndTable==='function')renderSummaryAndTable()}catch(_){}
+ update();
+}
+function boot(){
+ ensure();refreshAll();
+ let timer;
+ const schedule=(full=false)=>{clearTimeout(timer);timer=setTimeout(full?refreshAll:update,30)};
+ new MutationObserver(()=>schedule(false)).observe(document.body,{subtree:true,childList:true,characterData:true});
+ document.addEventListener('input',e=>schedule(e.target?.id==='grid-rate'),true);
+ document.addEventListener('change',e=>schedule(e.target?.id==='grid-rate'),true);
+ document.addEventListener('click',()=>schedule(false),true);
+ const rateInput=$('grid-rate');
+ if(rateInput){rateInput.addEventListener('input',()=>schedule(true));rateInput.addEventListener('change',()=>schedule(true));}
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+})();
+</script>
+
 <!-- K2E Local v1.11.2 — Plain-language homes and comparisons -->
 <style id="k2e-v1111-simple-workspace-style">
 #myvera-workspace-bar .myvera-workspace-title small{display:block;max-width:680px;line-height:1.4}
@@ -11673,6 +11818,21 @@ let n=0;const t=setInterval(()=>{run();if(++n>20)clearInterval(t)},300);
 
 <style id="k2e-v111-style">
 #k2e-trust-section{margin-top:14px;width:100%!important;max-width:none!important;display:block!important;grid-column:1/-1!important;clear:both}#k2e-trust-section>*{width:100%!important;max-width:none!important;grid-column:1/-1!important}#k2e-trust-section .k2e-trust-head{display:grid!important;grid-template-columns:minmax(260px,1fr) minmax(420px,auto)!important;gap:24px;align-items:start;width:100%!important}#k2e-trust-section .k2e-trust-head>div:first-child{width:auto!important;max-width:540px!important;display:block!important}#k2e-trust-section .k2e-trust-tools{display:grid!important;grid-template-columns:1fr;gap:10px;justify-items:end;width:100%!important;max-width:none!important}#k2e-trust-section .k2e-trust-actions{display:flex!important;gap:10px;flex-wrap:wrap;justify-content:flex-end;width:100%!important}#k2e-trust-section .k2e-trust-toggle{min-width:150px}.k2e-trust-body{display:block;width:100%!important}.k2e-trust-body[hidden]{display:none!important}#k2e-trust-section .k2e-trust-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:18px;margin-top:18px;align-items:stretch;width:100%!important;max-width:none!important}#k2e-trust-section .k2e-audit-panel,#k2e-trust-section .k2e-backup-card{width:100%!important;max-width:none!important;border:1px solid var(--border);border-radius:14px;padding:16px;background:color-mix(in oklab,var(--card),var(--accent) 2%);min-width:0}#k2e-trust-section .k2e-audit-list{display:grid!important;grid-template-columns:1fr!important;gap:10px;height:100%;width:100%!important}#k2e-trust-section .k2e-audit-item{border:1px solid color-mix(in oklab,var(--border),transparent 10%);border-radius:12px;padding:14px 16px;background:color-mix(in oklab,var(--card),var(--accent) 3%);min-width:0;width:100%!important}#k2e-trust-section .k2e-audit-item strong{display:block;margin-bottom:4px}#k2e-trust-section .k2e-audit-item[data-level="review"]{border-left:4px solid #d59b24}#k2e-trust-section .k2e-audit-item[data-level="good"]{border-left:4px solid #4fa56b}#k2e-trust-section .k2e-audit-item[data-level="info"]{border-left:4px solid #5b8fd8}#k2e-trust-section .k2e-backup-card{display:grid!important;grid-template-rows:auto 1fr auto auto;gap:12px;align-content:start}#k2e-trust-section .k2e-test-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 24px;width:100%!important}#k2e-trust-section .k2e-backup-meta{font-size:12px}#k2e-trust-section .k2e-test-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid color-mix(in oklab,var(--border),transparent 35%);min-width:0;width:100%!important}#k2e-trust-section .k2e-test-row:last-child{border-bottom:0}#k2e-trust-section .k2e-pass{font-weight:800;white-space:nowrap}.k2e-import-input{display:none}@media(max-width:1100px){#k2e-trust-section .k2e-trust-head{grid-template-columns:1fr!important}#k2e-trust-section .k2e-trust-head>div:first-child{max-width:none!important}#k2e-trust-section .k2e-trust-tools{justify-items:stretch}#k2e-trust-section .k2e-trust-actions{justify-content:stretch}#k2e-trust-section .k2e-trust-actions .myvera-btn{flex:1 1 160px}#k2e-trust-section .k2e-trust-toggle{width:100%}}@media(max-width:850px){#k2e-trust-section .k2e-trust-grid{grid-template-columns:1fr!important}#k2e-trust-section .k2e-test-list{grid-template-columns:1fr!important}}@media(max-width:560px){#k2e-trust-section .k2e-trust-actions{display:grid!important;grid-template-columns:1fr}#k2e-trust-section .k2e-trust-actions .myvera-btn{width:100%}#k2e-trust-section .k2e-audit-panel,#k2e-trust-section .k2e-backup-card{padding:12px}}
+</style>
+
+
+<!-- K2E Local v1.12.1 — Bottom containment and code-leak repair -->
+<style id="k2e-v1121-bottom-fix">
+#k2e-trust-section{
+  box-sizing:border-box!important;
+  width:auto!important;
+  max-width:none!important;
+  margin:14px 0 0!important;
+  grid-column:1/-1!important;
+  align-self:stretch!important;
+}
+#k2e-trust-section>*{box-sizing:border-box!important;max-width:100%!important}
+@media(max-width:560px){#k2e-trust-section{margin-top:10px!important}}
 </style>
 <script id="k2e-v111-script">
 (()=>{
