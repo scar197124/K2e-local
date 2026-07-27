@@ -240,3 +240,4 @@ This release begins the next K2E Local product phase without redesigning the sta
 ## v1.12.4 — Live Rate Synchronization Fix
 - Electricity-rate edits now update the estimated bill immediately while typing.
 - Household Snapshot and the main daily/monthly estimate cards use one synchronized calculation result.
+.
