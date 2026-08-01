@@ -1,4 +1,4 @@
-const CACHE_NAME = 'k2e-local-v1.12.5-metadata-polish';
+const CACHE_NAME = 'k2e-local-v1.12.6-social-preview-restore';
 const APP_SHELL = ['./','./index.html','./app.html','./manifest.json','./icon-192.png','./icon-512.png','./assets/k2e-local-brand-dark.png','./assets/k2e-local-brand-detailed.png','./assets/k2e-local-brand-night.png','./assets/k2e-local-mark.png','./assets/k2e-local-social-preview.png','./assets/k2e-local-readme-banner.jpg','./assets/chart.umd.js'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))); self.clients.claim(); });

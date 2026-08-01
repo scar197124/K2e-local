@@ -1,3 +1,7 @@
+## v1.12.6 note
+
+Use the restored original full-size preview image for GitHub Social Preview uploads if any reduced version cut text too tightly.
+
 # K2E Local Social Preview Setup
 
 This build includes a 1200 × 630 Open Graph image at:

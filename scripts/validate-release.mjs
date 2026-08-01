@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-const expectedVersion = "1.12.5";
+const expectedVersion = "1.12.6";
 const required = [
   "index.html",
   "app.html",
@@ -11,7 +11,7 @@ const required = [
   "assets/k2e-local-readme-banner.jpg",
   "VERSION",
   "README.md",
-  "RELEASE_NOTES_v1.12.5.md",
+  "RELEASE_NOTES_v1.12.6.md",
 ];
 
 const missing = required.filter((path) => !fs.existsSync(path));
@@ -30,8 +30,8 @@ if (!app.includes("k2e-v180-scenario-trust-script")) throw new Error("v1.8 compa
 if (!app.includes("k2e-v110-action-report-script")) throw new Error("v1.10 action plan/report module missing");
 if (version !== expectedVersion) throw new Error(`VERSION mismatch: expected ${expectedVersion}, found ${version}`);
 if (manifest.version !== expectedVersion) throw new Error(`Manifest version mismatch: expected ${expectedVersion}, found ${manifest.version}`);
-if (!index.includes("k2e-local-social-preview.png?v=1.12.5")) throw new Error("Landing-page social preview metadata missing or stale");
-if (!app.includes("k2e-local-social-preview.png?v=1.12.5")) throw new Error("App social preview metadata missing or stale");
-if (!serviceWorker.includes("k2e-local-v1.12.5-metadata-polish")) throw new Error("Service-worker cache name is stale");
+if (!index.includes("k2e-local-social-preview.png?v=1.12.6")) throw new Error("Landing-page social preview metadata missing or stale");
+if (!app.includes("k2e-local-social-preview.png?v=1.12.6")) throw new Error("App social preview metadata missing or stale");
+if (!serviceWorker.includes("k2e-local-v1.12.6-social-preview-restore")) throw new Error("Service-worker cache name is stale");
 
 console.log(`K2E Local v${expectedVersion} release validation passed.`);
