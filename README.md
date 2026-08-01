@@ -58,7 +58,7 @@ node scripts/validate-release.mjs
 
 ## Current release
 
-**v1.12.8 — Repository and README Cleanup**
+**v1.12.9 — Repository and README Cleanup**
 
 - Replaces the duplicated historical README with one clear public-facing document.
 - Removes obsolete release-note and one-off repair files from the GitHub-ready folder.

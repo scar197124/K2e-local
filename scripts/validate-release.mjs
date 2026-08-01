@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-const expectedVersion = "1.12.8";
+const expectedVersion = "1.12.9";
 const required = [
   "index.html",
   "app.html",
@@ -11,7 +11,7 @@ const required = [
   "GITHUB_SOCIAL_PREVIEW_UPLOAD.png",
   "VERSION",
   "README.md",
-  "RELEASE_NOTES_v1.12.8.md",
+  "RELEASE_NOTES_v1.12.9.md",
   ".github/workflows/pages.yml",
 ];
 
@@ -32,8 +32,8 @@ if (!app.includes("k2e-v180-scenario-trust-script")) throw new Error("Scenario c
 if (!app.includes("k2e-v110-action-report-script")) throw new Error("Action plan/report module missing");
 if (version !== expectedVersion) throw new Error(`VERSION mismatch: expected ${expectedVersion}, found ${version}`);
 if (manifest.version !== expectedVersion) throw new Error(`Manifest version mismatch: expected ${expectedVersion}, found ${manifest.version}`);
-if (!index.includes("k2e-local-social-preview.png?v=1.12.8")) throw new Error("Landing-page social preview metadata missing or stale");
-if (!app.includes("k2e-local-social-preview.png?v=1.12.8")) throw new Error("App social preview metadata missing or stale");
+if (!index.includes("k2e-local-social-preview.png?v=1.12.9")) throw new Error("Landing-page social preview metadata missing or stale");
+if (!app.includes("k2e-local-social-preview.png?v=1.12.9")) throw new Error("App social preview metadata missing or stale");
 if (!serviceWorker.includes("k2e-local-v1.12.8-repository-cleanup")) throw new Error("Service-worker cache name is stale");
 if (!readme.includes("https://scar197124.github.io/K2e-local/")) throw new Error("README launch URL is incorrect");
 if ((readme.match(/^# K2E Local$/gm) || []).length !== 1) throw new Error("README contains duplicate primary headings");
