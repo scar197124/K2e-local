@@ -1,5 +1,5 @@
 {
-  "name": "K2E Local \u2014 Home Energy Simulator",
+  "name": "K2E Local — Home Energy Simulator",
   "short_name": "K2E Local",
   "id": "./",
   "start_url": "./index.html",
@@ -7,7 +7,7 @@
   "display": "standalone",
   "background_color": "#020807",
   "theme_color": "#03100f",
-  "description": "Local-first household energy simulator with setup audit, safe backup and recovery, calculation self-checks, ranked action plans, printable reports, and transparent estimates.",
+  "description": "Plan household energy privately and offline with local-first estimates, appliance insights, scenarios, and transparent guidance.",
   "icons": [
     {
       "src": "./icon-192.png",
@@ -20,5 +20,5 @@
       "type": "image/png"
     }
   ],
-  "version": "1.11.1"
+  "version": "1.12.5"
 }
