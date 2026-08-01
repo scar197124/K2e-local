@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://scar197124.github.io/K2E-Local/sitemap.xml
+Sitemap: https://scar197124.github.io/K2e-local/sitemap.xml

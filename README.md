@@ -6,11 +6,16 @@
 
 K2E Local is a local-first household energy simulator for planning electricity use, estimating costs, comparing scenarios, and reviewing appliance insights privately on your device.
 
-[**Launch K2E Local →**](https://scar197124.github.io/K2E-Local/)
+[**Launch K2E Local →**](https://scar197124.github.io/K2e-local/)
 
 **Trust highlights:** Local-first · Offline-capable · No account required
 
 ---
+
+## v1.12.7 — GitHub Pages URL Correction
+
+- Corrects the README launch button and public metadata to the exact deployed GitHub Pages address.
+- Uses the repository path capitalization `K2e-local`, matching the working deployment URL.
 
 ## v1.12.6 — Original Social Preview Restore
 
