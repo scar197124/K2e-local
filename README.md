@@ -1,3 +1,13 @@
+# K2E Local
+
+![K2E Local — Plan household energy privately and offline](assets/k2e-local-social-preview.png)
+
+**Kilowatts to Efficiency**
+
+K2E Local is a local-first household energy simulator for planning electricity use, estimating costs, comparing scenarios, and reviewing appliance insights privately on your device.
+
+---
+
 ## v1.12.2 — Trust and Guidance Polish
 
 - Collapsed Trust and Recovery with compact setup-health status.
