@@ -1,13 +1,9 @@
-## v1.12.6 note
+# Social Preview Setup
 
-Use the restored original full-size preview image for GitHub Social Preview uploads if any reduced version cut text too tightly.
+The live GitHub Pages site uses `assets/k2e-local-social-preview.png` through Open Graph and X/Twitter metadata.
 
-# K2E Local Social Preview Setup
+For the GitHub repository card, open **Settings → Social preview** and upload `GITHUB_SOCIAL_PREVIEW_UPLOAD.png`.
 
-This build includes a 1200 × 630 Open Graph image at:
+The deployed site URL is:
 
-`assets/k2e-local-social-preview.png`
-
-The landing page and simulator now include Open Graph and Twitter/X card metadata so shared links can display the branded image on Facebook, messaging apps, and other compatible platforms.
-
-After deployment, social platforms may continue showing an older cached preview temporarily. Re-scrape or refresh the URL in the platform sharing debugger when needed.
+`https://scar197124.github.io/K2e-local/`

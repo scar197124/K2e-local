@@ -1,5 +1,5 @@
 {
-  "name": "K2E Local — Home Energy Simulator",
+  "name": "K2E Local \u2014 Home Energy Simulator",
   "short_name": "K2E Local",
   "id": "./",
   "start_url": "./index.html",
@@ -20,5 +20,5 @@
       "type": "image/png"
     }
   ],
-  "version": "1.12.7"
+  "version": "1.12.8"
 }
