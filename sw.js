@@ -1,5 +1,5 @@
-const CACHE_NAME = 'k2e-local-v1.12.4-live-rate-sync';
-const APP_SHELL = ['./','./index.html','./app.html','./manifest.json','./icon-192.png','./icon-512.png','./assets/k2e-local-brand-dark.png','./assets/k2e-local-brand-detailed.png','./assets/k2e-local-brand-night.png','./assets/k2e-local-mark.png','./assets/chart.umd.js'];
+const CACHE_NAME = 'k2e-local-v1.12.4-social-preview';
+const APP_SHELL = ['./','./index.html','./app.html','./manifest.json','./icon-192.png','./icon-512.png','./assets/k2e-local-brand-dark.png','./assets/k2e-local-brand-detailed.png','./assets/k2e-local-brand-night.png','./assets/k2e-local-mark.png','./assets/k2e-local-social-preview.png','./assets/chart.umd.js'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))); self.clients.claim(); });
 self.addEventListener('fetch', event => { if(event.request.method !== 'GET') return; event.respondWith(fetch(event.request).then(response => { const copy=response.clone(); caches.open(CACHE_NAME).then(cache=>cache.put(event.request,copy)); return response; }).catch(()=>caches.match(event.request).then(hit=>hit || caches.match('./index.html')))); });
