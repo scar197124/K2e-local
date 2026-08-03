@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="420" viewBox="0 0 1400 420">
+    <defs><linearGradient id="g" x1="80" y1="350" x2="410" y2="45" gradientUnits="userSpaceOnUse"><stop stop-color="#00B8D9"/><stop offset=".55" stop-color="#22E0C1"/><stop offset="1" stop-color="#9BEA45"/></linearGradient></defs>
+    <g transform="translate(18 22) scale(.72)">
+      <path d="M116 378V210L256 96l140 114v168" fill="none" stroke="url(#g)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M278 155 190 300h69l-29 92 103-151h-69z" fill="url(#g)"/>
+      <path d="M365 310 430 336v68c0 54-36 88-65 104-29-16-65-50-65-104v-68z" fill="url(#g)" stroke="#071423" stroke-width="14"/>
+      <circle cx="365" cy="387" r="16" fill="#071423"/><path d="M365 401v31" stroke="#071423" stroke-width="16" stroke-linecap="round"/>
+    </g>
+    <text x="390" y="218" font-family="DejaVu Sans, Arial, sans-serif" font-size="146" font-weight="800" fill="#F4F8FB" letter-spacing="-7">K2E</text>
+    <text x="735" y="218" font-family="DejaVu Sans, Arial, sans-serif" font-size="138" font-weight="500" fill="url(#g)" letter-spacing="-4">Local</text>
+    <line x1="392" y1="282" x2="490" y2="282" stroke="#22E0C1" stroke-width="7" stroke-linecap="round"/>
+    <text x="520" y="300" font-family="DejaVu Sans, Arial, sans-serif" font-size="45" font-weight="500" fill="#A9BAC9" letter-spacing="5">Kilowatts to Efficiency</text>
+    <line x1="1164" y1="282" x2="1260" y2="282" stroke="#9BEA45" stroke-width="7" stroke-linecap="round"/>
+    </svg>

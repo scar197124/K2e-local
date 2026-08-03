@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-const expectedVersion = "1.14.1";
+const expectedVersion = "1.14.3";
 const required = [
   "index.html",
   "app.html",
@@ -17,6 +17,10 @@ const required = [
   "RELEASE_NOTES_v1.13.2.md",
   "RELEASE_NOTES_v1.14.0.md",
   "RELEASE_NOTES_v1.14.1.md",
+  "RELEASE_NOTES_v1.14.2.md",
+  "RELEASE_NOTES_v1.14.3.md",
+  "assets/k2e-logo-horizontal-dark.png",
+  "assets/k2e-logo-app-icon.png",
   "assets/k2e-local-social-preview-v1.14.1.png",
   "robots.txt",
   "sitemap.xml",
@@ -42,7 +46,7 @@ if (version !== expectedVersion) throw new Error(`VERSION mismatch: expected ${e
 if (manifest.version !== expectedVersion) throw new Error(`Manifest version mismatch: expected ${expectedVersion}, found ${manifest.version}`);
 if (!index.includes("k2e-local-social-preview-v1.14.1.png")) throw new Error("Landing-page social preview metadata missing or stale");
 if (!app.includes("k2e-local-social-preview-v1.14.1.png")) throw new Error("App social preview metadata missing or stale");
-if (!serviceWorker.includes("k2e-local-v1.14.1-social-tighten")) throw new Error("Service-worker cache name is stale");
+if (!serviceWorker.includes("k2e-local-v1.14.3-logo-refinement")) throw new Error("Service-worker cache name is stale");
 if (!readme.includes("https://nrg-roan.vercel.app/")) throw new Error("README launch URL is incorrect");
 if ((readme.match(/^# K2E Local$/gm) || []).length !== 1) throw new Error("README contains duplicate primary headings");
 

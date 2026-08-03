@@ -1,39 +1,40 @@
 # K2E Local
 
-![K2E Local — Plan household energy privately and offline](assets/k2e-local-social-preview.png)
+![K2E Local README Banner](assets/k2e-local-readme-banner.jpg)
 
 **Kilowatts to Efficiency**
 
-K2E Local is a local-first household energy simulator for planning electricity use, estimating costs, comparing scenarios, and reviewing appliance insights privately on your device.
+K2E Local is a privacy-first home-energy planning app that runs locally in the browser. It helps households estimate electricity use, explore costs, compare scenarios, and review appliance insights without requiring an account or sending household details away from the device.
 
 [**Launch K2E Local →**](https://nrg-roan.vercel.app/)
 
-**Local-first · Offline-capable · No account required**
+**Private by design · Local-first · Offline-capable · No account required**
 
-## What it does
+## Highlights
 
-- Models household devices and electricity use
-- Estimates daily and monthly energy costs
-- Compares saved homes and scenarios
-- Highlights major energy contributors
-- Produces structured local guidance and action plans
-- Keeps household data in the browser unless the user exports it
+- Plan household energy use with clear summaries and visual breakdowns
+- Estimate daily and monthly electricity costs
+- Compare saved homes and scenarios
+- Review appliance insights and action guidance
+- Keep household data on the device unless the user exports it
 
 ## Modes
 
-**Simple Mode** provides a guided setup and clear summary.
+### Simple Mode
+A guided workflow for quick setup, clean results, and everyday planning.
 
-**Advanced Mode** adds scenarios, deeper analysis, comparisons, reports, schedules, and data portability.
+### Advanced Mode
+Deeper analysis with scenarios, comparisons, reporting, scheduling, and more control.
 
 ## Privacy and offline use
 
-K2E Local is designed to work locally in the browser. After the first successful load, the application shell and bundled chart library can operate offline. No account is required.
+K2E Local is built to work locally in the browser. After the first successful load, the core app shell and bundled assets can continue to work offline. No account is required.
 
 ## Deployment
 
 This repository is prepared for GitHub Pages through the included GitHub Actions workflow.
 
-1. Upload the contents of this folder to the repository root.
+1. Upload the contents of this package to the repository root.
 2. Commit and push to the `main` branch.
 3. In **Settings → Pages**, select **GitHub Actions** as the source.
 4. Open the deployment at [https://nrg-roan.vercel.app/](https://nrg-roan.vercel.app/).
@@ -56,16 +57,24 @@ Then open `http://localhost:8080`.
 node scripts/validate-release.mjs
 ```
 
+## Repository presentation
+
+- README hero image: `assets/k2e-local-readme-banner.jpg`
+- Primary header logo: `assets/k2e-logo-horizontal-dark.png`
+- Light-background logo: `assets/k2e-logo-horizontal-light.png`
+- App/icon mark: `assets/k2e-logo-app-icon.png`
+- Brand identity board: `assets/k2e-brand-identity-board.png`
+- Social/share preview image: `assets/k2e-local-social-preview-v1.14.1.png`
+- Optional GitHub repository social preview upload: `GITHUB_SOCIAL_PREVIEW_UPLOAD.png`
+
 ## Current release
 
-**v1.12.9 — Repository and README Cleanup**
+**v1.14.3 — Refined K2E Brand Identity**
 
-- Replaces the duplicated historical README with one clear public-facing document.
-- Removes obsolete release-note and one-off repair files from the GitHub-ready folder.
-- Preserves the working app, social preview, deployment workflow, offline assets, and current public URL.
-- Makes no calculation or interface changes.
-
-See [`RELEASE_NOTES_v1.12.8.md`](RELEASE_NOTES_v1.12.8.md) for the release summary.
+- Introduces a simplified professional logo system for headers, icons, light/dark use, and brand presentation
+- Replaces the homepage header logo and app icons with the refined K2E identity
+- Updates the README banner to match the new visual system
+- Preserves the working v1.14.1 Facebook/social preview and the brighter homepage borders
 
 ## Project notes
 
@@ -74,18 +83,3 @@ Development handoff details are available in [`docs/NEXT_HANDOFF.md`](docs/NEXT_
 ## Licensing
 
 No open-source license has been selected. Add a `LICENSE` file before inviting unrestricted reuse or outside contributions.
-
-
-## Social Preview
-
-Current recommended social preview asset: `assets/k2e-local-social-preview-v1.13.1.png`
-
-
-## Current build
-
-K2E Local v1.13.2 adds a cleaner dashboard hierarchy, refined cards, and improved mobile spacing while preserving the v1.13.1 social preview.
-
-
-## v1.14.1 note
-
-The social preview trust row was tightened so the bottom line remains readable in aggressive mobile share crops. Current preview asset: `assets/k2e-local-social-preview-v1.14.1.png`.
