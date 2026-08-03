@@ -6,7 +6,7 @@
 
 K2E Local is a local-first household energy simulator for planning electricity use, estimating costs, comparing scenarios, and reviewing appliance insights privately on your device.
 
-[**Launch K2E Local →**](https://scar197124.github.io/K2e-local/)
+[**Launch K2E Local →**](https://nrg-roan.vercel.app/)
 
 **Local-first · Offline-capable · No account required**
 
@@ -36,7 +36,7 @@ This repository is prepared for GitHub Pages through the included GitHub Actions
 1. Upload the contents of this folder to the repository root.
 2. Commit and push to the `main` branch.
 3. In **Settings → Pages**, select **GitHub Actions** as the source.
-4. Open the deployment at [https://scar197124.github.io/K2e-local/](https://scar197124.github.io/K2e-local/).
+4. Open the deployment at [https://nrg-roan.vercel.app/](https://nrg-roan.vercel.app/).
 
 The public entry page is `index.html`; the simulator is `app.html`.
 
@@ -74,3 +74,18 @@ Development handoff details are available in [`docs/NEXT_HANDOFF.md`](docs/NEXT_
 ## Licensing
 
 No open-source license has been selected. Add a `LICENSE` file before inviting unrestricted reuse or outside contributions.
+
+
+## Social Preview
+
+Current recommended social preview asset: `assets/k2e-local-social-preview-v1.14.0.png`
+
+
+## Current build
+
+K2E Local v1.13.2 adds a cleaner dashboard hierarchy, refined cards, and improved mobile spacing while preserving the v1.13.1 social preview.
+
+
+## v1.14.0 release hardening
+
+This release adds a clearer three-step welcome state, input validation, reset protection, online/offline status, stronger local-privacy reassurance, improved service-worker behavior, and corrected Vercel sitemap/robots metadata.

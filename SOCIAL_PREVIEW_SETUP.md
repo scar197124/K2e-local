@@ -7,3 +7,8 @@ For the GitHub repository card, open **Settings → Social preview** and upload 
 The deployed site URL is:
 
 `https://scar197124.github.io/K2e-local/`
+
+
+## v1.13.1 note
+
+The current primary asset is `assets/k2e-local-social-preview-v1.13.1.png`. It is designed so all essential content stays inside the center-safe crop area used by Facebook mobile composer.
