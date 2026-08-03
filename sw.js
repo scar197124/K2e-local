@@ -1,10 +1,10 @@
-const CACHE_NAME = 'k2e-local-v1.14.0-release-hardening';
+const CACHE_NAME = 'k2e-local-v1.14.1-social-tighten';
 const APP_SHELL = [
   './','./index.html','./app.html','./manifest.json','./robots.txt','./sitemap.xml',
   './icon-192.png','./icon-512.png','./assets/k2e-local-brand-dark.png',
   './assets/k2e-local-brand-detailed.png','./assets/k2e-local-brand-night.png',
   './assets/k2e-local-mark.png','./assets/k2e-local-social-preview.png',
-  './assets/k2e-local-social-preview-v1.14.0.png','./assets/k2e-local-readme-banner.jpg',
+  './assets/k2e-local-social-preview-v1.14.1.png','./assets/k2e-local-readme-banner.jpg',
   './assets/chart.umd.js'
 ];
 self.addEventListener('install', event => {

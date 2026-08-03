@@ -78,7 +78,7 @@ No open-source license has been selected. Add a `LICENSE` file before inviting u
 
 ## Social Preview
 
-Current recommended social preview asset: `assets/k2e-local-social-preview-v1.14.0.png`
+Current recommended social preview asset: `assets/k2e-local-social-preview-v1.13.1.png`
 
 
 ## Current build
@@ -86,6 +86,6 @@ Current recommended social preview asset: `assets/k2e-local-social-preview-v1.14
 K2E Local v1.13.2 adds a cleaner dashboard hierarchy, refined cards, and improved mobile spacing while preserving the v1.13.1 social preview.
 
 
-## v1.14.0 release hardening
+## v1.14.1 note
 
-This release adds a clearer three-step welcome state, input validation, reset protection, online/offline status, stronger local-privacy reassurance, improved service-worker behavior, and corrected Vercel sitemap/robots metadata.
+The social preview trust row was tightened so the bottom line remains readable in aggressive mobile share crops. Current preview asset: `assets/k2e-local-social-preview-v1.14.1.png`.

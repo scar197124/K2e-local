@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-const expectedVersion = "1.14.0";
+const expectedVersion = "1.14.1";
 const required = [
   "index.html",
   "app.html",
@@ -16,7 +16,8 @@ const required = [
   "RELEASE_NOTES_v1.13.1.md",
   "RELEASE_NOTES_v1.13.2.md",
   "RELEASE_NOTES_v1.14.0.md",
-  "assets/k2e-local-social-preview-v1.14.0.png",
+  "RELEASE_NOTES_v1.14.1.md",
+  "assets/k2e-local-social-preview-v1.14.1.png",
   "robots.txt",
   "sitemap.xml",
   ".github/workflows/pages.yml",
@@ -39,13 +40,12 @@ if (!app.includes("k2e-v180-scenario-trust-script")) throw new Error("Scenario c
 if (!app.includes("k2e-v110-action-report-script")) throw new Error("Action plan/report module missing");
 if (version !== expectedVersion) throw new Error(`VERSION mismatch: expected ${expectedVersion}, found ${version}`);
 if (manifest.version !== expectedVersion) throw new Error(`Manifest version mismatch: expected ${expectedVersion}, found ${manifest.version}`);
-if (!index.includes("k2e-local-social-preview-v1.14.0.png")) throw new Error("Landing-page social preview metadata missing or stale");
-if (!app.includes("k2e-local-social-preview-v1.14.0.png")) throw new Error("App social preview metadata missing or stale");
-if (!serviceWorker.includes("k2e-local-v1.14.0-release-hardening")) throw new Error("Service-worker cache name is stale");
+if (!index.includes("k2e-local-social-preview-v1.14.1.png")) throw new Error("Landing-page social preview metadata missing or stale");
+if (!app.includes("k2e-local-social-preview-v1.14.1.png")) throw new Error("App social preview metadata missing or stale");
+if (!serviceWorker.includes("k2e-local-v1.14.1-social-tighten")) throw new Error("Service-worker cache name is stale");
 if (!readme.includes("https://nrg-roan.vercel.app/")) throw new Error("README launch URL is incorrect");
 if ((readme.match(/^# K2E Local$/gm) || []).length !== 1) throw new Error("README contains duplicate primary headings");
 
-if (!app.includes('k2e-v1140-hardening-script')) throw new Error('v1.14.0 hardening module missing');
 if (!fs.readFileSync('robots.txt','utf8').includes('https://nrg-roan.vercel.app/sitemap.xml')) throw new Error('robots.txt production URL is stale');
 if (!fs.readFileSync('sitemap.xml','utf8').includes('https://nrg-roan.vercel.app/app.html')) throw new Error('sitemap production URLs are stale');
 

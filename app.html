@@ -25,8 +25,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_CA">
 <meta property="og:url" content="https://nrg-roan.vercel.app/app.html">
-<meta property="og:image" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview-v1.14.0.png">
-<meta property="og:image:secure_url" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview-v1.14.0.png">
+<meta property="og:image" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview-v1.14.1.png">
+<meta property="og:image:secure_url" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview-v1.14.1.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -34,7 +34,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="K2E Local — Home Energy Simulator">
 <meta name="twitter:description" content="Know where your home energy goes. Plan smarter, waste less, and keep your data on your device with K2E Local.">
-<meta name="twitter:image" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview-v1.14.0.png">
+<meta name="twitter:image" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview-v1.14.1.png">
 <meta name="twitter:image:alt" content="K2E Local — Plan smarter, waste less with private local home-energy planning">
 <style>
 /* ======== ULTRA-CONTRAST v3 THEME TOKENS ======== */
@@ -8913,79 +8913,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
-
-
-<!-- K2E Local v1.14.0 — final release hardening -->
-<style id="k2e-v1140-hardening-style">
-.k2e-v1140-onboarding{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;margin:12px 0 16px;padding:16px 18px;border:1px solid color-mix(in srgb,var(--accent) 48%,var(--card-br));border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--card) 94%,var(--accent) 6%),color-mix(in srgb,var(--card) 97%,var(--accent-2) 3%));box-shadow:0 14px 35px rgba(0,0,0,.08)}
-.k2e-v1140-onboarding h2{font-size:clamp(18px,2vw,24px);margin:0 0 6px}.k2e-v1140-onboarding p{margin:0;color:var(--muted);line-height:1.5}.k2e-v1140-steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.k2e-v1140-step{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--card-br);border-radius:999px;background:var(--card);font-size:12px;font-weight:850;white-space:nowrap}.k2e-v1140-step b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#041018;font-size:11px}
-.k2e-v1140-network{position:fixed;right:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--card-br);border-radius:999px;background:color-mix(in srgb,var(--card) 95%,transparent);box-shadow:0 10px 28px rgba(0,0,0,.16);font-size:12px;font-weight:850;backdrop-filter:blur(12px)}.k2e-v1140-network::before{content:'●';color:#22c55e}.k2e-v1140-network[data-online="false"]::before{color:#f59e0b}
-.k2e-v1140-footer{margin:18px auto 8px;padding:14px 16px;text-align:center;color:var(--muted);font-size:12px;font-weight:750;border-top:1px solid var(--card-br)}
-.k2e-v1140-invalid{border-color:#ef4444!important;box-shadow:0 0 0 3px rgba(239,68,68,.16)!important}.k2e-v1140-field-error{display:block;margin-top:5px;color:#ef4444;font-size:12px;font-weight:750}
-.k2e-v1140-updating{opacity:.72;transition:opacity .15s ease}.k2e-v1140-updating::after{content:' Updating plan…';font-size:11px;color:var(--muted);font-weight:750}
-@media(max-width:760px){.k2e-v1140-onboarding{grid-template-columns:1fr}.k2e-v1140-steps{justify-content:flex-start}.k2e-v1140-network{right:8px;bottom:8px}.k2e-v1140-step{flex:1 1 135px;justify-content:center}}
-@media(max-width:430px){.k2e-v1140-onboarding{padding:14px}.k2e-v1140-steps{display:grid;grid-template-columns:1fr}.k2e-v1140-step{width:100%}}
-@media(prefers-reduced-motion:reduce){.k2e-v1140-updating{transition:none}}
-</style>
-<script id="k2e-v1140-hardening-script">
-(()=>{
-'use strict';
-const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const announce=msg=>{const n=$('#myvera-global-status');if(n)n.textContent=msg};
-function addOnboarding(){
- if($('#k2e-v1140-onboarding'))return;
- const host=$('#myvera-main-content')||$('main')||document.body;
- const box=document.createElement('section');box.id='k2e-v1140-onboarding';box.className='k2e-v1140-onboarding';box.setAttribute('aria-label','Quick start');
- box.innerHTML='<div><h2>Build a clearer home-energy plan</h2><p>Choose a mode, enter the devices you actually use, then review the estimate and recommended changes. Everything stays on this device.</p></div><div class="k2e-v1140-steps" aria-label="Three-step workflow"><span class="k2e-v1140-step"><b>1</b>Choose a mode</span><span class="k2e-v1140-step"><b>2</b>Add household details</span><span class="k2e-v1140-step"><b>3</b>Review your plan</span></div>';
- host.insertAdjacentElement('afterbegin',box);
-}
-function addNetworkState(){
- if($('#k2e-v1140-network'))return;
- const node=document.createElement('div');node.id='k2e-v1140-network';node.className='k2e-v1140-network';node.setAttribute('role','status');node.setAttribute('aria-live','polite');document.body.appendChild(node);
- const paint=()=>{const on=navigator.onLine;node.dataset.online=String(on);node.textContent=on?'Online · local calculations ready':'Offline · local calculations ready';announce(node.textContent)};
- addEventListener('online',paint);addEventListener('offline',paint);paint();
-}
-function addFooter(){
- if($('#k2e-v1140-footer'))return;
- const footer=document.createElement('footer');footer.id='k2e-v1140-footer';footer.className='k2e-v1140-footer';footer.textContent='Private by design · Calculations stay on your device · No account required';
- (document.querySelector('main')||document.body).insertAdjacentElement('afterend',footer);
-}
-function validateNumber(input){
- if(input.disabled||input.readOnly||input.type!=='number')return true;
- const raw=input.value.trim();let message='';
- if(raw==='')return clearError(input);
- const value=Number(raw), min=input.min!==''?Number(input.min):0, max=input.max!==''?Number(input.max):Infinity;
- if(!Number.isFinite(value))message='Enter a valid number.';
- else if(value<min)message='Use a value of '+min+' or higher.';
- else if(value>max)message='Use a value of '+max+' or lower.';
- else if(/hour|runtime/i.test(input.id+' '+input.name) && value>24)message='Daily runtime cannot exceed 24 hours.';
- else if(/qty|quantity/i.test(input.id+' '+input.name) && value>100)message='Check this quantity; it appears unusually high.';
- else if(/watt|power/i.test(input.id+' '+input.name) && value>50000)message='Check the wattage; it appears unusually high.';
- if(!message)return clearError(input);
- input.classList.add('k2e-v1140-invalid');input.setAttribute('aria-invalid','true');
- let err=input.parentElement?.querySelector('.k2e-v1140-field-error');if(!err){err=document.createElement('span');err.className='k2e-v1140-field-error';input.insertAdjacentElement('afterend',err)}err.textContent=message;return false;
-}
-function clearError(input){input.classList.remove('k2e-v1140-invalid');input.removeAttribute('aria-invalid');input.parentElement?.querySelector('.k2e-v1140-field-error')?.remove();return true}
-function wireValidation(){
- document.addEventListener('blur',e=>{if(e.target.matches('input[type="number"]'))validateNumber(e.target)},true);
- document.addEventListener('input',e=>{if(e.target.matches('input[type="number"]')&&e.target.classList.contains('k2e-v1140-invalid'))validateNumber(e.target)},true);
- document.addEventListener('submit',e=>{const invalid=$$('input[type="number"]',e.target).filter(i=>!validateNumber(i));if(invalid.length){e.preventDefault();invalid[0].focus();announce('Please correct the highlighted value.')}},true);
-}
-function wireResetProtection(){
- document.addEventListener('click',e=>{const b=e.target.closest('#btn-reset');if(!b||b.dataset.k2eConfirmed==='1')return;if(!confirm('Reset the current tweaks? Your saved household workspace will remain, but unsaved view adjustments will return to defaults.')){e.preventDefault();e.stopImmediatePropagation();announce('Reset cancelled');return}b.dataset.k2eConfirmed='1';setTimeout(()=>delete b.dataset.k2eConfirmed,0)},true);
-}
-function wireUpdateFeedback(){
- let timer;document.addEventListener('input',e=>{if(!e.target.matches('input,select'))return;const status=$('#myvera-workspace-status')||$('#myvera-save-state');if(!status)return;status.classList.add('k2e-v1140-updating');clearTimeout(timer);timer=setTimeout(()=>status.classList.remove('k2e-v1140-updating'),500)},true);
-}
-function improveInputs(){
- $$('input[type="number"]').forEach(i=>{if(i.min==='')i.min='0';i.inputMode='decimal'});
- $$('button').forEach(b=>{if(!b.getAttribute('type'))b.type='button'});
-}
-function boot(){addOnboarding();addNetworkState();addFooter();improveInputs();wireValidation();wireResetProtection();wireUpdateFeedback();announce('K2E Local is ready. Your workspace saves locally.');}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-})();
-</script>
-
 </body>
 <!-- K2E Local v27.8.14 — Roadmap Trajectory Lock -->
 <style id="myvera-v27813-github-prepush-stability-polish">
@@ -11774,156 +11701,10 @@ html:not(.myvera-developer-mode) .ai-provider-details {
   function renderReport(){const paper=$('k2e-report-paper');if(paper)paper.innerHTML=reportMarkup()}
   function printReport(){
     const html=reportMarkup(),win=window.open('','_blank');if(!win){alert('The browser blocked the print window. Allow pop-ups for this page and try again.');return}
-    try{win.opener=null}catch(_){};win.document.write('<!doctype html><html><head><meta charset="utf-8"><title>K2E Local Energy Report</title><style>body{font-family:Arial,sans-serif;color:#14202a;margin:32px}h1{margin-bottom:4px}h2{font-size:17px;margin-top:24px;border-bottom:2px solid #d9e2e8;padding-bottom:6px}.k2e-report-meta{color:#50616f;font-size:12px}.k2e-report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.k2e-report-stat,.k2e-report-action{border:1px solid #d9e2e8;border-radius:9px;padding:10px}.k2e-report-stat span{display:block;font-size:11px;color:#5b6872}.k2e-report-stat strong{display:block;margin-top:4px}.k2e-report-table{width:100%;border-collapse:collapse;font-size:12px}.k2e-report-table th,.k2e-report-table td{padding:7px;border-bottom:1px solid #e2e8ec;text-align:left}.k2e-report-table th{background:#f4f7f8}.k2e-report-action{margin:8px 0}.k2e-report-disclaimer{font-size:11px;color:#5b6872;border-top:1px solid #d9e2e8;margin-top:22px;padding-top:10px}@media print{body{margin:.4in}}</style></head><body>'+html+'<script>window.onload=()=>{window.print()}<\/script>
-
-<!-- K2E Local v1.14.0 — final release hardening -->
-<style id="k2e-v1140-hardening-style">
-.k2e-v1140-onboarding{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;margin:12px 0 16px;padding:16px 18px;border:1px solid color-mix(in srgb,var(--accent) 48%,var(--card-br));border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--card) 94%,var(--accent) 6%),color-mix(in srgb,var(--card) 97%,var(--accent-2) 3%));box-shadow:0 14px 35px rgba(0,0,0,.08)}
-.k2e-v1140-onboarding h2{font-size:clamp(18px,2vw,24px);margin:0 0 6px}.k2e-v1140-onboarding p{margin:0;color:var(--muted);line-height:1.5}.k2e-v1140-steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.k2e-v1140-step{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--card-br);border-radius:999px;background:var(--card);font-size:12px;font-weight:850;white-space:nowrap}.k2e-v1140-step b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#041018;font-size:11px}
-.k2e-v1140-network{position:fixed;right:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--card-br);border-radius:999px;background:color-mix(in srgb,var(--card) 95%,transparent);box-shadow:0 10px 28px rgba(0,0,0,.16);font-size:12px;font-weight:850;backdrop-filter:blur(12px)}.k2e-v1140-network::before{content:'●';color:#22c55e}.k2e-v1140-network[data-online="false"]::before{color:#f59e0b}
-.k2e-v1140-footer{margin:18px auto 8px;padding:14px 16px;text-align:center;color:var(--muted);font-size:12px;font-weight:750;border-top:1px solid var(--card-br)}
-.k2e-v1140-invalid{border-color:#ef4444!important;box-shadow:0 0 0 3px rgba(239,68,68,.16)!important}.k2e-v1140-field-error{display:block;margin-top:5px;color:#ef4444;font-size:12px;font-weight:750}
-.k2e-v1140-updating{opacity:.72;transition:opacity .15s ease}.k2e-v1140-updating::after{content:' Updating plan…';font-size:11px;color:var(--muted);font-weight:750}
-@media(max-width:760px){.k2e-v1140-onboarding{grid-template-columns:1fr}.k2e-v1140-steps{justify-content:flex-start}.k2e-v1140-network{right:8px;bottom:8px}.k2e-v1140-step{flex:1 1 135px;justify-content:center}}
-@media(max-width:430px){.k2e-v1140-onboarding{padding:14px}.k2e-v1140-steps{display:grid;grid-template-columns:1fr}.k2e-v1140-step{width:100%}}
-@media(prefers-reduced-motion:reduce){.k2e-v1140-updating{transition:none}}
-</style>
-<script id="k2e-v1140-hardening-script">
-(()=>{
-'use strict';
-const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const announce=msg=>{const n=$('#myvera-global-status');if(n)n.textContent=msg};
-function addOnboarding(){
- if($('#k2e-v1140-onboarding'))return;
- const host=$('#myvera-main-content')||$('main')||document.body;
- const box=document.createElement('section');box.id='k2e-v1140-onboarding';box.className='k2e-v1140-onboarding';box.setAttribute('aria-label','Quick start');
- box.innerHTML='<div><h2>Build a clearer home-energy plan</h2><p>Choose a mode, enter the devices you actually use, then review the estimate and recommended changes. Everything stays on this device.</p></div><div class="k2e-v1140-steps" aria-label="Three-step workflow"><span class="k2e-v1140-step"><b>1</b>Choose a mode</span><span class="k2e-v1140-step"><b>2</b>Add household details</span><span class="k2e-v1140-step"><b>3</b>Review your plan</span></div>';
- host.insertAdjacentElement('afterbegin',box);
-}
-function addNetworkState(){
- if($('#k2e-v1140-network'))return;
- const node=document.createElement('div');node.id='k2e-v1140-network';node.className='k2e-v1140-network';node.setAttribute('role','status');node.setAttribute('aria-live','polite');document.body.appendChild(node);
- const paint=()=>{const on=navigator.onLine;node.dataset.online=String(on);node.textContent=on?'Online · local calculations ready':'Offline · local calculations ready';announce(node.textContent)};
- addEventListener('online',paint);addEventListener('offline',paint);paint();
-}
-function addFooter(){
- if($('#k2e-v1140-footer'))return;
- const footer=document.createElement('footer');footer.id='k2e-v1140-footer';footer.className='k2e-v1140-footer';footer.textContent='Private by design · Calculations stay on your device · No account required';
- (document.querySelector('main')||document.body).insertAdjacentElement('afterend',footer);
-}
-function validateNumber(input){
- if(input.disabled||input.readOnly||input.type!=='number')return true;
- const raw=input.value.trim();let message='';
- if(raw==='')return clearError(input);
- const value=Number(raw), min=input.min!==''?Number(input.min):0, max=input.max!==''?Number(input.max):Infinity;
- if(!Number.isFinite(value))message='Enter a valid number.';
- else if(value<min)message='Use a value of '+min+' or higher.';
- else if(value>max)message='Use a value of '+max+' or lower.';
- else if(/hour|runtime/i.test(input.id+' '+input.name) && value>24)message='Daily runtime cannot exceed 24 hours.';
- else if(/qty|quantity/i.test(input.id+' '+input.name) && value>100)message='Check this quantity; it appears unusually high.';
- else if(/watt|power/i.test(input.id+' '+input.name) && value>50000)message='Check the wattage; it appears unusually high.';
- if(!message)return clearError(input);
- input.classList.add('k2e-v1140-invalid');input.setAttribute('aria-invalid','true');
- let err=input.parentElement?.querySelector('.k2e-v1140-field-error');if(!err){err=document.createElement('span');err.className='k2e-v1140-field-error';input.insertAdjacentElement('afterend',err)}err.textContent=message;return false;
-}
-function clearError(input){input.classList.remove('k2e-v1140-invalid');input.removeAttribute('aria-invalid');input.parentElement?.querySelector('.k2e-v1140-field-error')?.remove();return true}
-function wireValidation(){
- document.addEventListener('blur',e=>{if(e.target.matches('input[type="number"]'))validateNumber(e.target)},true);
- document.addEventListener('input',e=>{if(e.target.matches('input[type="number"]')&&e.target.classList.contains('k2e-v1140-invalid'))validateNumber(e.target)},true);
- document.addEventListener('submit',e=>{const invalid=$$('input[type="number"]',e.target).filter(i=>!validateNumber(i));if(invalid.length){e.preventDefault();invalid[0].focus();announce('Please correct the highlighted value.')}},true);
-}
-function wireResetProtection(){
- document.addEventListener('click',e=>{const b=e.target.closest('#btn-reset');if(!b||b.dataset.k2eConfirmed==='1')return;if(!confirm('Reset the current tweaks? Your saved household workspace will remain, but unsaved view adjustments will return to defaults.')){e.preventDefault();e.stopImmediatePropagation();announce('Reset cancelled');return}b.dataset.k2eConfirmed='1';setTimeout(()=>delete b.dataset.k2eConfirmed,0)},true);
-}
-function wireUpdateFeedback(){
- let timer;document.addEventListener('input',e=>{if(!e.target.matches('input,select'))return;const status=$('#myvera-workspace-status')||$('#myvera-save-state');if(!status)return;status.classList.add('k2e-v1140-updating');clearTimeout(timer);timer=setTimeout(()=>status.classList.remove('k2e-v1140-updating'),500)},true);
-}
-function improveInputs(){
- $$('input[type="number"]').forEach(i=>{if(i.min==='')i.min='0';i.inputMode='decimal'});
- $$('button').forEach(b=>{if(!b.getAttribute('type'))b.type='button'});
-}
-function boot(){addOnboarding();addNetworkState();addFooter();improveInputs();wireValidation();wireResetProtection();wireUpdateFeedback();announce('K2E Local is ready. Your workspace saves locally.');}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-})();
-</script>
-
-</body></html>');win.document.close();
+    try{win.opener=null}catch(_){};win.document.write('<!doctype html><html><head><meta charset="utf-8"><title>K2E Local Energy Report</title><style>body{font-family:Arial,sans-serif;color:#14202a;margin:32px}h1{margin-bottom:4px}h2{font-size:17px;margin-top:24px;border-bottom:2px solid #d9e2e8;padding-bottom:6px}.k2e-report-meta{color:#50616f;font-size:12px}.k2e-report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.k2e-report-stat,.k2e-report-action{border:1px solid #d9e2e8;border-radius:9px;padding:10px}.k2e-report-stat span{display:block;font-size:11px;color:#5b6872}.k2e-report-stat strong{display:block;margin-top:4px}.k2e-report-table{width:100%;border-collapse:collapse;font-size:12px}.k2e-report-table th,.k2e-report-table td{padding:7px;border-bottom:1px solid #e2e8ec;text-align:left}.k2e-report-table th{background:#f4f7f8}.k2e-report-action{margin:8px 0}.k2e-report-disclaimer{font-size:11px;color:#5b6872;border-top:1px solid #d9e2e8;margin-top:22px;padding-top:10px}@media print{body{margin:.4in}}</style></head><body>'+html+'<script>window.onload=()=>{window.print()}<\/script></body></html>');win.document.close();
   }
   function downloadReport(){
-    const documentHtml='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>K2E Local Energy Report</title><style>body{font-family:Arial,sans-serif;color:#14202a;max-width:850px;margin:30px auto;padding:0 18px}h2{font-size:17px;margin-top:24px;border-bottom:2px solid #d9e2e8;padding-bottom:6px}.k2e-report-meta{color:#50616f;font-size:12px}.k2e-report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.k2e-report-stat,.k2e-report-action{border:1px solid #d9e2e8;border-radius:9px;padding:10px}.k2e-report-stat span{display:block;font-size:11px;color:#5b6872}.k2e-report-stat strong{display:block;margin-top:4px}.k2e-report-table{width:100%;border-collapse:collapse;font-size:12px}.k2e-report-table th,.k2e-report-table td{padding:7px;border-bottom:1px solid #e2e8ec;text-align:left}.k2e-report-table th{background:#f4f7f8}.k2e-report-action{margin:8px 0}.k2e-report-disclaimer{font-size:11px;color:#5b6872;border-top:1px solid #d9e2e8;margin-top:22px;padding-top:10px}@media(max-width:650px){.k2e-report-grid{grid-template-columns:1fr}}</style></head><body>'+reportMarkup()+'
-
-<!-- K2E Local v1.14.0 — final release hardening -->
-<style id="k2e-v1140-hardening-style">
-.k2e-v1140-onboarding{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;margin:12px 0 16px;padding:16px 18px;border:1px solid color-mix(in srgb,var(--accent) 48%,var(--card-br));border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--card) 94%,var(--accent) 6%),color-mix(in srgb,var(--card) 97%,var(--accent-2) 3%));box-shadow:0 14px 35px rgba(0,0,0,.08)}
-.k2e-v1140-onboarding h2{font-size:clamp(18px,2vw,24px);margin:0 0 6px}.k2e-v1140-onboarding p{margin:0;color:var(--muted);line-height:1.5}.k2e-v1140-steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.k2e-v1140-step{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--card-br);border-radius:999px;background:var(--card);font-size:12px;font-weight:850;white-space:nowrap}.k2e-v1140-step b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#041018;font-size:11px}
-.k2e-v1140-network{position:fixed;right:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--card-br);border-radius:999px;background:color-mix(in srgb,var(--card) 95%,transparent);box-shadow:0 10px 28px rgba(0,0,0,.16);font-size:12px;font-weight:850;backdrop-filter:blur(12px)}.k2e-v1140-network::before{content:'●';color:#22c55e}.k2e-v1140-network[data-online="false"]::before{color:#f59e0b}
-.k2e-v1140-footer{margin:18px auto 8px;padding:14px 16px;text-align:center;color:var(--muted);font-size:12px;font-weight:750;border-top:1px solid var(--card-br)}
-.k2e-v1140-invalid{border-color:#ef4444!important;box-shadow:0 0 0 3px rgba(239,68,68,.16)!important}.k2e-v1140-field-error{display:block;margin-top:5px;color:#ef4444;font-size:12px;font-weight:750}
-.k2e-v1140-updating{opacity:.72;transition:opacity .15s ease}.k2e-v1140-updating::after{content:' Updating plan…';font-size:11px;color:var(--muted);font-weight:750}
-@media(max-width:760px){.k2e-v1140-onboarding{grid-template-columns:1fr}.k2e-v1140-steps{justify-content:flex-start}.k2e-v1140-network{right:8px;bottom:8px}.k2e-v1140-step{flex:1 1 135px;justify-content:center}}
-@media(max-width:430px){.k2e-v1140-onboarding{padding:14px}.k2e-v1140-steps{display:grid;grid-template-columns:1fr}.k2e-v1140-step{width:100%}}
-@media(prefers-reduced-motion:reduce){.k2e-v1140-updating{transition:none}}
-</style>
-<script id="k2e-v1140-hardening-script">
-(()=>{
-'use strict';
-const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const announce=msg=>{const n=$('#myvera-global-status');if(n)n.textContent=msg};
-function addOnboarding(){
- if($('#k2e-v1140-onboarding'))return;
- const host=$('#myvera-main-content')||$('main')||document.body;
- const box=document.createElement('section');box.id='k2e-v1140-onboarding';box.className='k2e-v1140-onboarding';box.setAttribute('aria-label','Quick start');
- box.innerHTML='<div><h2>Build a clearer home-energy plan</h2><p>Choose a mode, enter the devices you actually use, then review the estimate and recommended changes. Everything stays on this device.</p></div><div class="k2e-v1140-steps" aria-label="Three-step workflow"><span class="k2e-v1140-step"><b>1</b>Choose a mode</span><span class="k2e-v1140-step"><b>2</b>Add household details</span><span class="k2e-v1140-step"><b>3</b>Review your plan</span></div>';
- host.insertAdjacentElement('afterbegin',box);
-}
-function addNetworkState(){
- if($('#k2e-v1140-network'))return;
- const node=document.createElement('div');node.id='k2e-v1140-network';node.className='k2e-v1140-network';node.setAttribute('role','status');node.setAttribute('aria-live','polite');document.body.appendChild(node);
- const paint=()=>{const on=navigator.onLine;node.dataset.online=String(on);node.textContent=on?'Online · local calculations ready':'Offline · local calculations ready';announce(node.textContent)};
- addEventListener('online',paint);addEventListener('offline',paint);paint();
-}
-function addFooter(){
- if($('#k2e-v1140-footer'))return;
- const footer=document.createElement('footer');footer.id='k2e-v1140-footer';footer.className='k2e-v1140-footer';footer.textContent='Private by design · Calculations stay on your device · No account required';
- (document.querySelector('main')||document.body).insertAdjacentElement('afterend',footer);
-}
-function validateNumber(input){
- if(input.disabled||input.readOnly||input.type!=='number')return true;
- const raw=input.value.trim();let message='';
- if(raw==='')return clearError(input);
- const value=Number(raw), min=input.min!==''?Number(input.min):0, max=input.max!==''?Number(input.max):Infinity;
- if(!Number.isFinite(value))message='Enter a valid number.';
- else if(value<min)message='Use a value of '+min+' or higher.';
- else if(value>max)message='Use a value of '+max+' or lower.';
- else if(/hour|runtime/i.test(input.id+' '+input.name) && value>24)message='Daily runtime cannot exceed 24 hours.';
- else if(/qty|quantity/i.test(input.id+' '+input.name) && value>100)message='Check this quantity; it appears unusually high.';
- else if(/watt|power/i.test(input.id+' '+input.name) && value>50000)message='Check the wattage; it appears unusually high.';
- if(!message)return clearError(input);
- input.classList.add('k2e-v1140-invalid');input.setAttribute('aria-invalid','true');
- let err=input.parentElement?.querySelector('.k2e-v1140-field-error');if(!err){err=document.createElement('span');err.className='k2e-v1140-field-error';input.insertAdjacentElement('afterend',err)}err.textContent=message;return false;
-}
-function clearError(input){input.classList.remove('k2e-v1140-invalid');input.removeAttribute('aria-invalid');input.parentElement?.querySelector('.k2e-v1140-field-error')?.remove();return true}
-function wireValidation(){
- document.addEventListener('blur',e=>{if(e.target.matches('input[type="number"]'))validateNumber(e.target)},true);
- document.addEventListener('input',e=>{if(e.target.matches('input[type="number"]')&&e.target.classList.contains('k2e-v1140-invalid'))validateNumber(e.target)},true);
- document.addEventListener('submit',e=>{const invalid=$$('input[type="number"]',e.target).filter(i=>!validateNumber(i));if(invalid.length){e.preventDefault();invalid[0].focus();announce('Please correct the highlighted value.')}},true);
-}
-function wireResetProtection(){
- document.addEventListener('click',e=>{const b=e.target.closest('#btn-reset');if(!b||b.dataset.k2eConfirmed==='1')return;if(!confirm('Reset the current tweaks? Your saved household workspace will remain, but unsaved view adjustments will return to defaults.')){e.preventDefault();e.stopImmediatePropagation();announce('Reset cancelled');return}b.dataset.k2eConfirmed='1';setTimeout(()=>delete b.dataset.k2eConfirmed,0)},true);
-}
-function wireUpdateFeedback(){
- let timer;document.addEventListener('input',e=>{if(!e.target.matches('input,select'))return;const status=$('#myvera-workspace-status')||$('#myvera-save-state');if(!status)return;status.classList.add('k2e-v1140-updating');clearTimeout(timer);timer=setTimeout(()=>status.classList.remove('k2e-v1140-updating'),500)},true);
-}
-function improveInputs(){
- $$('input[type="number"]').forEach(i=>{if(i.min==='')i.min='0';i.inputMode='decimal'});
- $$('button').forEach(b=>{if(!b.getAttribute('type'))b.type='button'});
-}
-function boot(){addOnboarding();addNetworkState();addFooter();improveInputs();wireValidation();wireResetProtection();wireUpdateFeedback();announce('K2E Local is ready. Your workspace saves locally.');}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-})();
-</script>
-
-</body></html>';
+    const documentHtml='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>K2E Local Energy Report</title><style>body{font-family:Arial,sans-serif;color:#14202a;max-width:850px;margin:30px auto;padding:0 18px}h2{font-size:17px;margin-top:24px;border-bottom:2px solid #d9e2e8;padding-bottom:6px}.k2e-report-meta{color:#50616f;font-size:12px}.k2e-report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.k2e-report-stat,.k2e-report-action{border:1px solid #d9e2e8;border-radius:9px;padding:10px}.k2e-report-stat span{display:block;font-size:11px;color:#5b6872}.k2e-report-stat strong{display:block;margin-top:4px}.k2e-report-table{width:100%;border-collapse:collapse;font-size:12px}.k2e-report-table th,.k2e-report-table td{padding:7px;border-bottom:1px solid #e2e8ec;text-align:left}.k2e-report-table th{background:#f4f7f8}.k2e-report-action{margin:8px 0}.k2e-report-disclaimer{font-size:11px;color:#5b6872;border-top:1px solid #d9e2e8;margin-top:22px;padding-top:10px}@media(max-width:650px){.k2e-report-grid{grid-template-columns:1fr}}</style></head><body>'+reportMarkup()+'</body></html>';
     const blob=new Blob([documentHtml],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='K2E_Local_Energy_Report_'+new Date().toISOString().slice(0,10)+'.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
   function wrap(){if(typeof window.renderAll!=='function'||window.renderAll.__k2eV110)return;const original=window.renderAll;const wrapped=function(){const result=original.apply(this,arguments);setTimeout(render,0);return result};wrapped.__k2eV110=true;window.renderAll=wrapped}

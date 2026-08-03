@@ -12,3 +12,8 @@ The deployed site URL is:
 ## v1.13.1 note
 
 The current primary asset is `assets/k2e-local-social-preview-v1.13.1.png`. It is designed so all essential content stays inside the center-safe crop area used by Facebook mobile composer.
+
+
+## v1.14.1 note
+
+The social preview trust row was tightened so the bottom line remains readable in aggressive mobile share crops. Current preview asset: `assets/k2e-local-social-preview-v1.14.1.png`.
