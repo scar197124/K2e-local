@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
-const expectedVersion = "2.0.0-rc.24";
-const expectedCache = "k2e-local-v2.0.0-rc.24";
+const expectedVersion = "2.0.0-rc.25";
+const expectedCache = "k2e-local-v2.0.0-rc.25";
 
 const required = [
   "index.html",
@@ -120,6 +120,10 @@ requireText(index, '--panel:#0d1a2b', 'Landing page panel color does not match t
 requireText(index, '--green:#68e0b4', 'Landing page primary accent does not match the app palette');
 requireText(index, '--blue:#8bd3ff', 'Landing page energy blue does not match the app palette');
 requireText(index, '--amber:#f6b84a', 'Landing page amber accent does not match the app palette');
+
+requireText(app, '/* RC25: mobile width containment for Explore Your Energy */', 'Explore Your Energy mobile-width containment patch is missing');
+requireText(app, '.table-wrap{width:100%;max-width:100%;min-width:0;overflow-x:auto', 'Device table horizontal scrolling is not contained internally');
+requireText(app, 'html,body{max-width:100%;overflow-x:hidden}', 'Global mobile horizontal page-pan guard is missing');
 
 requireText(readme, `**v${expectedVersion}`, "README current release is stale");
 requireText(readme, "https://nrg-roan.vercel.app/", "README launch URL is incorrect");

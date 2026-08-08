@@ -257,6 +257,23 @@
 .adv-section[data-adv-section="devices"] th:nth-child(7){width:15%}
 .device-name-cell{display:flex;align-items:center;gap:9px;min-width:0}.device-icon{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--line);border-radius:9px;background:var(--panel2);font-size:17px;line-height:1}.device-name-stack{min-width:0;flex:1}.device-name-stack input{min-width:0;width:100%}.typical-badge{display:inline-block;margin-top:4px;padding:2px 6px;border:1px solid color-mix(in srgb,var(--action-amber) 45%,var(--line));border-radius:999px;background:color-mix(in srgb,var(--action-amber) 10%,transparent);color:var(--action-amber);font-size:10px;font-weight:900;line-height:1.2}.device-input-hours,.device-input-qty,.device-input-duty{min-width:0!important;text-align:center}.device-input-watts{min-width:0!important}.device-monthly{font-weight:850;color:var(--energy-blue);white-space:nowrap}.device-remove{padding:7px 9px;font-size:12px}.adv-section[data-adv-section="devices"] td{vertical-align:middle}
 @media(max-width:760px){.adv-section[data-adv-section="devices"] table{min-width:760px}.device-icon{flex-basis:28px;width:28px;height:28px;font-size:16px}}
+
+
+/* RC25: mobile width containment for Explore Your Energy */
+html,body{max-width:100%;overflow-x:hidden}
+.app,.tools-grid,.tools-shell,.tools-shell>*,.tools-nav-panel,.tools-nav-row,.advanced-nav,.adv-section,.workspace-card,.workspace-card>header,.scroll-body{min-width:0;max-width:100%}
+.tools-grid,.tools-shell{width:100%}
+.tools-shell{overflow:hidden}
+.adv-section[data-adv-section="devices"] .scroll-body{min-width:0;max-width:100%;overflow:hidden}
+.adv-section[data-adv-section="devices"] .table-wrap{width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
+@media(max-width:760px){
+  .tools-shell{width:100%;max-width:100%;margin-left:0;margin-right:0}
+  .tools-shell .tools-banner,.tools-shell>.panel,.tools-shell .workspace-card{width:100%;max-width:100%;min-width:0}
+  .tools-shell .advanced-nav{width:100%;max-width:100%}
+  .tools-shell .advanced-nav button{min-width:0;max-width:100%}
+  .floating-device-picker{max-width:100%}
+}
+
 </style>
 </head>
 <body>

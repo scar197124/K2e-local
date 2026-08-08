@@ -1,4 +1,4 @@
-const CACHE_NAME = 'k2e-local-v2.0.0-rc.24';
+const CACHE_NAME = 'k2e-local-v2.0.0-rc.25';
 const APP_SHELL = [
   './','./index.html','./app.html','./manifest.json','./robots.txt','./sitemap.xml',
   './icon-192.png','./icon-512.png','./assets/k2e-local-brand-dark.png',

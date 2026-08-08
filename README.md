@@ -58,14 +58,14 @@ node scripts/validate-release.mjs
 
 ## Current release
 
-**v2.0.0-rc.24 — Landing Page Balance & Border Light**
+**v2.0.0-rc.25 — Mobile Explore Your Energy Width Fix**
 
-- Raises landing-page border contrast across the shell, panels, cards, and assurance elements.
-- Adds restrained blue/green edge light so the landing page feels brighter without changing its structure.
-- Moves the local/privacy assurance and guided-start message into a balanced two-column row beneath the hero/launch area.
-- Stacks that assurance row cleanly on smaller screens.
+- Locks **Explore Your Energy** to the same mobile width as the guided cards above it.
+- Prevents wide internal tools from expanding the entire page or causing whole-UI side panning.
+- Keeps the detailed device table horizontally scrollable **inside its own table area**.
+- Adds mobile width containment to tool navigation, workspace cards, and floating device controls.
 
-See [`docs/releases/RELEASE_NOTES_v2.0.0-rc.24.md`](docs/releases/RELEASE_NOTES_v2.0.0-rc.24.md).
+See [`docs/releases/RELEASE_NOTES_v2.0.0-rc.25.md`](docs/releases/RELEASE_NOTES_v2.0.0-rc.25.md).
 
 ## Project notes
 
