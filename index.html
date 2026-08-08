@@ -13,8 +13,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_CA">
 <meta property="og:url" content="https://nrg-roan.vercel.app/">
-<meta property="og:image" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview-v1.14.1.png">
-<meta property="og:image:secure_url" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview-v1.14.1.png">
+<meta property="og:image" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview.png">
+<meta property="og:image:secure_url" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,26 +22,27 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="K2E Local — Kilowatts to Efficiency">
 <meta name="twitter:description" content="Know where your home energy goes. Plan smarter, waste less, and keep your data on your device with K2E Local.">
-<meta name="twitter:image" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview-v1.14.1.png">
+<meta name="twitter:image" content="https://nrg-roan.vercel.app/assets/k2e-local-social-preview.png">
 <meta name="twitter:image:alt" content="K2E Local — Plan smarter, waste less with private local home-energy planning">
 <link rel="manifest" href="./manifest.json">
 <style>
 :root{
   color-scheme:dark;
-  --bg1:#02070c;
-  --bg2:#07111c;
-  --bg3:#0d1a27;
-  --panel:#0b1520;
-  --panel-2:#0d1a27;
+  --bg1:#07111f;
+  --bg2:#0a1727;
+  --bg3:#12233a;
+  --panel:#0d1a2b;
+  --panel-2:#12233a;
   --panel-soft:rgba(255,255,255,.04);
   --line:rgba(162,190,213,.18);
   --line-strong:rgba(162,190,213,.26);
-  --text:#ebf3fb;
-  --muted:#b8c9d9;
+  --text:#f7fbff;
+  --muted:#a9bbcf;
   --navy:#0b1f3a;
-  --blue:#3aa7ff;
-  --teal:#42c6c9;
-  --green:#7ddc43;
+  --blue:#8bd3ff;
+  --teal:#68e0b4;
+  --green:#68e0b4;
+  --amber:#f6b84a;
   --shadow:0 18px 44px rgba(0,0,0,.28);
 }
 *{box-sizing:border-box}
@@ -241,72 +242,44 @@ footer .site{
   .copy-inner{border-color:rgba(162,190,213,.30)}
 }
 
+
+/* rc.24 Landing Page Border Light + Balanced Assurance Row */
+:root{
+  --line:rgba(162,190,213,.48);
+  --line-strong:rgba(162,190,213,.66);
+}
+.header-inner,.shell,.landing-panel,.section-shell,.support-card,.reassurance-bar,.trust-pill,.prompt,.local-trust-line{
+  border-color:var(--line);
+}
+.header-inner,.shell,.landing-panel,.section-shell{
+  box-shadow:0 14px 34px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.09),0 0 0 1px rgba(58,167,255,.035);
+}
+.copy-inner{border-color:rgba(162,190,213,.42)}
+.mode-card{border-color:rgba(162,190,213,.50);outline-color:rgba(255,255,255,.10)}
+.mode-card.simple{border-color:rgba(125,220,67,.68);box-shadow:0 12px 28px rgba(0,0,0,.18),0 0 24px rgba(125,220,67,.05)}
+.support-card{box-shadow:0 8px 20px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.055)}
+.hero-assurance-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.hero-assurance-row .local-trust-line,.hero-assurance-row .prompt{margin:0;min-height:52px;width:100%;border-radius:16px}
+.hero-assurance-row .local-trust-line{justify-content:center;background:linear-gradient(180deg,rgba(52,211,153,.10),rgba(2,18,17,.62));box-shadow:0 0 22px rgba(45,212,191,.06),inset 0 1px 0 rgba(255,255,255,.06)}
+.hero-assurance-row .prompt{display:flex;justify-content:center;background:linear-gradient(180deg,rgba(58,167,255,.09),rgba(255,255,255,.04));box-shadow:0 0 22px rgba(58,167,255,.05),inset 0 1px 0 rgba(255,255,255,.06)}
+@media(max-width:760px){.hero-assurance-row{grid-template-columns:1fr}.hero-assurance-row .local-trust-line,.hero-assurance-row .prompt{justify-content:flex-start}}
+
 </style>
-<meta name="k2e-local-build" content="v1.7.2-offline-charts-clarity-polish">
+<meta name="k2e-local-build" content="v2.0.0-rc.24-landing-balance-polish">
 
 <style id="k2e-v172-clarity-polish">
 .local-trust-line{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:18px 0 0;padding:11px 14px;border:1px solid rgba(52,211,153,.28);border-radius:999px;background:rgba(2,18,17,.62);color:#d8fff1;font-size:13px;line-height:1.4;box-shadow:0 0 24px rgba(45,212,191,.08)}
 .local-trust-line strong{color:#f3fffb;font-weight:800}.local-trust-line span{color:#5eead4}
 @media(max-width:640px){.local-trust-line{border-radius:16px;justify-content:center;text-align:center}}
 </style>
-
-<style id="k2e-v1142-github-presentation-and-border-polish">
-:root{
-  --line:rgba(190,214,232,.48);
-  --line-strong:rgba(208,227,243,.66);
-}
-.header-inner,
-.shell,
-.landing-panel,
-.section-shell,
-.copy-inner,
-.support-card,
-.reassurance-bar,
-.trust-pill,
-.prompt,
-footer .site{
-  border-color:var(--line)!important;
-}
-.header-inner,
-.shell,
-.landing-panel,
-.section-shell,
-.copy-inner,
-.support-card,
-.reassurance-bar,
-.local-trust-line{
-  box-shadow:0 0 0 1px rgba(255,255,255,.04),0 14px 34px rgba(0,0,0,.18),0 0 28px rgba(72,180,255,.06);
-}
-.copy-inner{
-  border-color:rgba(190,214,232,.44)!important;
-  background:rgba(6,16,27,.46)!important;
-}
-.mode-card{
-  border-color:rgba(190,214,232,.46)!important;
-  outline-color:rgba(255,255,255,.11)!important;
-  box-shadow:0 14px 32px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.05), 0 0 22px rgba(87,171,255,.05);
-}
-.mode-card.simple{border-color:rgba(125,220,67,.72)!important; box-shadow:0 14px 32px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.05), 0 0 22px rgba(125,220,67,.10);}
-.mode-card.advanced{border-color:rgba(58,167,255,.72)!important; box-shadow:0 14px 32px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.05), 0 0 22px rgba(58,167,255,.12);}
-.local-trust-line{
-  border-color:rgba(52,211,153,.60)!important;
-  background:linear-gradient(180deg,rgba(4,23,24,.84),rgba(3,19,21,.70))!important;
-  box-shadow:0 0 0 1px rgba(66,230,213,.12),0 0 28px rgba(45,212,191,.10)!important;
-}
-.section-shell{background:linear-gradient(180deg,rgba(255,255,255,.070),rgba(255,255,255,.035))!important;}
-.landing-panel{background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.040))!important;}
-.support-card{background:linear-gradient(180deg,rgba(255,255,255,.070),rgba(255,255,255,.045))!important;}
-.reassurance-bar{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.040))!important;}
-</style>
-
 </head>
 <body>
-<a class="skip" href="#experience">Skip to mode selection</a>
+<a class="skip" href="#experience">Skip to K2E</a>
 <header>
   <div class="site header-inner">
     <div class="brand">
       <div class="logo-chip">
-        <img class="brand-logo" src="./assets/k2e-logo-horizontal-dark.png" alt="K2E Local logo with home, energy, and privacy symbol">
+        <img class="brand-logo" src="./assets/k2e-local-brand-night.png" alt="K2E Local detailed logo with house, lock, and wordmark">
       </div>
       <span class="tagline">Kilowatts to Efficiency</span>
     </div>
@@ -325,40 +298,27 @@ footer .site{
           <div class="copy-inner">
             <div class="eyebrow">Local-first household planning</div>
             <h1 id="page-title">Plan your household energy use with <span>confidence.</span></h1>
-            <p class="lead">K2E Local helps you explore and understand household energy use privately and offline—just choose a mode and continue into the simulator.</p>
-            <div class="local-trust-line" role="note" aria-label="Privacy and offline assurance"><strong>Runs locally</strong><span>·</span><strong>No account</strong><span>·</span><strong>Your household data stays on this device</strong></div>
-            <div class="prompt">Choose Simple Mode or Advanced Mode to enter the existing K2E Local dashboard.</div>
+            <p class="lead">K2E Local guides you from a quick household setup to deeper energy tools, privately and offline, in one connected application.</p>
           </div>
         </div>
 
-        <nav class="mode-area landing-panel" id="experience" aria-label="Choose a K2E Local mode">
-          <div class="mode-grid">
-            <a class="mode-card simple" href="./app.html?v=1.11.2#mode=simple">
+        <nav class="mode-area landing-panel" id="experience" aria-label="Open K2E Local">
+          <div class="mode-grid" style="grid-template-columns:1fr">
+            <a class="mode-card simple" href="./app.html">
               <span class="mode-icon" aria-hidden="true">⌂</span>
-              <h2>Simple Mode</h2>
-              <p>Guided setup with the essentials kept clear and focused.</p>
-              <ul>
-                <li>Build your space</li>
-                <li>Choose a home type</li>
-                <li>Add devices and adjust real-world usage</li>
-              </ul>
-              <span class="launch">Launch Simple Mode <span aria-hidden="true">→</span></span>
-            </a>
-
-            <a class="mode-card advanced" href="./app.html?v=1.11.2#mode=advanced">
-              <span class="mode-icon" aria-hidden="true">▥</span>
-              <h2>Advanced Mode</h2>
-              <p>Full controls for detailed household energy exploration.</p>
-              <ul>
-                <li>See the patterns</li>
-                <li>Review estimates</li>
-                <li>Kilowatt use, monthly cost, contributors, and charts</li>
-              </ul>
-              <span class="launch">Launch Advanced Mode <span aria-hidden="true">→</span></span>
+              <h2>Open K2E Local</h2>
+              <p>One guided experience that starts simple and reveals deeper tools when you want them.</p>
+              <ul><li>Tell K2E about your home</li><li>Adjust devices with sensible presets</li><li>Review estimates, schedules, advice, and reports</li></ul>
+              <span class="launch">Start planning <span aria-hidden="true">→</span></span>
             </a>
           </div>
         </nav>
       </section>
+
+      <div class="hero-assurance-row" aria-label="K2E Local quick assurances">
+        <div class="local-trust-line" role="note" aria-label="Privacy and offline assurance"><strong>Runs locally</strong><span>·</span><strong>No account</strong><span>·</span><strong>Your household data stays on this device</strong></div>
+        <div class="prompt">Start with your home, see your estimate, and explore deeper tools only when you need them.</div>
+      </div>
 
       <div class="divider" aria-hidden="true"></div>
 

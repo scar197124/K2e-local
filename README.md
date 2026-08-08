@@ -1,43 +1,42 @@
 # K2E Local
 
-![K2E Local README Banner](assets/k2e-local-readme-banner.jpg)
+![K2E Local — Plan household energy privately and offline](assets/k2e-local-social-preview.png)
 
 **Kilowatts to Efficiency**
 
-K2E Local is a privacy-first home-energy planning app that runs locally in the browser. It helps households estimate electricity use, explore costs, compare scenarios, and review appliance insights without requiring an account or sending household details away from the device.
+K2E Local is a local-first household energy simulator for planning electricity use, estimating costs, comparing scenarios, and reviewing appliance insights privately on your device.
 
 [**Launch K2E Local →**](https://nrg-roan.vercel.app/)
 
-**Private by design · Local-first · Offline-capable · No account required**
+**Local-first · Offline-capable · No account required**
 
-## Highlights
+## What it does
 
-- Plan household energy use with clear summaries and visual breakdowns
-- Estimate daily and monthly electricity costs
-- Compare saved homes and scenarios
-- Review appliance insights and action guidance
-- Keep household data on the device unless the user exports it
+- Models household devices and electricity use
+- Estimates daily and monthly energy costs
+- Compares saved homes and scenarios
+- Highlights major energy contributors
+- Produces structured local guidance and action plans
+- Keeps household data in the browser unless the user exports it
 
-## Modes
+## One guided application
 
-### Simple Mode
-A guided workflow for quick setup, clean results, and everyday planning.
-
-### Advanced Mode
-Deeper analysis with scenarios, comparisons, reporting, scheduling, and more control.
+K2E Local now uses one connected experience instead of separate modes. Start with the guided household estimate, then use optional device controls, smart-home planning, AI guidance, rates and schedules, and reports when needed.
 
 ## Privacy and offline use
 
-K2E Local is built to work locally in the browser. After the first successful load, the core app shell and bundled assets can continue to work offline. No account is required.
+K2E Local is designed to work locally in the browser. After the first successful load, the application shell and bundled chart library can operate offline. No account is required.
 
 ## Deployment
 
 This repository is prepared for GitHub Pages through the included GitHub Actions workflow.
 
-1. Upload the contents of this package to the repository root.
+1. Upload the contents of this folder to the repository root.
 2. Commit and push to the `main` branch.
 3. In **Settings → Pages**, select **GitHub Actions** as the source.
-4. Open the deployment at [https://nrg-roan.vercel.app/](https://nrg-roan.vercel.app/).
+4. GitHub Pages will publish the repository URL after the workflow completes.
+
+The current official hosted build is [https://nrg-roan.vercel.app/](https://nrg-roan.vercel.app/). GitHub Pages is an additional supported deployment path.
 
 The public entry page is `index.html`; the simulator is `app.html`.
 
@@ -57,24 +56,16 @@ Then open `http://localhost:8080`.
 node scripts/validate-release.mjs
 ```
 
-## Repository presentation
-
-- README hero image: `assets/k2e-local-readme-banner.jpg`
-- Primary header logo: `assets/k2e-logo-horizontal-dark.png`
-- Light-background logo: `assets/k2e-logo-horizontal-light.png`
-- App/icon mark: `assets/k2e-logo-app-icon.png`
-- Brand identity board: `assets/k2e-brand-identity-board.png`
-- Social/share preview image: `assets/k2e-local-social-preview-v1.14.1.png`
-- Optional GitHub repository social preview upload: `GITHUB_SOCIAL_PREVIEW_UPLOAD.png`
-
 ## Current release
 
-**v1.14.3 — Refined K2E Brand Identity**
+**v2.0.0-rc.24 — Landing Page Balance & Border Light**
 
-- Introduces a simplified professional logo system for headers, icons, light/dark use, and brand presentation
-- Replaces the homepage header logo and app icons with the refined K2E identity
-- Updates the README banner to match the new visual system
-- Preserves the working v1.14.1 Facebook/social preview and the brighter homepage borders
+- Raises landing-page border contrast across the shell, panels, cards, and assurance elements.
+- Adds restrained blue/green edge light so the landing page feels brighter without changing its structure.
+- Moves the local/privacy assurance and guided-start message into a balanced two-column row beneath the hero/launch area.
+- Stacks that assurance row cleanly on smaller screens.
+
+See [`docs/releases/RELEASE_NOTES_v2.0.0-rc.24.md`](docs/releases/RELEASE_NOTES_v2.0.0-rc.24.md).
 
 ## Project notes
 
@@ -83,3 +74,7 @@ Development handoff details are available in [`docs/NEXT_HANDOFF.md`](docs/NEXT_
 ## Licensing
 
 No open-source license has been selected. Add a `LICENSE` file before inviting unrestricted reuse or outside contributions.
+
+## Social preview
+
+Current recommended asset: `assets/k2e-local-social-preview.png`.
