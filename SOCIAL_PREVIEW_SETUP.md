@@ -14,6 +14,12 @@ The deployed site URL is:
 The current primary asset is `assets/k2e-local-social-preview-v1.13.1.png`. It is designed so all essential content stays inside the center-safe crop area used by Facebook mobile composer.
 
 
-## v1.14.1 note
+## Current preview note
 
-The social preview trust row was tightened so the bottom line remains readable in aggressive mobile share crops. Current preview asset: `assets/k2e-local-social-preview.png`.
+The current approved preview image is wired into three places:
+
+- `assets/k2e-local-social-preview.png` for site sharing metadata
+- `README.md` as the banner image shown on GitHub
+- `GITHUB_SOCIAL_PREVIEW_UPLOAD.png` for **Settings → Social preview**
+
+This keeps Facebook, GitHub, and the repository page aligned on the same artwork.

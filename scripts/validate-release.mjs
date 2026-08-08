@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
-const expectedVersion = "2.0.0-rc.25";
-const expectedCache = "k2e-local-v2.0.0-rc.25";
+const expectedVersion = "2.0.0-rc.26";
+const expectedCache = "k2e-local-v2.0.0-rc.26";
 
 const required = [
   "index.html",

@@ -58,14 +58,14 @@ node scripts/validate-release.mjs
 
 ## Current release
 
-**v2.0.0-rc.25 — Mobile Explore Your Energy Width Fix**
+**v2.0.0-rc.26 — Social Preview Wired In**
 
-- Locks **Explore Your Energy** to the same mobile width as the guided cards above it.
-- Prevents wide internal tools from expanding the entire page or causing whole-UI side panning.
-- Keeps the detailed device table horizontally scrollable **inside its own table area**.
-- Adds mobile width containment to tool navigation, workspace cards, and floating device controls.
+- Wires the new approved K2E promotional image into `assets/k2e-local-social-preview.png`.
+- Updates the README banner so the repository page shows the same preview image at the top.
+- Replaces `GITHUB_SOCIAL_PREVIEW_UPLOAD.png` so you can upload the same artwork in **Settings → Social preview**.
+- Refreshes the landing-page Open Graph and X/Twitter metadata to point at the new social preview asset.
 
-See [`docs/releases/RELEASE_NOTES_v2.0.0-rc.25.md`](docs/releases/RELEASE_NOTES_v2.0.0-rc.25.md).
+See [`docs/releases/RELEASE_NOTES_v2.0.0-rc.26.md`](docs/releases/RELEASE_NOTES_v2.0.0-rc.26.md).
 
 ## Project notes
 
@@ -78,3 +78,5 @@ No open-source license has been selected. Add a `LICENSE` file before inviting u
 ## Social preview
 
 Current recommended asset: `assets/k2e-local-social-preview.png`.
+
+The README banner, site social metadata, and repository social-preview upload file now all use the same approved artwork so the project presents consistently on GitHub and when shared.
