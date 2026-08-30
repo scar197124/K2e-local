@@ -1,0 +1,10 @@
+/* RC45: consolidation only — shared hierarchy, language, density, and mobile rhythm */
+.advanced-nav{gap:6px;scrollbar-width:thin}.advanced-nav button{text-transform:none;white-space:nowrap}
+.workspace-card>header{gap:14px}.workspace-card>header h2{letter-spacing:-.02em}.workspace-card>header p{max-width:72ch}
+.mode-pill,.source-badge,.confidence-badge,.rc42-source,.rc42-confidence{font-size:11px!important;line-height:1.2!important;font-weight:850!important;letter-spacing:.02em}
+.compact-actions,.actions{gap:8px}.compact-actions button,.actions button{min-height:42px}
+.family-guidance,.rc44-goal-hero,.pulse-hero{gap:10px}.guidance-card,.pulse-card,.lab-card,.mission-card,.rc44-card{box-shadow:none}
+.rc45-context{margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:13px;background:var(--panel2);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.rc45-context strong{display:block;font-size:12px}.rc45-context span{display:block;margin-top:3px;color:var(--muted);font-size:11px;line-height:1.35}.rc45-context button{flex:0 0 auto}
+[data-adv-section="smart"] .scroll-body,[data-adv-section="goals"] .scroll-body,[data-adv-section="advisor"] .scroll-body,[data-adv-section="pulse"] .scroll-body{scrollbar-gutter:stable}
+@media(max-width:700px){.app{padding:10px}.advanced-nav{padding-bottom:4px}.advanced-nav button{padding:9px 10px;font-size:12px}.workspace-card>header{padding:14px}.workspace-card .scroll-body{padding:12px}.rc45-context{padding:9px 10px}.compact-actions,.actions{display:grid;grid-template-columns:1fr}.compact-actions button,.actions button{width:100%}.evolution-grid,.rc44-kpis{gap:8px}.evolution-metric,.rc44-kpi{padding:11px}.mission-item{padding:10px}}

@@ -1,0 +1,14 @@
+K2E Local RC43 — GitHub-clean package
+
+This package contains the current runtime and maintenance files only.
+Historical release-note piles, archived social previews, old branding experiments,
+and one-off fix notes were intentionally excluded.
+
+For GitHub web upload:
+1. Open the K2e-local repository.
+2. Add file -> Upload files.
+3. Drag the CONTENTS of this extracted folder into the repository root.
+4. Preserve the .github, assets, docs, and scripts folders.
+5. Commit the upload.
+
+Do not place the entire extracted folder as a new nested folder.

@@ -1,11 +1,14 @@
-const CACHE_NAME = 'k2e-local-v2.0.0-rc.26';
+const CACHE_NAME = 'k2e-local-v2.0.0-rc.45';
 const APP_SHELL = [
   './','./index.html','./app.html','./manifest.json','./robots.txt','./sitemap.xml',
-  './icon-192.png','./icon-512.png','./assets/k2e-local-brand-dark.png',
-  './assets/k2e-local-brand-detailed.png','./assets/k2e-local-brand-night.png',
-  './assets/k2e-local-mark.png','./assets/k2e-local-social-preview.png',
-  './assets/k2e-local-readme-banner.jpg',
-  './assets/chart.umd.js'
+  './icon-192.png','./icon-512.png',
+  './assets/k2e-local-brand-night.png','./assets/k2e-local-social-preview.png',
+  './assets/chart.umd.js',
+  './assets/k2e-evolution-rc38.css','./assets/k2e-evolution-rc38.js',
+  './assets/k2e-advisor-rc39.css','./assets/k2e-advisor-rc39.js',
+  './assets/k2e-forecast-rc40.css','./assets/k2e-forecast-rc40.js',
+  './assets/k2e-timeline-rc41.css','./assets/k2e-timeline-rc41.js','./assets/k2e-smart-hub-rc42.css','./assets/k2e-smart-hub-rc42.js','./assets/k2e-ui-polish-rc43.css','./assets/k2e-ui-polish-rc43.js','./assets/k2e-goals-rc44.css','./assets/k2e-goals-rc44.js',
+  './assets/k2e-consolidation-rc45.css','./assets/k2e-consolidation-rc45.js'
 ];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));

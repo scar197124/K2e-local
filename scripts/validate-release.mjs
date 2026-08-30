@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
-const expectedVersion = "2.0.0-rc.26";
-const expectedCache = "k2e-local-v2.0.0-rc.26";
+const expectedVersion = "2.0.0-rc.45";
+const expectedCache = "k2e-local-v2.0.0-rc.45";
 
 const required = [
   "index.html",
@@ -10,7 +10,16 @@ const required = [
   "sw.js",
   "assets/chart.umd.js",
   "assets/k2e-local-social-preview.png",
-  "GITHUB_SOCIAL_PREVIEW_UPLOAD.png",
+  "assets/k2e-forecast-rc40.css",
+  "assets/k2e-forecast-rc40.js",
+  "assets/k2e-timeline-rc41.css",
+  "assets/k2e-timeline-rc41.js",
+  "assets/k2e-smart-hub-rc42.css",
+  "assets/k2e-smart-hub-rc42.js",
+  "assets/k2e-ui-polish-rc43.css",
+  "assets/k2e-ui-polish-rc43.js",
+  "assets/k2e-goals-rc44.css",
+  "assets/k2e-goals-rc44.js",
   "VERSION",
   "README.md",
   `docs/releases/RELEASE_NOTES_v${expectedVersion}.md`,
@@ -44,7 +53,9 @@ requireText(serviceWorker, expectedCache, "Service-worker cache name is stale");
 requireText(serviceWorker, "self.skipWaiting()", "Service worker does not activate updates promptly");
 requireText(serviceWorker, "self.clients.claim()", "Service worker does not claim open clients");
 
-requireText(index, "assets/k2e-local-social-preview.png", "Landing-page social preview metadata is missing");
+requireText(index, "assets/k2e-local-social-preview.png",
+  "assets/k2e-forecast-rc40.css",
+  "assets/k2e-forecast-rc40.js", "Landing-page social preview metadata is missing");
 requireText(app, 'id="importUtilityBtn"', "Local utility import control is missing");
 requireText(app, 'id="utilityFile"', "Local utility file input is missing");
 requireText(app, "deriveImportedRate", "Utility-rate parsing logic is missing");
@@ -95,6 +106,17 @@ requireText(app, 'school/work hours', 'Schedule accuracy guidance is missing');
 requireText(app, 'Top household insight', 'Personalized Insights emphasis label is missing');
 requireText(app, 'prefers-reduced-motion:reduce', 'Reduced-motion accessibility support is missing');
 requireText(app, 'aria-label="View K2E Insights for this household"', 'Accessible View Insights label is missing');
+requireText(app, "K2E Local v2.0.0-rc.45", "App footer version is stale");
+requireText(app, "k2e-forecast-rc40.js", "RC40 forecast layer is missing");
+requireText(app, "k2e-timeline-rc41.js", "RC41 timeline layer is missing");
+requireText(app, "k2e-goals-rc44.js", "RC44 goal layer is missing");
+requireText(app, "k2e-consolidation-rc45.js", "RC45 consolidation layer is missing");
+requireText(serviceWorker, "k2e-consolidation-rc45.js", "RC45 consolidation layer is not cached offline");
+
+requireText(serviceWorker, "k2e-forecast-rc40.js", "RC40 forecast layer is not cached offline");
+requireText(serviceWorker, "k2e-timeline-rc41.js", "RC41 timeline layer is not cached offline");
+requireText(serviceWorker, "k2e-goals-rc44.js", "RC44 goal layer is not cached offline");
+requireText(index, "v2.0.0-rc.45-consolidation", "Landing build metadata is stale");
 
 
 requireText(app, 'function deviceIcon(name)', 'Device icon mapping is missing');

@@ -1,0 +1,26 @@
+/* RC43 — Smart Energy Hub UI polish */
+.rc42-hub{gap:10px}
+.rc43-summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;padding:8px;border:1px solid var(--line);border-radius:15px;background:color-mix(in srgb,var(--panel2) 86%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--text) 5%,transparent)}
+.rc43-summary-item{min-width:0;padding:8px 9px;border:1px solid color-mix(in srgb,var(--line) 82%,transparent);border-radius:10px;background:var(--panel)}
+.rc43-summary-item span{display:block;color:var(--muted);font-size:9px;line-height:1.15;font-weight:900;text-transform:uppercase;letter-spacing:.045em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc43-summary-item strong{display:block;margin-top:3px;font-size:15px;line-height:1.1}
+.rc43-summary-item[data-kind="measured"] strong{color:var(--accent)}
+.rc43-summary-item[data-kind="smart"] strong{color:var(--action-amber)}
+.rc43-summary-item[data-kind="confidence"] strong{color:var(--accent2)}
+.rc42-hero{gap:10px}.rc42-card{border-radius:14px;padding:13px}.rc42-card h3{font-size:15px;letter-spacing:-.01em}.rc42-card p{line-height:1.38}
+.rc42-kpis{gap:6px;margin-top:8px}.rc42-kpi{padding:8px 9px;border-radius:10px}.rc42-kpi strong{font-size:14px}
+.rc42-device-list{gap:8px}.rc42-device{position:relative;padding:11px;border-radius:13px;transition:border-color .16s ease,transform .16s ease,box-shadow .16s ease}
+.rc42-device.rc43-rank-1,.rc42-device.rc43-rank-2{border-color:color-mix(in srgb,var(--accent2) 44%,var(--line));box-shadow:inset 3px 0 0 color-mix(in srgb,var(--accent2) 75%,transparent)}
+.rc42-device.rc43-rank-1::before,.rc42-device.rc43-rank-2::before{position:absolute;right:10px;bottom:8px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);pointer-events:none}
+.rc42-device.rc43-rank-1::before{content:"#1 load"}.rc42-device.rc43-rank-2::before{content:"#2 load"}
+.rc42-device h4{font-size:14px;line-height:1.2}.rc42-note{margin-top:3px;font-size:10px}
+.rc42-badge{min-height:24px;align-items:center;padding:4px 8px;font-size:8.5px;letter-spacing:.055em;background:color-mix(in srgb,var(--panel) 82%,transparent)}
+.rc42-badge.measured{background:color-mix(in srgb,var(--accent) 8%,var(--panel))}.rc42-badge.imported{background:color-mix(in srgb,var(--accent2) 8%,var(--panel))}.rc42-badge.planned{background:color-mix(in srgb,var(--action-amber) 8%,var(--panel))}
+.rc42-device-meta{gap:5px;margin:8px 0}.rc42-device-meta div{padding:6px 7px;border-radius:9px}.rc42-device-meta span{font-size:8px}.rc42-device-meta strong{font-size:11.5px}
+.rc42-actions{gap:6px;padding-right:56px}.rc42-actions button{min-height:34px;padding:6px 9px;font-size:10.5px}
+.rc42-form{gap:7px}.rc42-form input,.rc42-form select{min-height:36px}.rc42-form label{font-size:9px}
+.rc43-help{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;margin-left:4px;border:1px solid var(--line);border-radius:50%;color:var(--muted);font-size:10px;font-weight:900;vertical-align:middle;cursor:help}
+.rc43-empty{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.rc43-empty p{margin:0}.rc43-empty button{white-space:nowrap}
+@media(hover:hover){.rc42-device:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--accent2) 38%,var(--line))}}
+@media(max-width:820px){.rc43-summary{grid-template-columns:repeat(3,minmax(0,1fr))}.rc43-summary-item[data-kind="confidence"]{grid-column:span 2}.rc42-card{padding:12px}.rc42-device{padding:10px}.rc42-device-meta{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.rc42-hub{gap:8px}.rc43-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;padding:6px}.rc43-summary-item{padding:7px 8px}.rc43-summary-item[data-kind="confidence"]{grid-column:span 2}.rc42-hero{gap:8px}.rc42-card{padding:11px}.rc42-card p{font-size:11px}.rc42-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.rc42-kpi{padding:7px}.rc42-kpi span{font-size:8px}.rc42-kpi strong{font-size:12px}.rc42-device-list{gap:7px}.rc42-device-head{gap:6px}.rc42-device-meta div{padding:6px}.rc42-actions{padding-right:48px}.rc42-actions button{min-height:32px;padding:5px 8px}.rc42-form{grid-template-columns:1fr}.rc42-form button{width:100%}.rc43-empty{grid-template-columns:1fr}.rc43-empty button{width:100%}}
