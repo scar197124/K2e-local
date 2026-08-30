@@ -60,10 +60,11 @@ node scripts/validate-release.mjs
 
 **v2.0.0-rc.45 — Consolidation Pass**
 
-- Adds a local monthly savings goal with a baseline and timeframe.
-- Builds a conservative ranked action path from current household loads and measurement context.
-- Hands the first action to What-If Lab and can save the full path as Savings Missions.
-- Adds goal context to Home Pulse and the local Advisor.
+- Unifies navigation labels, action wording, badges, and workspace styling across the existing K2E experience.
+- Improves context handoffs between Home Pulse, What-If Lab, Savings Missions, Advisor, Timeline, Smart Energy Hub, Forecast, and Goal Mode.
+- Tightens mobile spacing, card density, and primary-action hierarchy for faster scanning on smaller screens.
+- Keeps the existing household, measurement, forecast, timeline, mission, and goal data models unchanged.
+- Adds no new major feature layer; this release is focused on consistency, clarity, and polish.
 
 See [`docs/releases/RELEASE_NOTES_v2.0.0-rc.45.md`](docs/releases/RELEASE_NOTES_v2.0.0-rc.45.md).
 
@@ -79,4 +80,4 @@ No open-source license has been selected. Add a `LICENSE` file before inviting u
 
 Current recommended asset: `assets/k2e-local-social-preview.png`.
 
-The README banner, site social metadata, and repository social-preview upload file now all use the same approved artwork so the project presents consistently on GitHub and when shared.
+The README banner and site social metadata use the same approved artwork so the project presents consistently on GitHub and when shared.
