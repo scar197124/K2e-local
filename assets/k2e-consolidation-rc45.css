@@ -7,4 +7,16 @@
 .rc45-context{margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:13px;background:var(--panel2);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .rc45-context strong{display:block;font-size:12px}.rc45-context span{display:block;margin-top:3px;color:var(--muted);font-size:11px;line-height:1.35}.rc45-context button{flex:0 0 auto}
 [data-adv-section="smart"] .scroll-body,[data-adv-section="goals"] .scroll-body,[data-adv-section="advisor"] .scroll-body,[data-adv-section="pulse"] .scroll-body{scrollbar-gutter:stable}
+
+/* UI polish: keep the Top 5 energy card proportional to its five-row content. */
+.estimate-panel .simple-chart:has(#simpleBars){margin-top:10px;padding:12px 13px}
+.estimate-panel .simple-chart:has(#simpleBars) .simple-chart-head{align-items:center}
+.estimate-panel #simpleBars{margin-top:9px}
+@media(max-width:640px){
+  .estimate-panel .simple-chart:has(#simpleBars){padding:11px 12px}
+  #simpleBars .bar-row{min-height:36px}
+  #simpleBars .bar-row>span,#simpleBars .bar-row>strong{min-height:36px;padding:6px 9px}
+  #simpleBars .bar-row>.track{margin:0 9px 7px;padding-top:6px;height:14px}
+}
+
 @media(max-width:700px){.app{padding:10px}.advanced-nav{padding-bottom:4px}.advanced-nav button{padding:9px 10px;font-size:12px}.workspace-card>header{padding:14px}.workspace-card .scroll-body{padding:12px}.rc45-context{padding:9px 10px}.compact-actions,.actions{display:grid;grid-template-columns:1fr}.compact-actions button,.actions button{width:100%}.evolution-grid,.rc44-kpis{gap:8px}.evolution-metric,.rc44-kpi{padding:11px}.mission-item{padding:10px}}
