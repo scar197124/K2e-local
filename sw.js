@@ -1,4 +1,4 @@
-const CACHE_NAME = 'k2e-local-v2.0.0-rc.45';
+const CACHE_NAME = 'k2e-local-v2.0.0-rc.46-sync-1';
 const APP_SHELL = [
   './','./index.html','./app.html','./manifest.json','./robots.txt','./sitemap.xml',
   './icon-192.png','./icon-512.png',
@@ -21,14 +21,20 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   const request = event.request;
-  if (request.mode === 'navigate') {
+  const destination = request.destination;
+  const isCode = destination === 'script' || destination === 'style';
+
+  if (request.mode === 'navigate' || isCode) {
     event.respondWith(fetch(request).then(response => {
-      const copy = response.clone();
-      caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+      if (response && response.status === 200) {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+      }
       return response;
-    }).catch(() => caches.match(request).then(hit => hit || caches.match('./app.html') || caches.match('./index.html'))));
+    }).catch(() => caches.match(request).then(hit => hit || (request.mode === 'navigate' ? caches.match('./app.html') || caches.match('./index.html') : undefined))));
     return;
   }
+
   event.respondWith(caches.match(request).then(cached => cached || fetch(request).then(response => {
     if (response && response.status === 200 && response.type === 'basic') {
       const copy = response.clone();
