@@ -1,27 +1,174 @@
 (()=>{'use strict';
 const labels={pulse:'Home Pulse',whatif:'What-If',missions:'Missions',advisor:'Advisor',timeline:'Timeline',smart:'Smart Hub',forecast:'Forecast',goals:'Goals',devices:'Devices'};
 const goal=()=>{try{return JSON.parse(localStorage.getItem('k2e-v2-goal')||'null')}catch{return null}};
-function tidy(){document.querySelectorAll('[data-adv-tab]').forEach(b=>{const k=b.dataset.advTab;if(labels[k])b.textContent=labels[k]});document.querySelectorAll('.workspace-card .actions button,.workspace-card .compact-actions button').forEach(b=>{b.textContent=b.textContent.replace(/Save as savings mission/gi,'Save to Missions').replace(/Save plan as missions/gi,'Save to Missions').replace(/Ask Advisor/gi,'Open Advisor').replace(/Test first action/gi,'Test in What-If').replace(/Reset mission progress/gi,'Reset progress')});}
-function context(){const sections=[...document.querySelectorAll('[data-adv-section]')],g=goal();sections.forEach(sec=>{const body=sec.querySelector('.scroll-body');if(!body||body.querySelector('.rc45-context'))return;const key=sec.dataset.advSection;if(!['whatif','missions','advisor','smart','forecast','goals'].includes(key))return;const box=document.createElement('div');box.className='rc45-context';let text='This view uses the same local household model as the rest of K2E.';if(g&&key!=='goals')text+=` Active goal: $${Number(g.target||0).toFixed(0)}/month.`;box.innerHTML=`<div><strong>Shared household context</strong><span>${text}</span></div>`;body.prepend(box)});}
+function tidy(){
+  document.querySelectorAll('[data-adv-tab]').forEach(b=>{const k=b.dataset.advTab;if(labels[k])b.textContent=labels[k]});
+  document.querySelectorAll('.workspace-card .actions button,.workspace-card .compact-actions button').forEach(b=>{
+    b.textContent=b.textContent
+      .replace(/Save as savings mission/gi,'Save to Missions')
+      .replace(/Save plan as missions/gi,'Save to Missions')
+      .replace(/Ask Advisor/gi,'Open Advisor')
+      .replace(/Test first action/gi,'Test in What-If')
+      .replace(/Reset mission progress/gi,'Reset progress')
+  });
+}
+function context(){
+  const sections=[...document.querySelectorAll('[data-adv-section]')],g=goal();
+  sections.forEach(sec=>{
+    const body=sec.querySelector('.scroll-body');
+    if(!body||body.querySelector('.rc45-context'))return;
+    const key=sec.dataset.advSection;
+    if(!['whatif','missions','advisor','smart','forecast','goals'].includes(key))return;
+    const box=document.createElement('div');
+    box.className='rc45-context';
+    let text='This view uses the same local household model as the rest of K2E.';
+    if(g&&key!=='goals')text+=` Active goal: $${Number(g.target||0).toFixed(0)}/month.`;
+    box.innerHTML=`<div><strong>Shared household context</strong><span>${text}</span></div>`;
+    body.prepend(box);
+  });
+}
+
 const KEY='k2e-v2-solar-source',DEF={mode:'grid',monthlyKwh:0};
 function loadSolar(){try{return {...DEF,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{return {...DEF}}}
 function saveSolar(s){localStorage.setItem(KEY,JSON.stringify(s))}
+function resetSolar(){saveSolar({...DEF})}
 function core(){try{return JSON.parse(localStorage.getItem('k2e-v2-state')||'{}')}catch{return {}}}
 function devKwh(d,days){return (Number(d?.w)||0)*(Number(d?.h)||0)*(Number(d?.q)||1)*((Number(d?.d)||100)/100)/1000*(Number(days)||30)}
 function demand(s){return Array.isArray(s.devices)?s.devices.reduce((n,d)=>n+devKwh(d,s.days),0):0}
 function money(v){return new Intl.NumberFormat('en-CA',{style:'currency',currency:'CAD'}).format(Number(v)||0)}
-function styles(){if(document.getElementById('rc46SolarStyles'))return;const x=document.createElement('style');x.id='rc46SolarStyles';x.textContent=`
+
+function styles(){
+  if(document.getElementById('rc46SolarStyles'))return;
+  const x=document.createElement('style');
+  x.id='rc46SolarStyles';
+  x.textContent=`
 .rc46-source{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel2)}
 .rc46-source-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.rc46-source-head strong{display:block}.rc46-source-head span{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.4}
 .rc46-source-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:11px}.rc46-source-option{display:flex;align-items:flex-start;gap:9px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel);cursor:pointer}.rc46-source-option:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 14%,transparent)}.rc46-source-option input{margin-top:2px}.rc46-source-option strong{display:block;font-size:13px}.rc46-source-option small{display:block;color:var(--muted);margin-top:2px;line-height:1.35}
 .rc46-solar-details{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.rc46-solar-details[hidden]{display:none!important}.rc46-solar-details label{display:block;font-weight:800;margin-bottom:6px}.rc46-solar-input-row{display:flex;gap:8px;align-items:center}.rc46-solar-input-row input{width:100%;min-height:44px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:11px;padding:9px 11px}.rc46-unit{color:var(--muted);font-size:12px;white-space:nowrap}
 .rc46-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}.rc46-stat{padding:10px 11px;border:1px solid var(--line);border-radius:11px;background:var(--panel)}.rc46-stat span{display:block;color:var(--muted);font-size:11px}.rc46-stat strong{display:block;margin-top:3px;font-size:15px}.rc46-note{margin:9px 0 0;color:var(--muted);font-size:11px;line-height:1.4}@media(max-width:760px){.rc46-source-options,.rc46-comparison{grid-template-columns:1fr}}`;
-document.head.appendChild(x)}
-function inject(){if(document.getElementById('rc46SolarSource'))return;const a=document.querySelector('.setup-panel .field-grid');if(!a)return;const b=document.createElement('section');b.id='rc46SolarSource';b.className='rc46-source';b.innerHTML=`<div class="rc46-source-head"><div><strong>Energy source</strong><span>Grid only stays the default. Include solar only when you want to compare a mixed-source home.</span></div><span class="chart-badge">Optional</span></div><div class="rc46-source-options" role="radiogroup" aria-label="Household energy source"><label class="rc46-source-option"><input type="radio" name="rc46-source-mode" value="grid"><span><strong>Grid only</strong><small>Use the current K2E estimate with no solar offset.</small></span></label><label class="rc46-source-option"><input type="radio" name="rc46-source-mode" value="solar"><span><strong>Grid + Solar</strong><small>Compare household demand with estimated monthly solar production.</small></span></label></div><div class="rc46-solar-details" id="rc46SolarDetails" hidden><label for="rc46SolarKwh">Estimated solar production per month</label><div class="rc46-solar-input-row"><input id="rc46SolarKwh" type="number" min="0" step="1" inputmode="decimal" placeholder="Example: 450"><span class="rc46-unit">kWh / month</span></div><div class="rc46-comparison" aria-live="polite"><div class="rc46-stat"><span>Household demand</span><strong id="rc46Demand">0 kWh</strong></div><div class="rc46-stat"><span>Solar used by home</span><strong id="rc46SolarUsed">0 kWh</strong></div><div class="rc46-stat"><span>Grid after solar</span><strong id="rc46Grid">0 kWh</strong></div><div class="rc46-stat"><span>Estimated energy savings</span><strong id="rc46Savings">$0.00</strong></div></div><p class="rc46-note" id="rc46SolarNote"></p></div>`;a.insertAdjacentElement('afterend',b);const s=loadSolar();b.querySelectorAll('[name="rc46-source-mode"]').forEach(r=>r.checked=r.value===s.mode);b.querySelector('#rc46SolarKwh').value=Number(s.monthlyKwh)||'';b.addEventListener('change',e=>{const n=loadSolar();if(e.target?.name==='rc46-source-mode')n.mode=e.target.value;if(e.target?.id==='rc46SolarKwh')n.monthlyKwh=Math.max(0,Number(e.target.value)||0);saveSolar(n);renderSolar(true)});b.addEventListener('input',e=>{if(e.target?.id==='rc46SolarKwh'){const n=loadSolar();n.monthlyKwh=Math.max(0,Number(e.target.value)||0);saveSolar(n);renderSolar(true)}})}
-function syncSummary(c,d,energyCost,rate,mode){const days=Math.max(1,Number(c.days)||30),list=(Array.isArray(c.devices)?c.devices:[]).map(x=>({...x,kwh:devKwh(x,c.days)})).sort((a,z)=>z.kwh-a.kwh),monthlyKwh=document.getElementById('monthlyKwh'),cost=document.getElementById('monthlyCost'),label=cost?.parentElement?.querySelector('span'),dailyUsage=document.getElementById('dailyUsage'),dailyCost=document.getElementById('dailyCost'),topShare=document.getElementById('topShare'),rateDisplay=document.getElementById('rateDisplay');if(monthlyKwh)monthlyKwh.textContent=`${d.toFixed(1)} kWh`;if(cost&&label){cost.textContent=money(energyCost);label.textContent=mode==='solar'?'Estimated grid energy cost':'Estimated energy cost'}if(dailyUsage)dailyUsage.textContent=`${(d/days).toFixed(1)} kWh`;if(dailyCost)dailyCost.textContent=money(energyCost/days);if(topShare)topShare.textContent=list.length&&d?`${Math.round((list[0].kwh/d)*100)}%`:'0%';if(rateDisplay)rateDisplay.textContent=`${money(rate)}/kWh`}
-function renderSolar(sync=false){const b=document.getElementById('rc46SolarSource');if(!b)return;const s=loadSolar(),c=core(),d=demand(c),p=Math.max(0,Number(s.monthlyKwh)||0),used=Math.min(d,p),grid=Math.max(0,d-used),rate=Math.max(0,Number(c.rate)||0),exported=Math.max(0,p-d),energyCost=(s.mode==='solar'?grid:d)*rate;b.querySelectorAll('[name="rc46-source-mode"]').forEach(r=>r.checked=r.value===s.mode);b.querySelector('#rc46SolarDetails').hidden=s.mode!=='solar';b.querySelector('#rc46Demand').textContent=`${d.toFixed(1)} kWh`;b.querySelector('#rc46SolarUsed').textContent=`${used.toFixed(1)} kWh`;b.querySelector('#rc46Grid').textContent=`${grid.toFixed(1)} kWh`;b.querySelector('#rc46Savings').textContent=money(used*rate);b.querySelector('#rc46SolarNote').textContent=exported>0?`About ${exported.toFixed(1)} kWh exceeds the modeled household demand. Export credits are not valued in this first comparison.`:'This first comparison values solar only as energy that offsets grid purchases. Export credits, fixed fees, financing, taxes, and battery behavior are not included.';if(s.mode==='solar'||sync)syncSummary(c,d,energyCost,rate,s.mode)}
-function settleSolar(){if(loadSolar().mode!=='solar')return;renderSolar(true);requestAnimationFrame(()=>renderSolar(true));setTimeout(()=>renderSolar(true),30);setTimeout(()=>renderSolar(true),120)}
-function solarInstall(){styles();inject();renderSolar(false);const b=document.getElementById('rc46SolarSource');b?.addEventListener('change',settleSolar);b?.addEventListener('input',settleSolar);['click','change','input'].forEach(ev=>document.addEventListener(ev,e=>{if(e.target?.closest?.('#rc46SolarSource'))return;if(loadSolar().mode==='solar')settleSolar()}))}
-function install(){tidy();context();solarInstall();const nav=document.querySelector('.advanced-nav');nav?.addEventListener('click',()=>setTimeout(()=>{tidy();context();if(loadSolar().mode==='solar')settleSolar()},0));document.addEventListener('change',()=>setTimeout(context,0));}
+  document.head.appendChild(x);
+}
+
+function inject(){
+  if(document.getElementById('rc46SolarSource'))return;
+  const a=document.querySelector('.setup-panel .field-grid');
+  if(!a)return;
+  const b=document.createElement('section');
+  b.id='rc46SolarSource';
+  b.className='rc46-source';
+  b.innerHTML=`<div class="rc46-source-head"><div><strong>Energy source</strong><span>Grid only stays the default. Include solar only when you want to compare a mixed-source home.</span></div><span class="chart-badge">Optional</span></div><div class="rc46-source-options" role="radiogroup" aria-label="Household energy source"><label class="rc46-source-option"><input type="radio" name="rc46-source-mode" value="grid"><span><strong>Grid only</strong><small>Use the current K2E estimate with no solar offset.</small></span></label><label class="rc46-source-option"><input type="radio" name="rc46-source-mode" value="solar"><span><strong>Grid + Solar</strong><small>Compare household demand with estimated monthly solar production.</small></span></label></div><div class="rc46-solar-details" id="rc46SolarDetails" hidden><label for="rc46SolarKwh">Estimated solar production per month</label><div class="rc46-solar-input-row"><input id="rc46SolarKwh" type="number" min="0" step="1" inputmode="decimal" placeholder="Example: 450"><span class="rc46-unit">kWh / month</span></div><div class="rc46-comparison" aria-live="polite"><div class="rc46-stat"><span>Household demand</span><strong id="rc46Demand">0 kWh</strong></div><div class="rc46-stat"><span>Solar used by home</span><strong id="rc46SolarUsed">0 kWh</strong></div><div class="rc46-stat"><span>Grid after solar</span><strong id="rc46Grid">0 kWh</strong></div><div class="rc46-stat"><span>Estimated energy savings</span><strong id="rc46Savings">$0.00</strong></div></div><p class="rc46-note" id="rc46SolarNote"></p></div>`;
+  a.insertAdjacentElement('afterend',b);
+  const s=loadSolar();
+  b.querySelectorAll('[name="rc46-source-mode"]').forEach(r=>r.checked=r.value===s.mode);
+  b.querySelector('#rc46SolarKwh').value=Number(s.monthlyKwh)||'';
+  b.addEventListener('change',e=>{
+    const n=loadSolar();
+    if(e.target?.name==='rc46-source-mode')n.mode=e.target.value;
+    if(e.target?.id==='rc46SolarKwh')n.monthlyKwh=Math.max(0,Number(e.target.value)||0);
+    saveSolar(n);
+    scheduleSync();
+  });
+  b.addEventListener('input',e=>{
+    if(e.target?.id!=='rc46SolarKwh')return;
+    const n=loadSolar();
+    n.monthlyKwh=Math.max(0,Number(e.target.value)||0);
+    saveSolar(n);
+    scheduleSync();
+  });
+}
+
+function syncSummary(c,d,energyCost,rate,mode){
+  const days=Math.max(1,Number(c.days)||30);
+  const list=(Array.isArray(c.devices)?c.devices:[]).map(x=>({...x,kwh:devKwh(x,c.days)})).sort((a,z)=>z.kwh-a.kwh);
+  const monthlyKwh=document.getElementById('monthlyKwh');
+  const cost=document.getElementById('monthlyCost');
+  const label=cost?.parentElement?.querySelector('span');
+  const dailyUsage=document.getElementById('dailyUsage');
+  const dailyCost=document.getElementById('dailyCost');
+  const topShare=document.getElementById('topShare');
+  const rateDisplay=document.getElementById('rateDisplay');
+  if(monthlyKwh)monthlyKwh.textContent=`${d.toFixed(1)} kWh`;
+  if(cost&&label){
+    cost.textContent=money(energyCost);
+    label.textContent=mode==='solar'?'Estimated grid energy cost':'Estimated energy cost';
+  }
+  if(dailyUsage)dailyUsage.textContent=`${(d/days).toFixed(1)} kWh`;
+  if(dailyCost)dailyCost.textContent=money(energyCost/days);
+  if(topShare)topShare.textContent=list.length&&d?`${Math.round((list[0].kwh/d)*100)}%`:'0%';
+  if(rateDisplay)rateDisplay.textContent=`${money(rate)}/kWh`;
+}
+
+function renderSolar(sync=false){
+  const b=document.getElementById('rc46SolarSource');
+  if(!b)return;
+  const s=loadSolar(),c=core(),d=demand(c),p=Math.max(0,Number(s.monthlyKwh)||0);
+  const used=Math.min(d,p),grid=Math.max(0,d-used),rate=Math.max(0,Number(c.rate)||0),exported=Math.max(0,p-d);
+  const energyCost=(s.mode==='solar'?grid:d)*rate;
+  b.querySelectorAll('[name="rc46-source-mode"]').forEach(r=>r.checked=r.value===s.mode);
+  b.querySelector('#rc46SolarDetails').hidden=s.mode!=='solar';
+  b.querySelector('#rc46Demand').textContent=`${d.toFixed(1)} kWh`;
+  b.querySelector('#rc46SolarUsed').textContent=`${used.toFixed(1)} kWh`;
+  b.querySelector('#rc46Grid').textContent=`${grid.toFixed(1)} kWh`;
+  b.querySelector('#rc46Savings').textContent=money(used*rate);
+  b.querySelector('#rc46SolarNote').textContent=exported>0
+    ?`About ${exported.toFixed(1)} kWh exceeds the modeled household demand. Export credits are not valued in this first comparison.`
+    :'This first comparison values solar only as energy that offsets grid purchases. Export credits, fixed fees, financing, taxes, and battery behavior are not included.';
+  if(sync)syncSummary(c,d,energyCost,rate,s.mode);
+}
+
+let syncToken=0;
+function scheduleSync(){
+  const token=++syncToken;
+  const run=()=>{if(token===syncToken)renderSolar(true)};
+  queueMicrotask(run);
+  requestAnimationFrame(run);
+  setTimeout(run,30);
+  setTimeout(run,120);
+}
+
+function isHouseholdAction(target){
+  return !!target?.closest?.('[data-home],[data-remove],#confirmAddDevice,#clearUtility,#unknownRate');
+}
+function isResetAction(target){
+  return !!target?.closest?.('#resetAll,#globalReset');
+}
+function isHouseholdChange(target){
+  const id=target?.id;
+  return ['people','bedrooms','rate','days','peakRate','offPeakRate','peakShare','smartThermostat','smartPlugs','smartLights'].includes(id)
+    || !!target?.closest?.('#deviceTable');
+}
+
+function solarInstall(){
+  styles();
+  inject();
+  scheduleSync();
+  document.addEventListener('click',e=>{
+    if(e.target?.closest?.('#rc46SolarSource'))return;
+    if(isResetAction(e.target)){
+      resetSolar();
+      scheduleSync();
+      return;
+    }
+    if(isHouseholdAction(e.target))scheduleSync();
+  });
+  document.addEventListener('change',e=>{
+    if(e.target?.closest?.('#rc46SolarSource'))return;
+    if(isHouseholdChange(e.target))scheduleSync();
+  });
+  document.addEventListener('input',e=>{
+    if(e.target?.closest?.('#rc46SolarSource'))return;
+    if(e.target?.closest?.('#deviceTable'))scheduleSync();
+  });
+}
+
+function install(){
+  tidy();
+  context();
+  solarInstall();
+  const nav=document.querySelector('.advanced-nav');
+  nav?.addEventListener('click',()=>setTimeout(()=>{tidy();context();scheduleSync()},0));
+  document.addEventListener('change',()=>setTimeout(context,0));
+}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 })();
