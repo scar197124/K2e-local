@@ -21,7 +21,9 @@ K2E Local is a local-first household energy simulator for planning electricity u
 
 ## One guided application
 
-K2E Local now uses one connected experience instead of separate modes. Start with the guided household estimate, then use optional device controls, smart-home planning, AI guidance, rates and schedules, and reports when needed.
+K2E Local now uses one connected experience instead of separate modes. The redesigned internal interface keeps the original low-friction setup — Apartment, Townhouse, House, or Custom; bedrooms; household size; and electricity rate — then reveals deeper tools only when the user asks for them.
+
+The internal presentation has been refreshed to match the new K2E Local front door while preserving the existing household model, calculations, persistence, device logic, forecast, timeline, goals, advisor, smart-home planning, and reporting behavior.
 
 ## Privacy and offline use
 
@@ -40,6 +42,17 @@ The current official hosted build is [https://nrg-roan.vercel.app/](https://nrg-
 
 The public entry page is `index.html`; the simulator is `app.html`.
 
+### Public and discovery files
+
+- `index.html` — root landing page / public entry
+- `app.html` — K2E Local planner
+- `sitemap.xml` — production sitemap for the landing page and planner
+- `robots.txt` — crawler policy and sitemap pointer
+- `manifest.json` — installable app metadata
+- `sw.js` — offline application shell
+
+No special Vercel-only index file is required for this static build; the root `index.html` is the deployment entry point.
+
 ## Local preview
 
 Run the repository through a local HTTP server so the service worker can operate:
@@ -54,17 +67,20 @@ Then open `http://localhost:8080`.
 
 ```bash
 node scripts/validate-release.mjs
+sha256sum -c SHA256SUMS.txt
 ```
 
 ## Current release
 
-**v2.0.0-rc.45 — Consolidation Pass**
+**v2.0.0-rc.45 — Consolidation + Visual Refresh**
 
-- Unifies navigation labels, action wording, badges, and workspace styling across the existing K2E experience.
+- Introduces a redesigned public landing experience and a cohesive internal visual system while keeping the K2E engine and household logic unchanged.
+- Preserves the simple guided home setup as the primary entry point, with estimates and deeper tools presented progressively.
+- Tightens the internal header and clearly separates passive privacy/local status from real action buttons.
 - Improves context handoffs between Home Pulse, What-If Lab, Savings Missions, Advisor, Timeline, Smart Energy Hub, Forecast, and Goal Mode.
 - Tightens mobile spacing, card density, and primary-action hierarchy for faster scanning on smaller screens.
 - Keeps the existing household, measurement, forecast, timeline, mission, and goal data models unchanged.
-- Adds no new major feature layer; this release is focused on consistency, clarity, and polish.
+- Adds no new major feature layer; this release is focused on consistency, clarity, visual polish, and preserving the simple K2E workflow.
 
 See [`docs/releases/RELEASE_NOTES_v2.0.0-rc.45.md`](docs/releases/RELEASE_NOTES_v2.0.0-rc.45.md).
 
@@ -81,3 +97,23 @@ No open-source license has been selected. Add a `LICENSE` file before inviting u
 Current recommended asset: `assets/k2e-local-social-preview.png`.
 
 The README banner and site social metadata use the same approved artwork so the project presents consistently on GitHub and when shared.
+
+
+## Interface notes
+
+- **Front door:** the landing page uses the approved K2E Local home-energy visual with matching dark and light treatments.
+- **Inside K2E:** the household setup, estimate snapshot, K2E Insights, and detailed workspace now share one visual language.
+- **Status vs. actions:** Runs locally, No account, and Private by design are informational status labels. Light/Dark mode and Start over are the primary header actions.
+- **Start over behavior:** the reset action remains hidden until a household has actually been started. One click clears the active K2E household/planning data while preserving the selected theme, returning Monthly energy and Estimated cost to zero until the user selects a home type or manually adds a device.
+
+### Blank-start behavior
+
+A fresh RC45 session and **Start over** now begin with no selected home type, no bedroom selection, no people selection, a $0.00/kWh manual rate, no devices, 0.0 kWh monthly energy, and $0.00 estimated cost. The bedroom selector remains disabled until Apartment, Townhouse, or House is chosen. This build also uses a blank-start state schema so stale household data from earlier RC45 previews is not silently restored on first load.
+
+- All internal views share the same local household state: the main estimate, Top Energy Users, Home Pulse, Advisor, Forecast, Smart Energy Hub, Goals, and reports refresh together after household changes.
+
+### Full household cost wiring
+
+RC45 now keeps the true blank-start behavior while ensuring cost-dependent views become live as soon as planning begins. Before a home or device is selected, household use, cost, rate, and projections remain at zero. When the user selects Apartment, Townhouse, House, Custom, or adds a device manually, K2E activates a typical planning rate of $0.18/kWh when no utility rate has been entered yet, along with typical time-of-use planning values (peak $0.24/kWh, off-peak $0.12/kWh, 40% peak share). The rate remains clearly labeled as a typical planning value and can be replaced at any time with a manual or imported utility rate.
+
+That same saved household state drives the primary estimate, cost per day, rate used, Home Pulse projected cost, Forecast baseline/projected bill, Goals, Advisor, Smart Home planning, solar comparison, and reports.

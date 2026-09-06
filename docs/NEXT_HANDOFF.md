@@ -1,6 +1,17 @@
 # K2E Local — Next Handoff
 
-Current build: **v2.0.0-rc.44**
+Current build: **v2.0.0-rc.45**
+
+## RC45 final visual/release state — 2026-09-06
+
+- Public `index.html` is the approved K2E Local front door.
+- Internal `app.html` has been visually rebuilt while retaining the simple household setup and existing engine/logic.
+- Internal header was tightened; informational local/privacy labels are not presented as action buttons.
+- Start over is hidden until household work exists and no browser OK/confirm reset dialog is used.
+- Dark/light presentation remains supported.
+- `sitemap.xml`, `robots.txt`, `manifest.json`, and `sw.js` are part of the release package.
+- No further structural redesign is planned before the GitHub push; remaining work is release QA and deployment verification.
+
 
 ## Product structure
 

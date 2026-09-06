@@ -1,14 +1,27 @@
-K2E Local RC43 — GitHub-clean package
+K2E Local v2.0.0-rc.45 — GitHub / deployment package
 
-This package contains the current runtime and maintenance files only.
-Historical release-note piles, archived social previews, old branding experiments,
-and one-off fix notes were intentionally excluded.
+This package contains the RC45 public landing page, redesigned internal UI, application logic, documentation, offline assets, and release validation files.
 
-For GitHub web upload:
-1. Open the K2e-local repository.
-2. Add file -> Upload files.
-3. Drag the CONTENTS of this extracted folder into the repository root.
-4. Preserve the .github, assets, docs, and scripts folders.
-5. Commit the upload.
+Important root files to preserve:
+- index.html          Public entry page
+- app.html            K2E Local planner
+- sitemap.xml         Search-engine sitemap
+- robots.txt          Crawler rules + sitemap pointer
+- manifest.json       PWA metadata
+- sw.js               Offline application shell
+- VERSION             Release version
+- SHA256SUMS.txt      Package integrity hashes
 
-Do not place the entire extracted folder as a new nested folder.
+For a GitHub push/upload:
+1. Put the CONTENTS of this folder at the repository root.
+2. Preserve the .github, assets, docs, and scripts folders.
+3. Do not nest this entire folder inside another repository folder.
+4. Run: node scripts/validate-release.mjs
+5. Run: sha256sum -c SHA256SUMS.txt
+6. Confirm index.html loads first and links to app.html.
+7. Confirm /sitemap.xml and /robots.txt are reachable after deployment.
+
+Production URLs currently referenced by release metadata:
+- https://nrg-roan.vercel.app/
+- https://nrg-roan.vercel.app/app.html
+- https://nrg-roan.vercel.app/sitemap.xml
