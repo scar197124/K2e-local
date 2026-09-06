@@ -52,7 +52,7 @@ function styles(){
 
 function inject(){
   if(document.getElementById('rc46SolarSource'))return;
-  const a=document.querySelector('.setup-panel .field-grid');
+  const a=document.querySelector('.setup-panel .form-cluster, .setup-panel .field-grid');
   if(!a)return;
   const b=document.createElement('section');
   b.id='rc46SolarSource';
@@ -168,7 +168,7 @@ function install(){
   solarInstall();
   const nav=document.querySelector('.advanced-nav');
   nav?.addEventListener('click',()=>setTimeout(()=>{tidy();context();scheduleSync()},0));
-  document.addEventListener('change',()=>setTimeout(context,0));
+  document.addEventListener('change',()=>setTimeout(context,0));window.addEventListener('k2e-state-changed',()=>{context();scheduleSync()});window.addEventListener('k2e-reset',()=>{resetSolar();context();scheduleSync()});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 })();
