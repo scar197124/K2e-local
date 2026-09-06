@@ -48,7 +48,7 @@ c534aa5de2cf107ab9b239df0f7f7530945727e85ab42b9b318987d2d70bdacd  ./RELEASE_NOTE
 02e23bf8fea73f29cc1b34d6ea38ae258235cffc85cdeec05fad0f766a8dac06  ./SOCIAL_PREVIEW_SETUP.md
 0e92029b997071b842e5b6d43463298751b6c963e4e3ec84d9e89a73e9e909b1  ./UPLOAD_TO_GITHUB.txt
 dd3d8cfbb99c0a2103c580e24ddafc2c568ea2bd4217c2b484acf741b7251d59  ./VERSION
-d35169eb2ad6a1dcb61ff651b0c2069c8656078ab0e7be4ae35a8afa7116581d  ./app.html
+9d7c2b41b57501dd4929f71fa815ba6affb426e9561cbf85ba174fff2ae2b171  ./app.html
 0a23d135028d6ca61f561ed34d920a5f5ec55445b0b2326a9e4202d2a39c7d6d  ./assets/archive/k2e-local-social-preview-v1.13.0.png
 ffaaac1a4b5ad77a21dd0ca7b0b2aafd9b1426295e4d48092536ee03ecbaef49  ./assets/archive/k2e-local-social-preview-v1.13.1.png
 ffaaac1a4b5ad77a21dd0ca7b0b2aafd9b1426295e4d48092536ee03ecbaef49  ./assets/archive/k2e-local-social-preview-v1.14.0.png
@@ -69,6 +69,8 @@ f0f92b6d41eb52e83b47b209ab50cde7cf55a167606779254dbce04dbb12858e  ./assets/k2e-l
 b31ef7296c7dc6b585e2eb48fd80a9df899eeabb30fdf90377a5fb7e6fa85bbc  ./assets/k2e-local-brand-detailed.png
 d382e5ddf3fdccf3c91fd6deb5216eb333eb006fdf3e082511e91d68fa536c1d  ./assets/k2e-local-brand-light.png
 b056e0f4b7ce64d116583c8b106533147e5b6411edbd9ce3f8ccab48eae94073  ./assets/k2e-local-brand-night.png
+9301b16687596619faa229a95cc94ce312040e7b3c1f54c99fa09a5ecab7794d  ./assets/k2e-local-home-visual-live-dark.png
+c135f8acf44f342988f178a942c9f2203426806403c13923395ef9efa6e4ccf5  ./assets/k2e-local-home-visual-live-light.png
 2e328954b0c1d2cebff706f8db7e698da38ecb390ce31130d5db095b679738e1  ./assets/k2e-local-home-visual-locked-dark.webp
 8e4b42340d1ff948a72c10e209393ddc7fbd3aed1227cf696736ec9b75061a55  ./assets/k2e-local-home-visual-locked-light.webp
 a1c5e9dd658bb845ad23a9a8a7fdb3de81c0341e3eff2379cdda49d66d5d84e0  ./assets/k2e-local-home-visual-restored.webp
@@ -148,10 +150,10 @@ d6aaa6846db644eae496217f32be667095adac93ff4165f1d70cd0ed5f91b558  ./docs/release
 0f0c51e598260216606089897dd63b139dd31907aa4c8614a2fb9a6bb4623783  ./docs/releases/RELEASE_NOTES_v2.0.0-rc.9.md
 05915e1dcd2ebb5fb4571e2997be287b64a8df7a5eb06d51e51078ad4a036344  ./icon-192.png
 024b4e36b844a288b1ee5a68b8851480435c97292c2ace74edcccdf9bfe72057  ./icon-512.png
-94a39f8f9343d5e9efb26a91628f62dbfe9c17f2dbd33687cee89044b031bada  ./index.html
+5b90141b636fede8b1448283a0fbf61b62fcc8910ec44cd752204da0eb4cc179  ./index.html
 9b363398dca50aa22328549975ec0ae64fba6e08dadea669fd54f7b950f57dab  ./manifest.json
 b9095f05d5598bd5835cf21b37f9acf8d22d7ca5006d9affa968b29b72d55912  ./robots.txt
 f68e07f6e6996453fa9824f2f1467fb057ce83960460706361ab541453923207  ./scripts/validate-full-wiring.mjs
 145a9db5cbc2717d4297253b90864de04ac779cfdbb69fccf7cc97be3232b185  ./scripts/validate-release.mjs
 c47886727befa4ce73194d8549502810a7a2e8f17c86ea70e7ba3b94f09fe199  ./sitemap.xml
-6218aa4148d9e39c1d4241cf9aec6fbb564b9ba14193dda7f31dcaa6af92b899  ./sw.js
+b2080d836a6bdeecbfb53136937867f8a22f5063daa964c8b3b47ddce4d36c56  ./sw.js
