@@ -1,6 +1,6 @@
 # K2E Local
 
-![K2E Local — Plan household energy privately and offline](assets/k2e-local-social-preview.png)
+![K2E Local — Plan household energy privately and offline](assets/k2e-readme-hero.jpg)
 
 **Kilowatts to Efficiency**
 
@@ -94,17 +94,16 @@ No open-source license has been selected. Add a `LICENSE` file before inviting u
 
 ## Social preview
 
-Current recommended asset: `assets/k2e-local-social-preview.png`.
+README showcase image: `assets/k2e-readme-hero.jpg`.
 
-The README banner and site social metadata use the same approved artwork so the project presents consistently on GitHub and when shared.
-
+The repository README now opens with the approved K2E Local household-energy artwork so visitors immediately see the current product direction.
 
 ## Interface notes
 
 - **Front door:** the landing page uses the approved K2E Local home-energy visual with matching dark and light treatments.
 - **Inside K2E:** the household setup, estimate snapshot, K2E Insights, and detailed workspace now share one visual language.
 - **Status vs. actions:** Runs locally, No account, and Private by design are informational status labels. Light/Dark mode and Start over are the primary header actions.
-- **Start over behavior:** the reset action remains hidden until a household has actually been started. One click clears the active K2E household/planning data while preserving the selected theme, returning Monthly energy and Estimated cost to zero until the user selects a home type or manually adds a device.
+- **Start over behavior:** the reset control keeps a permanent place in the header. It is disabled on a blank household, activates once planning data exists, and clears the active household/planning data while preserving the selected theme.
 
 ### Blank-start behavior
 
