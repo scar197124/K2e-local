@@ -1,0 +1,101 @@
+name: Repair artwork rendering and desktop hero scale
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: ${{ github.event.head_commit.message == 'Repair artwork rendering and desktop hero scale' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Create robust PNG artwork assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          DARK='assets/k2e-local-home-visual-locked-dark.webp'
+          LIGHT='assets/k2e-local-home-visual-locked-light.webp'
+          test -f "$DARK"
+          test -f "$LIGHT"
+          if command -v magick >/dev/null 2>&1; then
+            magick "$DARK" -strip 'assets/k2e-local-home-visual-live-dark.png'
+            magick "$LIGHT" -strip 'assets/k2e-local-home-visual-live-light.png'
+          elif command -v convert >/dev/null 2>&1; then
+            convert "$DARK" -strip 'assets/k2e-local-home-visual-live-dark.png'
+            convert "$LIGHT" -strip 'assets/k2e-local-home-visual-live-light.png'
+          elif command -v ffmpeg >/dev/null 2>&1; then
+            ffmpeg -y -i "$DARK" 'assets/k2e-local-home-visual-live-dark.png'
+            ffmpeg -y -i "$LIGHT" 'assets/k2e-local-home-visual-live-light.png'
+          else
+            echo 'No image conversion tool available' >&2
+            exit 1
+          fi
+          test -s assets/k2e-local-home-visual-live-dark.png
+          test -s assets/k2e-local-home-visual-live-light.png
+      - name: Wire artwork and rebalance desktop sizing
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          dark="./assets/k2e-local-home-visual-live-dark.png?v=rc45-art3"
+          light="./assets/k2e-local-home-visual-live-light.png?v=rc45-art3"
+
+          # Public landing page: use explicit dark/light PNG artwork and reduce desktop hero height.
+          p=Path('index.html')
+          s=p.read_text()
+          old="background-image:url('./assets/k2e-local-home-visual-restored.webp')"
+          if s.count(old) < 2:
+              raise SystemExit('index artwork references not found')
+          s=s.replace(old, f"background-image:url('{dark}')", 1)
+          s=s.replace(old, f"background-image:url('{light}')", 1)
+          s=s.replace('min-height:610px;overflow:hidden', 'min-height:540px;overflow:hidden', 1)
+          s=s.replace('.hero-visual{position:relative;min-height:610px;', '.hero-visual{position:relative;min-height:540px;', 1)
+          s=s.replace('h1{margin:0;max-width:650px;font-size:clamp(48px,5.2vw,78px)', 'h1{margin:0;max-width:650px;font-size:clamp(44px,4.7vw,68px)', 1)
+          p.write_text(s)
+
+          # Internal home card: same approved art, compact 4:3 desktop frame, separate light asset.
+          p=Path('app.html')
+          s=p.read_text()
+          old="background-image:url('./assets/k2e-local-home-visual-restored.webp')"
+          if s.count(old) < 2:
+              raise SystemExit('app artwork references not found')
+          s=s.replace(old, f"background-image:url('{dark}')", 1)
+          s=s.replace(old, f"background-image:url('{light}')", 1)
+          s=s.replace('aspect-ratio:728/710', 'aspect-ratio:4/3')
+          s=s.replace('.overview-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(330px,.88fr);gap:18px;margin:18px 0}', '.overview-grid{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:18px;margin:18px 0}')
+          p.write_text(s)
+
+          # Precache the standard PNGs while preserving the validator-required locked WebPs.
+          p=Path('sw.js')
+          s=p.read_text()
+          anchor="'./assets/k2e-local-home-visual-locked-dark.webp','./assets/k2e-local-home-visual-locked-light.webp'"
+          addition=anchor+",'./assets/k2e-local-home-visual-live-dark.png','./assets/k2e-local-home-visual-live-light.png'"
+          if anchor not in s:
+              raise SystemExit('service-worker artwork cache anchor not found')
+          s=s.replace(anchor, addition, 1)
+          p.write_text(s)
+          PY
+      - name: Validate RC45
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/repair-artwork-render.yml
+          node scripts/validate-release.mjs
+          node scripts/validate-full-wiring.mjs
+          find . -type f ! -name 'SHA256SUMS.txt' ! -path './.git/*' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+      - name: Commit repaired build
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'scar197124'
+          git config user.email 'spartica1791@gmail.com'
+          git add -A
+          git commit -m 'Apply robust artwork render and desktop balance fix'
+          git push origin HEAD:main
