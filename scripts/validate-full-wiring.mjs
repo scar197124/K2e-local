@@ -12,8 +12,9 @@ req(app.includes("rateDisplay.textContent=`${money(state.rate)}/kWh`"),'Rate Use
 for(const f of files){const x=fs.readFileSync(f,'utf8');req(x.includes("k2e-v2-state"),`${f} does not read shared household state`)}
 req(fs.readFileSync('assets/k2e-evolution-rc38.js','utf8').includes('pulseCost.textContent=money(m.cost)'),'Home Pulse projected cost is not wired');
 req(fs.readFileSync('assets/k2e-forecast-rc40.js','utf8').includes('forecastBill.textContent=money(m.forecastCost)'),'Forecast projected bill is not wired');
+req(app.includes("window.dispatchEvent(new Event('storage'))"),'Core save path does not broadcast shared-state changes');
 for(const f of ['assets/k2e-evolution-rc38.js','assets/k2e-forecast-rc40.js','assets/k2e-goals-rc44.js','assets/k2e-smart-hub-rc42.js','assets/k2e-consolidation-rc45.js']){
- const x=fs.readFileSync(f,'utf8');req(x.includes('k2e-state-changed'),`${f} does not subscribe to state-change synchronization`)
+ const x=fs.readFileSync(f,'utf8');req(x.includes("addEventListener('storage'")||x.includes('k2e-state-changed'),`${f} does not subscribe to shared-state synchronization`)
 }
 const apartmentKwh=37.8+24+72+9+9+8.64+12;
 const cost=apartmentKwh*.18;
