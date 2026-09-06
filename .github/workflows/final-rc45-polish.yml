@@ -1,0 +1,187 @@
+name: Final RC45 polish
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: ${{ github.event.head_commit.message == 'Run final RC45 polish' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply final light-mode and header consistency polish
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app.html')
+          s=p.read_text()
+
+          light_marker='/* RC45 final light-mode contrast pass */'
+          light_css=r'''
+
+/* RC45 final light-mode contrast pass */
+[data-theme="light"]{
+  --bg:#e9f0f5;
+  --bg2:#f7fafc;
+  --panel:#ffffff;
+  --panel2:#f2f6f9;
+  --panel3:#e4edf3;
+  --text:#081a2b;
+  --muted:#40576a;
+  --line:#819bad;
+  --line2:#5f7b90;
+  --shadow:0 14px 32px rgba(31,52,70,.14);
+}
+[data-theme="light"] body{color:var(--text)}
+[data-theme="light"] .topbar,
+[data-theme="light"] .welcome-panel,
+[data-theme="light"] .visual-panel,
+[data-theme="light"] .surface-card,
+[data-theme="light"] .workspace-shell,
+[data-theme="light"] .step,
+[data-theme="light"] .workspace-card{border-width:2px;border-color:#7893a7;box-shadow:0 14px 30px rgba(42,66,84,.11)}
+[data-theme="light"] .choice,
+[data-theme="light"] .field,
+[data-theme="light"] .home-summary,
+[data-theme="light"] .preset-note,
+[data-theme="light"] .metric,
+[data-theme="light"] .estimate-quality,
+[data-theme="light"] .simple-chart,
+[data-theme="light"] .estimate-fact,
+[data-theme="light"] .ghost,
+[data-theme="light"] .advanced-nav button,
+[data-theme="light"] .preset-preview,
+[data-theme="light"] .utility-import,
+[data-theme="light"] .import-summary,
+[data-theme="light"] .table-wrap,
+[data-theme="light"] .workspace-card>header,
+[data-theme="light"] .section-badge,
+[data-theme="light"] .chart-badge,
+[data-theme="light"] .onboard-pills span{border-width:1.5px;border-color:#91a7b7}
+[data-theme="light"] .field input,
+[data-theme="light"] .field select{border-width:1.5px;border-color:#849daf;background:#fff;color:#081a2b;font-weight:650}
+[data-theme="light"] .visual-stage{border-width:2px;border-color:#7893a7;box-shadow:inset 0 0 0 1px rgba(8,26,43,.05),0 8px 20px rgba(42,66,84,.08)}
+[data-theme="light"] .welcome-panel p,
+[data-theme="light"] .section-head p,
+[data-theme="light"] .workspace-header p,
+[data-theme="light"] .workspace-card>header p,
+[data-theme="light"] .choice span,
+[data-theme="light"] .field label,
+[data-theme="light"] .rate-meta .help,
+[data-theme="light"] .rate-source,
+[data-theme="light"] .home-summary,
+[data-theme="light"] .preset-note,
+[data-theme="light"] .simple-chart-head p,
+[data-theme="light"] .chart-badge,
+[data-theme="light"] .section-badge,
+[data-theme="light"] .footer{color:#3d5568}
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] strong,
+[data-theme="light"] th,
+[data-theme="light"] td{color:#081a2b}
+[data-theme="light"] .section-kicker,
+[data-theme="light"] .welcome-kicker,
+[data-theme="light"] .brand-kicker{font-weight:950}
+[data-theme="light"] .ghost,
+[data-theme="light"] .advanced-nav button{color:#19364a;font-weight:850}
+[data-theme="light"] .step{color:#10283a;font-weight:850}
+[data-theme="light"] .footer{font-weight:650}
+[data-theme="light"][data-household] .topbar,
+[data-theme="light"][data-household] .welcome-panel,
+[data-theme="light"][data-household] .visual-panel,
+[data-theme="light"][data-household] .surface-card,
+[data-theme="light"][data-household] .workspace-shell,
+[data-theme="light"][data-household] .workspace-card{border-color:color-mix(in srgb,var(--household-accent) 62%,#657f92);box-shadow:0 14px 30px rgba(42,66,84,.10),0 0 0 1px color-mix(in srgb,var(--household-accent) 14%,transparent)}
+[data-theme="light"][data-household] .choice.selected,
+[data-theme="light"][data-household] .step.active,
+[data-theme="light"][data-household] .estimate-panel,
+[data-theme="light"][data-household] .setup-panel,
+[data-theme="light"][data-household] .insight-hero,
+[data-theme="light"][data-household] .visual-stage{border-width:2px;border-color:color-mix(in srgb,var(--household-accent) 76%,#526f84)}
+[data-theme="light"][data-household] .field,
+[data-theme="light"][data-household] .metric,
+[data-theme="light"][data-household] .estimate-quality,
+[data-theme="light"][data-household] .simple-chart,
+[data-theme="light"][data-household] .home-summary,
+[data-theme="light"][data-household] .preset-note,
+[data-theme="light"][data-household] .workspace-card>header,
+[data-theme="light"][data-household] .advanced-nav button{border-color:color-mix(in srgb,var(--household-accent) 42%,#819bad)}
+[data-theme="light"][data-household] .primary{color:#071b28;font-weight:900;box-shadow:0 8px 20px color-mix(in srgb,var(--household-accent) 24%,rgba(37,58,74,.12))}
+[data-theme="light"][data-household] .section-kicker,
+[data-theme="light"][data-household] .brand-kicker{color:color-mix(in srgb,var(--household-accent) 82%,#18384d)}
+'''
+          if light_marker not in s:
+              s=s.replace('</style>',light_css+'\n</style>',1)
+
+          header_marker='/* RC45 final header consistency + interaction polish */'
+          header_css=r'''
+
+/* RC45 final header consistency + interaction polish */
+#globalReset{min-width:86px;transition:border-color .22s ease,box-shadow .22s ease,background-color .22s ease,color .22s ease,opacity .22s ease}
+#globalReset:disabled{opacity:.48;cursor:default;box-shadow:none}
+#globalReset[data-confirm="true"]{border-color:#cf7575;box-shadow:0 0 0 2px color-mix(in srgb,#cf7575 18%,transparent)}
+.topbar,.welcome-panel,.visual-panel,.surface-card,.workspace-shell,.workspace-card,.step,.choice,.field,.metric,.estimate-quality,.simple-chart,.estimate-fact,.advanced-nav button,.visual-stage,.footer{transition:border-color .22s ease,box-shadow .22s ease,background-color .22s ease,color .22s ease}
+[data-theme="light"][data-household] .choice.selected,
+[data-theme="light"][data-household] .step.active{border-color:color-mix(in srgb,var(--household-accent) 84%,#47677d);box-shadow:0 0 0 2px color-mix(in srgb,var(--household-accent) 18%,transparent),0 8px 18px rgba(42,66,84,.08)}
+@media(max-width:760px){
+  #themeBtn,#globalReset{min-height:40px;padding:7px 9px}
+  #globalReset{min-width:76px}
+  .overview-grid{gap:12px;margin-bottom:12px}
+  .main-grid{gap:12px}
+}
+'''
+          if header_marker not in s:
+              s=s.replace('</style>',header_css+'\n</style>',1)
+
+          old="const hasHousehold=!!(state.home||(Array.isArray(state.devices)&&state.devices.length)||state.rateSource==='imported');globalReset.hidden=!hasHousehold;if(resetAll)resetAll.hidden=!hasHousehold;"
+          new="const hasHousehold=!!(state.home||(Array.isArray(state.devices)&&state.devices.length)||state.rateSource==='imported');globalReset.hidden=false;globalReset.disabled=!hasHousehold;globalReset.setAttribute('aria-disabled',String(!hasHousehold));if(!hasHousehold){globalReset.textContent='Start over';globalReset.dataset.confirm='false'}if(resetAll)resetAll.hidden=!hasHousehold;"
+          if old in s:
+              s=s.replace(old,new,1)
+          elif new not in s:
+              raise SystemExit('Could not locate header reset render logic')
+
+          old="function startOver(){\n const keepTheme=state.theme;"
+          new="function startOver(){\n if(typeof clearGlobalResetConfirm==='function')clearGlobalResetConfirm();\n const keepTheme=state.theme;"
+          if old in s:
+              s=s.replace(old,new,1)
+
+          old="resetAll.addEventListener('click',startOver);globalReset.addEventListener('click',startOver);"
+          new="""let globalResetConfirmTimer=null;\nfunction clearGlobalResetConfirm(){\n if(globalResetConfirmTimer){clearTimeout(globalResetConfirmTimer);globalResetConfirmTimer=null}\n globalReset.dataset.confirm='false';globalReset.textContent='Start over';globalReset.setAttribute('aria-label','Start over');\n}\nfunction requestGlobalReset(){\n if(globalReset.disabled)return;\n if(globalReset.dataset.confirm==='true'){clearGlobalResetConfirm();startOver();return}\n globalReset.dataset.confirm='true';globalReset.textContent='Confirm';globalReset.setAttribute('aria-label','Confirm start over');\n globalResetConfirmTimer=setTimeout(clearGlobalResetConfirm,2600);\n}\nresetAll.addEventListener('click',startOver);globalReset.addEventListener('click',requestGlobalReset);"""
+          if old in s:
+              s=s.replace(old,new,1)
+          elif 'function requestGlobalReset()' not in s:
+              raise SystemExit('Could not locate reset listeners')
+
+          p.write_text(s)
+          PY
+
+      - name: Validate and lock final build
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/final-rc45-polish.yml
+          node scripts/validate-release.mjs
+          node scripts/validate-full-wiring.mjs
+          find . -type f ! -name 'SHA256SUMS.txt' ! -path './.git/*' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+          sha256sum -c SHA256SUMS.txt
+
+      - name: Commit final locked polish
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'scar197124'
+          git config user.email 'spartica1791@gmail.com'
+          git add -A
+          git commit -m 'Lock RC45 final UI polish'
+          git push origin HEAD:main
