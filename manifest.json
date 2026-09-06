@@ -1,12 +1,12 @@
 {
-  "name": "K2E Local \u2014 Home Energy Simulator",
+  "name": "K2E Local — Home Energy Planner",
   "short_name": "K2E Local",
   "id": "./",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#020807",
-  "theme_color": "#03100f",
+  "background_color": "#07111f",
+  "theme_color": "#0d1a2b",
   "description": "A private, local guided home-energy planner with device presets, estimates, schedules, advice, and reports in one connected experience.",
   "icons": [
     {
