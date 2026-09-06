@@ -48,7 +48,7 @@ c534aa5de2cf107ab9b239df0f7f7530945727e85ab42b9b318987d2d70bdacd  ./RELEASE_NOTE
 02e23bf8fea73f29cc1b34d6ea38ae258235cffc85cdeec05fad0f766a8dac06  ./SOCIAL_PREVIEW_SETUP.md
 0e92029b997071b842e5b6d43463298751b6c963e4e3ec84d9e89a73e9e909b1  ./UPLOAD_TO_GITHUB.txt
 dd3d8cfbb99c0a2103c580e24ddafc2c568ea2bd4217c2b484acf741b7251d59  ./VERSION
-94564c59bf5377d1a777c38dbeb78687649e86dac2b4450a2869ffe309bb9474  ./app.html
+7907aa6c4e43b926cc5e9eda6646ca3729a778584850a8a3ae401a46e1a7eeab  ./app.html
 0a23d135028d6ca61f561ed34d920a5f5ec55445b0b2326a9e4202d2a39c7d6d  ./assets/archive/k2e-local-social-preview-v1.13.0.png
 ffaaac1a4b5ad77a21dd0ca7b0b2aafd9b1426295e4d48092536ee03ecbaef49  ./assets/archive/k2e-local-social-preview-v1.13.1.png
 ffaaac1a4b5ad77a21dd0ca7b0b2aafd9b1426295e4d48092536ee03ecbaef49  ./assets/archive/k2e-local-social-preview-v1.14.0.png
