@@ -16,12 +16,16 @@ jobs:
         with:
           ref: chatgpt-rc45-upload
           fetch-depth: 0
-      - name: Assemble final app
+      - name: Assemble and validate final RC45 app
         shell: bash
         run: |
           set -euo pipefail
-          gzip -dc .release/app.html.gz > app.html
-          rm -rf .release .release-parts
+          : > app.html
+          for f in .release-gz/part.*.b64; do
+            base64 -d "$f" | gzip -dc >> app.html
+          done
+          test "$(wc -c < app.html)" -eq 87018
+          rm -rf .release .release-parts .release-gz
           rm -f .github/workflows/assemble-rc45.yml
           node scripts/validate-release.mjs
           node scripts/validate-full-wiring.mjs
@@ -33,9 +37,5 @@ jobs:
           git config user.name "scar197124"
           git config user.email "spartica1791@gmail.com"
           git add -A
-          if git diff --cached --quiet; then
-            echo "No staged changes"
-            exit 0
-          fi
           git commit -m "Finalize RC45 full-system wired build"
           git push origin HEAD:chatgpt-rc45-upload
