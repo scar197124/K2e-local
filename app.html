@@ -176,6 +176,117 @@ html[data-household] .footer{border-top-color:color-mix(in srgb,var(--household-
 .bar-list .bar-row:nth-child(7) .fill,html[data-household] .bar-list .bar-row:nth-child(7) .fill{background:linear-gradient(90deg,#36c7d0,#6fe0e6)!important}
 .bar-list .bar-row:nth-child(8) .fill,html[data-household] .bar-list .bar-row:nth-child(8) .fill{background:linear-gradient(90deg,#a8c957,#c7e27a)!important}
 
+
+
+/* RC45 final light-mode contrast pass */
+[data-theme="light"]{
+  --bg:#e9f0f5;
+  --bg2:#f7fafc;
+  --panel:#ffffff;
+  --panel2:#f2f6f9;
+  --panel3:#e4edf3;
+  --text:#081a2b;
+  --muted:#40576a;
+  --line:#819bad;
+  --line2:#5f7b90;
+  --shadow:0 14px 32px rgba(31,52,70,.14);
+}
+[data-theme="light"] body{color:var(--text)}
+[data-theme="light"] .topbar,
+[data-theme="light"] .welcome-panel,
+[data-theme="light"] .visual-panel,
+[data-theme="light"] .surface-card,
+[data-theme="light"] .workspace-shell,
+[data-theme="light"] .step,
+[data-theme="light"] .workspace-card{border-width:2px;border-color:#7893a7;box-shadow:0 14px 30px rgba(42,66,84,.11)}
+[data-theme="light"] .choice,
+[data-theme="light"] .field,
+[data-theme="light"] .home-summary,
+[data-theme="light"] .preset-note,
+[data-theme="light"] .metric,
+[data-theme="light"] .estimate-quality,
+[data-theme="light"] .simple-chart,
+[data-theme="light"] .estimate-fact,
+[data-theme="light"] .ghost,
+[data-theme="light"] .advanced-nav button,
+[data-theme="light"] .preset-preview,
+[data-theme="light"] .utility-import,
+[data-theme="light"] .import-summary,
+[data-theme="light"] .table-wrap,
+[data-theme="light"] .workspace-card>header,
+[data-theme="light"] .section-badge,
+[data-theme="light"] .chart-badge,
+[data-theme="light"] .onboard-pills span{border-width:1.5px;border-color:#91a7b7}
+[data-theme="light"] .field input,
+[data-theme="light"] .field select{border-width:1.5px;border-color:#849daf;background:#fff;color:#081a2b;font-weight:650}
+[data-theme="light"] .visual-stage{border-width:2px;border-color:#7893a7;box-shadow:inset 0 0 0 1px rgba(8,26,43,.05),0 8px 20px rgba(42,66,84,.08)}
+[data-theme="light"] .welcome-panel p,
+[data-theme="light"] .section-head p,
+[data-theme="light"] .workspace-header p,
+[data-theme="light"] .workspace-card>header p,
+[data-theme="light"] .choice span,
+[data-theme="light"] .field label,
+[data-theme="light"] .rate-meta .help,
+[data-theme="light"] .rate-source,
+[data-theme="light"] .home-summary,
+[data-theme="light"] .preset-note,
+[data-theme="light"] .simple-chart-head p,
+[data-theme="light"] .chart-badge,
+[data-theme="light"] .section-badge,
+[data-theme="light"] .footer{color:#3d5568}
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] strong,
+[data-theme="light"] th,
+[data-theme="light"] td{color:#081a2b}
+[data-theme="light"] .section-kicker,
+[data-theme="light"] .welcome-kicker,
+[data-theme="light"] .brand-kicker{font-weight:950}
+[data-theme="light"] .ghost,
+[data-theme="light"] .advanced-nav button{color:#19364a;font-weight:850}
+[data-theme="light"] .step{color:#10283a;font-weight:850}
+[data-theme="light"] .footer{font-weight:650}
+[data-theme="light"][data-household] .topbar,
+[data-theme="light"][data-household] .welcome-panel,
+[data-theme="light"][data-household] .visual-panel,
+[data-theme="light"][data-household] .surface-card,
+[data-theme="light"][data-household] .workspace-shell,
+[data-theme="light"][data-household] .workspace-card{border-color:color-mix(in srgb,var(--household-accent) 62%,#657f92);box-shadow:0 14px 30px rgba(42,66,84,.10),0 0 0 1px color-mix(in srgb,var(--household-accent) 14%,transparent)}
+[data-theme="light"][data-household] .choice.selected,
+[data-theme="light"][data-household] .step.active,
+[data-theme="light"][data-household] .estimate-panel,
+[data-theme="light"][data-household] .setup-panel,
+[data-theme="light"][data-household] .insight-hero,
+[data-theme="light"][data-household] .visual-stage{border-width:2px;border-color:color-mix(in srgb,var(--household-accent) 76%,#526f84)}
+[data-theme="light"][data-household] .field,
+[data-theme="light"][data-household] .metric,
+[data-theme="light"][data-household] .estimate-quality,
+[data-theme="light"][data-household] .simple-chart,
+[data-theme="light"][data-household] .home-summary,
+[data-theme="light"][data-household] .preset-note,
+[data-theme="light"][data-household] .workspace-card>header,
+[data-theme="light"][data-household] .advanced-nav button{border-color:color-mix(in srgb,var(--household-accent) 42%,#819bad)}
+[data-theme="light"][data-household] .primary{color:#071b28;font-weight:900;box-shadow:0 8px 20px color-mix(in srgb,var(--household-accent) 24%,rgba(37,58,74,.12))}
+[data-theme="light"][data-household] .section-kicker,
+[data-theme="light"][data-household] .brand-kicker{color:color-mix(in srgb,var(--household-accent) 82%,#18384d)}
+
+
+
+/* RC45 final header consistency + interaction polish */
+#globalReset{min-width:86px;transition:border-color .22s ease,box-shadow .22s ease,background-color .22s ease,color .22s ease,opacity .22s ease}
+#globalReset:disabled{opacity:.48;cursor:default;box-shadow:none}
+#globalReset[data-confirm="true"]{border-color:#cf7575;box-shadow:0 0 0 2px color-mix(in srgb,#cf7575 18%,transparent)}
+.topbar,.welcome-panel,.visual-panel,.surface-card,.workspace-shell,.workspace-card,.step,.choice,.field,.metric,.estimate-quality,.simple-chart,.estimate-fact,.advanced-nav button,.visual-stage,.footer{transition:border-color .22s ease,box-shadow .22s ease,background-color .22s ease,color .22s ease}
+[data-theme="light"][data-household] .choice.selected,
+[data-theme="light"][data-household] .step.active{border-color:color-mix(in srgb,var(--household-accent) 84%,#47677d);box-shadow:0 0 0 2px color-mix(in srgb,var(--household-accent) 18%,transparent),0 8px 18px rgba(42,66,84,.08)}
+@media(max-width:760px){
+  #themeBtn,#globalReset{min-height:40px;padding:7px 9px}
+  #globalReset{min-width:76px}
+  .overview-grid{gap:12px;margin-bottom:12px}
+  .main-grid{gap:12px}
+}
+
 </style>
 </head>
 <body>
@@ -450,7 +561,7 @@ function renderTable(){deviceTable.innerHTML=state.devices.length?state.devices.
 function applyHouseholdAccent(){if(state.home){document.documentElement.dataset.household=state.home}else{delete document.documentElement.dataset.household}}
 function render(){
  applyHouseholdAccent();
- const hasHousehold=!!(state.home||(Array.isArray(state.devices)&&state.devices.length)||state.rateSource==='imported');globalReset.hidden=!hasHousehold;if(resetAll)resetAll.hidden=!hasHousehold;
+ const hasHousehold=!!(state.home||(Array.isArray(state.devices)&&state.devices.length)||state.rateSource==='imported');globalReset.hidden=false;globalReset.disabled=!hasHousehold;globalReset.setAttribute('aria-disabled',String(!hasHousehold));if(!hasHousehold){globalReset.textContent='Start over';globalReset.dataset.confirm='false'}if(resetAll)resetAll.hidden=!hasHousehold;
  document.documentElement.dataset.theme=state.theme;people.value=state.people;rate.value=state.rate;days.value=state.days;peakRate.value=state.peakRate;offPeakRate.value=state.offPeakRate;peakShare.value=state.peakShare;smartThermostat.checked=state.smartThermostat;smartPlugs.checked=state.smartPlugs;smartLights.checked=state.smartLights;rateHelp.textContent=state.rateSource==='imported'?'Review the imported effective rate against your latest bill.':state.rateEstimated?'Using a typical planning rate. Replace it anytime with the rate from your bill.':'Use the price shown on your electricity bill.';rateSource.textContent=state.rateSource==='imported'?'Imported from utility data':state.rateEstimated?'Typical planning rate':'Entered manually';unknownRate.textContent=state.rateEstimated?'Using typical rate':'I don’t know';importSummary.hidden=state.rateSource!=='imported';if(state.rateSource==='imported'){importSummaryText.textContent=`${state.rateImportName||'Utility file'} · ${money(state.rate)}/kWh${state.rateImportMethod?` · ${state.rateImportMethod}`:''}`;}
  const isCustom=state.home==='custom';
  const maxBeds=state.home&&!isCustom?bedroomLimit(state.home):0;
@@ -530,6 +641,7 @@ function clearK2EPlanningData(){
  keys.forEach(key=>{try{localStorage.removeItem(key)}catch{}});
 }
 function startOver(){
+ if(typeof clearGlobalResetConfirm==='function')clearGlobalResetConfirm();
  const keepTheme=state.theme;
  clearK2EPlanningData();
  state={...defaultState,theme:keepTheme,devices:[]};
@@ -548,7 +660,18 @@ function startOver(){
  document.querySelector('.setup-panel')?.scrollIntoView({block:'start'});
  window.dispatchEvent(new Event('k2e-reset'));
 }
-resetAll.addEventListener('click',startOver);globalReset.addEventListener('click',startOver);
+let globalResetConfirmTimer=null;
+function clearGlobalResetConfirm(){
+ if(globalResetConfirmTimer){clearTimeout(globalResetConfirmTimer);globalResetConfirmTimer=null}
+ globalReset.dataset.confirm='false';globalReset.textContent='Start over';globalReset.setAttribute('aria-label','Start over');
+}
+function requestGlobalReset(){
+ if(globalReset.disabled)return;
+ if(globalReset.dataset.confirm==='true'){clearGlobalResetConfirm();startOver();return}
+ globalReset.dataset.confirm='true';globalReset.textContent='Confirm';globalReset.setAttribute('aria-label','Confirm start over');
+ globalResetConfirmTimer=setTimeout(clearGlobalResetConfirm,2600);
+}
+resetAll.addEventListener('click',startOver);globalReset.addEventListener('click',requestGlobalReset);
 downloadData.addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='K2E-home-plan.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)});
 downloadReport.addEventListener('click',()=>{const list=sorted(),kwh=total(),text=[`K2E Home Energy Summary`,`Household: ${state.home==='custom'?'Custom household':`${state.bedrooms}-bedroom ${homeName(state.home)}`}`,`People: ${state.people}`,`Monthly energy: ${kwh.toFixed(1)} kWh`,`Estimated cost: ${money(kwh*state.rate)}`,`Largest loads: ${list.slice(0,3).map(x=>x.name).join(', ')||'None'}`].join('\n');const blob=new Blob([text],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='K2E-summary.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)});
 setTheme(state.theme);render();updateShellClock();setInterval(updateShellClock,60000);setSidebarActive(state.step===1?'setup':'estimate');
