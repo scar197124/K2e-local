@@ -1,0 +1,145 @@
+name: Lock household accent theme and clean release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: ${{ github.event.head_commit.message == 'Lock household accent theme and clean release' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply locked household accent system
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app.html')
+          s=p.read_text()
+          marker='/* RC45 household identity accent system — review build */'
+          css=r'''
+
+/* RC45 household identity accent system — review build */
+:root{
+  --household-accent:var(--accent2);
+  --household-accent-2:var(--accent);
+  --household-accent-soft:color-mix(in srgb,var(--household-accent) 12%,transparent);
+  --household-accent-line:color-mix(in srgb,var(--household-accent) 48%,var(--line));
+}
+html[data-household="apartment"]{--household-accent:#4fd1c5;--household-accent-2:#27b8d1}
+html[data-household="townhome"]{--household-accent:#f6b84a;--household-accent-2:#f08a4b}
+html[data-household="house"]{--household-accent:#b794f4;--household-accent-2:#8f7cf3}
+html[data-household="custom"]{--household-accent:#ff7aa2;--household-accent-2:#ff9a62}
+html[data-household]{transition:background-color .22s ease}
+html[data-household] body{background:radial-gradient(circle at top right,color-mix(in srgb,var(--household-accent) 10%,transparent),transparent 35%),linear-gradient(180deg,var(--bg),var(--bg2))}
+html[data-household] .topbar{border-color:var(--household-accent-line);box-shadow:0 10px 28px rgba(0,0,0,.20),0 0 24px color-mix(in srgb,var(--household-accent) 12%,transparent)}
+html[data-household] .brand-kicker,html[data-household] .section-kicker{color:var(--household-accent)}
+html[data-household] .status-pill::before{background:linear-gradient(135deg,var(--household-accent-2),var(--household-accent));box-shadow:0 0 8px color-mix(in srgb,var(--household-accent) 28%,transparent)}
+html[data-household] .primary{background:linear-gradient(90deg,var(--household-accent-2),var(--household-accent));box-shadow:0 8px 22px color-mix(in srgb,var(--household-accent) 18%,transparent)}
+html[data-household] .step.active{border-color:color-mix(in srgb,var(--household-accent) 72%,var(--line));box-shadow:0 0 0 2px color-mix(in srgb,var(--household-accent) 12%,transparent)}
+html[data-household] .step.active b{background:linear-gradient(135deg,var(--household-accent-2),var(--household-accent));color:#082031}
+html[data-household] .choice.selected{border-color:color-mix(in srgb,var(--household-accent) 76%,var(--line));box-shadow:0 0 0 2px color-mix(in srgb,var(--household-accent) 15%,transparent);background:linear-gradient(180deg,color-mix(in srgb,var(--household-accent) 10%,var(--panel2)),var(--panel))}
+html[data-household] .field input:focus,html[data-household] .field select:focus{outline:2px solid color-mix(in srgb,var(--household-accent) 64%,transparent);outline-offset:1px;border-color:var(--household-accent)}
+html[data-household] .estimate-top{border-bottom-color:color-mix(in srgb,var(--household-accent) 34%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--household-accent) 7%,var(--panel2)),transparent)}
+html[data-household] .estimate-metrics .metric:nth-child(1),html[data-household] .estimate-metrics .metric:nth-child(2){border-color:color-mix(in srgb,var(--household-accent) 44%,var(--line))}
+html[data-household] .estimate-metrics .metric:nth-child(2){background:linear-gradient(180deg,color-mix(in srgb,var(--household-accent) 10%,var(--panel2)),color-mix(in srgb,var(--panel2) 86%,var(--panel)))}
+html[data-household] .insight{border-left-color:var(--household-accent)}
+html[data-household] .fill{background:linear-gradient(90deg,var(--household-accent-2),var(--household-accent))}
+html[data-household] .advanced-nav button.active{background:linear-gradient(90deg,color-mix(in srgb,var(--household-accent-2) 28%,transparent),color-mix(in srgb,var(--household-accent) 28%,transparent));border-color:color-mix(in srgb,var(--household-accent) 66%,var(--line));box-shadow:0 0 0 2px color-mix(in srgb,var(--household-accent) 12%,transparent)}
+html[data-household] .section-badge,html[data-household] .chart-badge{border-color:color-mix(in srgb,var(--household-accent) 42%,var(--line))}
+html[data-household] .footer{border-top:1px solid color-mix(in srgb,var(--household-accent) 28%,transparent);color:color-mix(in srgb,var(--household-accent) 36%,var(--muted));margin-top:12px}
+html[data-household] .visual-stage{border-color:color-mix(in srgb,var(--household-accent) 48%,var(--line));box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 0 22px color-mix(in srgb,var(--household-accent) 8%,transparent)}
+
+/* RC45 household identity accent system — expanded visual pass */
+html[data-household] .welcome-panel,
+html[data-household] .visual-panel,
+html[data-household] .surface-card,
+html[data-household] .workspace-shell{border-color:color-mix(in srgb,var(--household-accent) 48%,var(--line));box-shadow:var(--shadow),0 0 24px color-mix(in srgb,var(--household-accent) 7%,transparent)}
+html[data-household] .welcome-panel{background:linear-gradient(145deg,color-mix(in srgb,var(--household-accent) 7%,var(--panel2)),var(--panel) 62%)}
+html[data-household] .welcome-panel h1 .accent{background:linear-gradient(95deg,var(--household-accent-2) 0%,var(--household-accent) 55%,color-mix(in srgb,var(--household-accent) 72%,#ffffff) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-household] .onboard-pills span,
+html[data-household] .field,
+html[data-household] .home-summary,
+html[data-household] .preset-note,
+html[data-household] .metric,
+html[data-household] .estimate-quality,
+html[data-household] .simple-chart,
+html[data-household] .estimate-fact,
+html[data-household] .workspace-card,
+html[data-household] .table-wrap,
+html[data-household] .utility-import,
+html[data-household] .import-summary,
+html[data-household] .ghost,
+html[data-household] .advanced-nav button{border-color:color-mix(in srgb,var(--household-accent) 30%,var(--line))}
+html[data-household] .simple-chart,
+html[data-household] .estimate-quality,
+html[data-household] .home-summary,
+html[data-household] .preset-note{background:linear-gradient(180deg,color-mix(in srgb,var(--household-accent) 5%,var(--panel2)),color-mix(in srgb,var(--panel2) 86%,var(--panel)))}
+html[data-household] .workspace-card>header{border-bottom-color:color-mix(in srgb,var(--household-accent) 30%,var(--line));background:linear-gradient(90deg,color-mix(in srgb,var(--household-accent) 6%,var(--panel2)),color-mix(in srgb,var(--panel2) 88%,var(--panel)))}
+html[data-household] .section-head h2,html[data-household] .estimate-top h2,html[data-household] .simple-chart-head h3{text-shadow:0 0 18px color-mix(in srgb,var(--household-accent) 9%,transparent)}
+html[data-household] .section-badge,html[data-household] .chart-badge,html[data-household] .onboard-pills span{border-color:color-mix(in srgb,var(--household-accent) 44%,var(--line))}
+html[data-household] .estimate-panel,html[data-household] .setup-panel{border-color:color-mix(in srgb,var(--household-accent) 52%,var(--line))}
+html[data-household] .insight-hero{border-color:color-mix(in srgb,var(--household-accent) 52%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--household-accent) 9%,var(--panel2)),var(--panel))}
+html[data-household] .actions .ghost:hover,html[data-household] .advanced-nav button:hover{border-color:color-mix(in srgb,var(--household-accent) 66%,var(--line))}
+html[data-household] .track{outline:1px solid color-mix(in srgb,var(--household-accent) 13%,var(--line));outline-offset:-1px}
+html[data-household] .visual-panel{background:linear-gradient(180deg,color-mix(in srgb,var(--household-accent) 5%,var(--panel2)),var(--panel))}
+html[data-household] .visual-stage{border-width:1.5px}
+html[data-household] .footer{border-top-color:color-mix(in srgb,var(--household-accent) 44%,transparent)}
+
+/* Top energy users: rank/device colors remain independent of household theme. */
+.bar-list .bar-row:nth-child(1) .fill,html[data-household] .bar-list .bar-row:nth-child(1) .fill{background:linear-gradient(90deg,#ff5f6d,#ff8a5b)!important}
+.bar-list .bar-row:nth-child(2) .fill,html[data-household] .bar-list .bar-row:nth-child(2) .fill{background:linear-gradient(90deg,#f6b84a,#ffd166)!important}
+.bar-list .bar-row:nth-child(3) .fill,html[data-household] .bar-list .bar-row:nth-child(3) .fill{background:linear-gradient(90deg,#45d6a8,#72e6c0)!important}
+.bar-list .bar-row:nth-child(4) .fill,html[data-household] .bar-list .bar-row:nth-child(4) .fill{background:linear-gradient(90deg,#9b7cf6,#c09cff)!important}
+.bar-list .bar-row:nth-child(5) .fill,html[data-household] .bar-list .bar-row:nth-child(5) .fill{background:linear-gradient(90deg,#4aa8ff,#73d6ff)!important}
+.bar-list .bar-row:nth-child(6) .fill,html[data-household] .bar-list .bar-row:nth-child(6) .fill{background:linear-gradient(90deg,#ff7aa2,#ff9fc0)!important}
+.bar-list .bar-row:nth-child(7) .fill,html[data-household] .bar-list .bar-row:nth-child(7) .fill{background:linear-gradient(90deg,#36c7d0,#6fe0e6)!important}
+.bar-list .bar-row:nth-child(8) .fill,html[data-household] .bar-list .bar-row:nth-child(8) .fill{background:linear-gradient(90deg,#a8c957,#c7e27a)!important}
+'''
+          if marker not in s:
+              s=s.replace('</style>',css+'\n</style>',1)
+          if 'function applyHouseholdAccent()' not in s:
+              s=s.replace('function render(){','function applyHouseholdAccent(){if(state.home){document.documentElement.dataset.household=state.home}else{delete document.documentElement.dataset.household}}\nfunction render(){\n applyHouseholdAccent();',1)
+          p.write_text(s)
+          PY
+
+      - name: Clean repository release tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f BRAND_MIGRATION.md CURRENT_MAIN_COMMIT.txt GITHUB_SOCIAL_PREVIEW_UPLOAD.png REVIEW_BUILD_NOTES.txt SOCIAL_PREVIEW_SETUP.md UPLOAD_TO_GITHUB.txt
+          rm -f K2E_LOCAL_*_FIX.md
+          rm -f RELEASE_NOTES_v*.md
+          rm -rf assets/archive .artfix
+          rm -f assets/k2e-brand-identity-board.png assets/k2e-local-brand-dark.png assets/k2e-local-brand-detailed.png assets/k2e-local-brand-light.png assets/k2e-local-logo-magic.png assets/k2e-local-mark.png assets/k2e-local-readme-banner.jpg
+          rm -f assets/k2e-local-social-preview-v1.13.0.png assets/k2e-local-social-preview-v1.13.1.png assets/k2e-local-social-preview-v1.14.0.png assets/k2e-local-social-preview-v1.14.1.png
+          rm -f assets/k2e-local-home-visual-locked-dark.webp assets/k2e-local-home-visual-locked-light.webp assets/k2e-local-home-visual-restored.webp
+          find docs/releases -maxdepth 1 -type f ! -name 'RELEASE_NOTES_v2.0.0-rc.45.md' -delete
+          rm -f .github/workflows/lock-household-accent-clean.yml
+
+      - name: Validate clean locked build
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/validate-release.mjs
+          node scripts/validate-full-wiring.mjs
+          find . -type f ! -name 'SHA256SUMS.txt' ! -path './.git/*' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+          sha256sum -c SHA256SUMS.txt
+
+      - name: Commit clean locked release
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'scar197124'
+          git config user.email 'spartica1791@gmail.com'
+          git add -A
+          git commit -m 'Lock RC45 household accent theme and clean repository'
+          git push origin HEAD:main
