@@ -37,6 +37,29 @@ function devKwh(d,days){return (Number(d?.w)||0)*(Number(d?.h)||0)*(Number(d?.q)
 function demand(s){return Array.isArray(s.devices)?s.devices.reduce((n,d)=>n+devKwh(d,s.days),0):0}
 function money(v){return new Intl.NumberFormat('en-CA',{style:'currency',currency:'CAD'}).format(Number(v)||0)}
 
+function portraitWorkspaceStyles(){
+  if(document.getElementById('rc45PortraitWorkspaceCenter'))return;
+  const s=document.createElement('style');
+  s.id='rc45PortraitWorkspaceCenter';
+  s.textContent=`
+@media (orientation:portrait){
+  .workspace-shell>.workspace-header{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;width:100%!important}
+  .workspace-shell>.workspace-header>div{width:100%!important;text-align:center!important}
+  .workspace-shell>.workspace-header .section-kicker,.workspace-shell>.workspace-header h2,.workspace-shell>.workspace-header p{display:block!important;text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+  .workspace-shell .tools-nav-panel{width:100%!important;text-align:center!important}
+  .workspace-shell .tools-nav-row{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;width:100%!important;gap:8px!important}
+  .workspace-shell .advanced-nav{width:min(100%,620px)!important;margin:0 auto!important;justify-content:center!important;align-items:center!important}
+  .workspace-shell .advanced-nav button{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+  .workspace-shell .add-device-action{align-self:center!important;margin:0 auto!important;min-width:150px!important;max-width:240px!important;width:auto!important}
+  .workspace-shell .workspace-card>header{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+  .workspace-shell .workspace-card>header>div{width:100%!important;text-align:center!important}
+  .workspace-shell .workspace-card>header h2,.workspace-shell .workspace-card>header p{margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+  .workspace-shell .workspace-card>header .card-count,.workspace-shell .workspace-card>header .mode-pill{align-self:center!important;margin-left:auto!important;margin-right:auto!important}
+}
+`;
+  document.head.appendChild(s);
+}
+
 function styles(){
   if(document.getElementById('rc46SolarStyles'))return;
   const x=document.createElement('style');
@@ -163,6 +186,7 @@ function solarInstall(){
 }
 
 function install(){
+  portraitWorkspaceStyles();
   tidy();
   context();
   solarInstall();
