@@ -1,6 +1,6 @@
 # K2E Local
 
-![K2E Local — Plan household energy privately and offline](assets/k2e-readme-hero.jpg)
+![K2E Local — Plan household energy privately and offline](assets/k2e-local-social-preview.png)
 
 **Kilowatts to Efficiency**
 
@@ -94,9 +94,9 @@ No open-source license has been selected. Add a `LICENSE` file before inviting u
 
 ## Social preview
 
-README showcase image: `assets/k2e-readme-hero.jpg`.
+README showcase image: `assets/k2e-local-social-preview.png`.
 
-The repository README now opens with the approved K2E Local household-energy artwork so visitors immediately see the current product direction.
+The repository README now opens with the K2E Local household-energy showcase artwork so visitors immediately see the product direction.
 
 ## Interface notes
 
