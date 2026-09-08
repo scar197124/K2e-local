@@ -39,8 +39,8 @@ html,body{max-width:100%;overflow-x:hidden}.app,.topbar,.overview-grid,.main-gri
 .choice[data-home].selected{border-width:3px!important;border-color:var(--household-accent)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--household-accent) 18%,transparent),0 0 22px color-mix(in srgb,var(--household-accent) 12%,transparent)}
 html[data-household] .topbar,html[data-household] .welcome-panel,html[data-household] .visual-panel,html[data-household] .surface-card,html[data-household] .workspace-shell,html[data-household] .workspace-card{border-color:color-mix(in srgb,var(--household-accent) 68%,var(--line));box-shadow:var(--shadow),0 0 18px color-mix(in srgb,var(--household-accent) 10%,transparent)}
 
-/* Single approved wide dark artwork: fill the card, no blank side bands. */
-html:not([data-theme="light"]) .visual-stage{background-color:#07111f!important;background-image:url('./k2e-local-home-visual-locked-dark-wide.jpg')!important;background-repeat:no-repeat!important;background-position:center center!important;background-size:cover!important;isolation:isolate}
+/* Dark artwork quality repair: use the repo's lossless PNG source instead of the compressed JPEG. */
+html:not([data-theme="light"]) .visual-stage{background-color:#07111f!important;background-image:url('./k2e-local-home-visual-live-dark.png')!important;background-repeat:no-repeat!important;background-position:center center!important;background-size:cover!important;isolation:isolate}
 html:not([data-theme="light"]) .visual-stage::before{content:none!important;display:none!important;background:none!important}
 [data-theme="light"] .visual-stage{background-color:#eef6fb!important;background-image:url('./k2e-local-home-visual-live-light.png')!important;background-repeat:no-repeat!important;background-position:center center!important;background-size:cover!important;overflow:hidden;isolation:isolate}
 
