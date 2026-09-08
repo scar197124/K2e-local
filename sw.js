@@ -1,8 +1,8 @@
-const CACHE_NAME = 'k2e-local-v2.0.0-rc.45-art5';
+const CACHE_NAME = 'k2e-local-v2.0.0-rc.45';
 const APP_SHELL = [
   './','./index.html','./app.html','./manifest.json','./robots.txt','./sitemap.xml',
   './icon-192.png','./icon-512.png',
-  './assets/k2e-local-brand-night.png','./assets/k2e-local-social-preview.png','./assets/k2e-local-home-visual-restored.webp','./assets/k2e-logo-horizontal-dark.png','./assets/k2e-logo-horizontal-light.png',
+  './assets/k2e-local-brand-night.png','./assets/k2e-local-social-preview.png','./assets/k2e-local-home-visual-locked-dark-wide.jpg','./assets/k2e-local-home-visual-live-light.png','./assets/k2e-logo-horizontal-dark.png','./assets/k2e-logo-horizontal-light.png',
   './assets/chart.umd.js',
   './assets/k2e-evolution-rc38.css','./assets/k2e-evolution-rc38.js',
   './assets/k2e-advisor-rc39.css','./assets/k2e-advisor-rc39.js',
