@@ -29,6 +29,18 @@ The internal presentation has been refreshed to match the new K2E Local front do
 
 K2E Local is designed to work locally in the browser. After the first successful load, the application shell and bundled chart library can operate offline. No account is required.
 
+Household planning data stays in the browser by default. The current K2E Advisor uses the household values already stored locally and does not require sending household data to an external AI service. Any future online AI connection should remain separate, off by default, and explicitly consent-controlled.
+
+## K2E Advisor
+
+K2E Advisor turns the household model already stored on the device into practical, plain-language guidance. It can identify the largest modeled loads, point out assumptions worth verifying, surface runtime and scheduling checks, compare applicable Smart Home planning scenarios, and recommend which K2E area to review next.
+
+Advisor guidance is derived from the same local household state used by the estimate, Home Pulse, Forecast, Goals, Smart Home planning, and reports. It is guidance for planning—not a diagnosis of real-world appliance behavior.
+
+## Planning boundary
+
+K2E is a household energy planning and estimation tool. It is not a utility bill, an electrical-safety diagnostic, a measurement instrument, or a guarantee of savings. Real usage can differ from modeled results because of appliance condition, weather, occupancy, behavior, utility tariffs, and other factors.
+
 ## Deployment
 
 This repository is prepared for GitHub Pages through the included GitHub Actions workflow.
@@ -81,6 +93,9 @@ sha256sum -c SHA256SUMS.txt
 - Tightens mobile spacing, card density, and primary-action hierarchy for faster scanning on smaller screens.
 - Keeps the existing household, measurement, forecast, timeline, mission, and goal data models unchanged.
 - Adds no new major feature layer; this release is focused on consistency, clarity, visual polish, and preserving the simple K2E workflow.
+- Stabilizes the Detailed Workspace so longer Home Pulse, Devices, Smart Home, Advisor, and related sections remain reachable instead of being clipped.
+- Tightens the landing-page privacy/insight highlight strip so it uses less vertical space while preserving all five messages.
+- Clarifies K2E Advisor as local household-model guidance and makes its recommended next action easier to scan.
 
 See [`docs/releases/RELEASE_NOTES_v2.0.0-rc.45.md`](docs/releases/RELEASE_NOTES_v2.0.0-rc.45.md).
 
@@ -94,16 +109,17 @@ No open-source license has been selected. Add a `LICENSE` file before inviting u
 
 ## Social preview
 
-README showcase image: `assets/k2e-local-social-preview.png`.
+Current recommended asset: `assets/k2e-local-social-preview.png`.
 
-The repository README now opens with the K2E Local household-energy showcase artwork so visitors immediately see the product direction.
+The README banner and site social metadata use the same approved artwork so the project presents consistently on GitHub and when shared.
+
 
 ## Interface notes
 
 - **Front door:** the landing page uses the approved K2E Local home-energy visual with matching dark and light treatments.
 - **Inside K2E:** the household setup, estimate snapshot, K2E Insights, and detailed workspace now share one visual language.
 - **Status vs. actions:** Runs locally, No account, and Private by design are informational status labels. Light/Dark mode and Start over are the primary header actions.
-- **Start over behavior:** the reset control keeps a permanent place in the header. It is disabled on a blank household, activates once planning data exists, and clears the active household/planning data while preserving the selected theme.
+- **Start over behavior:** the reset action remains hidden until a household has actually been started. One click clears the active K2E household/planning data while preserving the selected theme, returning Monthly energy and Estimated cost to zero until the user selects a home type or manually adds a device.
 
 ### Blank-start behavior
 
