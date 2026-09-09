@@ -99,6 +99,14 @@ sha256sum -c SHA256SUMS.txt
 
 See [`docs/releases/RELEASE_NOTES_v2.0.0-rc.45.md`](docs/releases/RELEASE_NOTES_v2.0.0-rc.45.md).
 
+## Documentation
+
+The K2E Local wiki is versioned with the repository so documentation can keep improving without changing the locked application runtime.
+
+Start here: [`docs/wiki/Home.md`](docs/wiki/Home.md)
+
+The wiki covers the current RC45 product state, local-first and privacy principles, blank-start behavior, planning assumptions and rates, Detailed Workspace, K2E Advisor, validation boundaries, and the roadmap for additional documentation pages.
+
 ## Project notes
 
 Development handoff details are available in [`docs/NEXT_HANDOFF.md`](docs/NEXT_HANDOFF.md).
