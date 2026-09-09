@@ -119,3 +119,36 @@ html:not([data-theme="light"]) .visual-stage::before{content:none!important;disp
   .estimate-top{padding:11px 10px 9px}.estimate-body{padding:10px}.estimate-quality,.estimate-details,.simple-chart{margin-top:7px}
   .workspace-shell{margin-top:6px;padding:10px}.workspace-header{margin-bottom:5px}.adv-section{margin-top:7px}.workspace-card>header{padding:9px 10px}.scroll-body,.scroll-body.compact,.scroll-body.tall{padding:9px 10px}
 }
+
+/* Desktop artwork stabilization only — mobile/landscape rules remain untouched. Keep the full composition visible, centered, and free of cover-cropping in both themes. */
+@media(min-width:1181px){
+  .visual-panel{overflow:hidden}
+  .visual-stage{
+    width:100%;
+    aspect-ratio:1512/1040;
+    min-height:0!important;
+    height:auto!important;
+    background-repeat:no-repeat!important;
+    background-position:center center!important;
+    background-size:contain!important;
+    filter:none!important;
+    transform:none!important;
+    overflow:hidden!important;
+    isolation:isolate!important;
+  }
+  html:not([data-theme="light"]) .visual-stage{
+    background-color:#07111f!important;
+    background-image:url('./k2e-local-home-visual-live-dark.png')!important;
+  }
+  [data-theme="light"] .visual-stage{
+    background-color:#eef6fb!important;
+    background-image:url('./k2e-local-home-visual-live-light.png')!important;
+  }
+  .visual-stage::before,.visual-stage::after{
+    content:none!important;
+    display:none!important;
+    background:none!important;
+    box-shadow:none!important;
+    filter:none!important;
+  }
+}
