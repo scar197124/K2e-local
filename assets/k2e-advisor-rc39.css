@@ -7,3 +7,25 @@
 .advisor-answer{margin-top:10px;padding:14px;border-left:4px solid var(--accent2);background:var(--panel);border-radius:12px}.advisor-answer span{display:block;color:var(--muted);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}.advisor-answer strong{display:block;margin:4px 0 5px;font-size:17px}.advisor-answer p{margin:0;color:var(--muted);line-height:1.5}.advisor-answer .advisor-reason{margin-top:7px;font-size:12px}
 .advisor-handoffs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.advisor-handoffs button{padding:9px 11px}.advisor-handoffs .recommended-handoff{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 12%,transparent)}
 @media(max-width:760px){.advisor-context-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.advisor-question-grid{grid-template-columns:1fr}.advisor-cockpit-head{flex-direction:column}}
+
+/* RC45 stabilization — Detailed Workspace visibility. Layout only; engine/state untouched. */
+@media(min-width:1181px){
+  .workspace-shell{height:640px!important;max-height:640px!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+  .workspace-header{flex:0 0 auto!important}
+  .workspace-shell .tools-grid{flex:1 1 auto!important;min-height:0!important;display:flex!important;flex-direction:column!important}
+  .tools-nav-panel{flex:0 0 auto!important}
+  .adv-section{min-height:0!important}
+  .adv-section.active{display:flex!important;flex:1 1 auto!important;min-height:0!important;margin-top:6px!important}
+  .adv-section.active .workspace-card{flex:1 1 auto!important;height:100%!important;min-height:0!important;max-height:none!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+  .adv-section.active .workspace-card>header{flex:0 0 auto!important}
+  .adv-section .scroll-body,.adv-section .scroll-body.compact,.adv-section .scroll-body.tall{flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:auto!important;overscroll-behavior:contain;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch}
+}
+
+/* RC45 Advisor clarity polish — visual wording only. */
+.advisor-workspace>header h2{font-size:0!important}
+.advisor-workspace>header h2::after{content:"K2E Advisor";font-size:16px;letter-spacing:-.02em}
+.advisor-workspace>header>div::after{content:"Based on your current household model.";display:block;margin-top:5px;color:var(--accent);font-size:11px;font-weight:850;letter-spacing:.02em}
+.advisor-workspace .guidance-next{border-color:color-mix(in srgb,var(--accent) 62%,var(--line))!important;background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 9%,var(--panel2)),var(--panel))!important;box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 10%,transparent)}
+.advisor-workspace .guidance-next>span{color:var(--accent)!important}
+.advisor-workspace .advisor-action-label{border-left:3px solid var(--accent2);padding-left:10px}
+@media(max-width:700px){.advisor-workspace>header>div::after{font-size:10px}}
