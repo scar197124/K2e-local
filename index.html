@@ -84,6 +84,25 @@ footer{padding:4px 0 18px;text-align:center;color:var(--muted);font-size:12px}
 @media(max-width:860px){.feature-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px}.feature,.feature:last-child{max-width:none;grid-column:auto;grid-template-columns:34px minmax(0,1fr);gap:8px;padding:9px 8px;border:1px solid var(--line-soft);border-radius:12px}.feature:last-child{grid-column:1/-1}.feature-icon{width:32px;height:32px}.feature svg{width:17px;height:17px}.feature h2{margin-bottom:2px;font-size:12px;line-height:1.1}.feature p{font-size:10px;line-height:1.22}}
 @media(max-width:390px){.feature-strip{gap:6px;padding:8px}.feature,.feature:last-child{grid-template-columns:30px minmax(0,1fr);gap:6px;padding:8px 7px}.feature-icon{width:28px;height:28px}.feature svg{width:15px;height:15px}.feature h2{font-size:11.25px}.feature p{font-size:9.5px}}
 
+/* Mobile landing artwork fit: use the full-quality approved image and match its native aspect ratio. */
+@media(max-width:520px){
+  .hero-visual{
+    min-height:0!important;
+    aspect-ratio:728/710!important;
+    background-image:url('./assets/k2e-local-home-visual-live-dark.png')!important;
+    background-size:cover!important;
+    background-position:center center!important;
+  }
+  [data-theme="light"] .hero-visual{
+    min-height:0!important;
+    aspect-ratio:728/710!important;
+    background-image:url('./assets/k2e-local-home-visual-live-light.png?v=rc45-art5')!important;
+    background-size:cover!important;
+    background-position:center center!important;
+    filter:none!important;
+  }
+}
+
 /* Approved exact desktop homepage artwork. Desktop only; mobile continues to use the responsive live layout above. */
 .desktop-exact-home{display:none}
 @media(min-width:1181px){body{background:#06111d!important}body>header,body>main,body>footer,body>.skip{display:none!important}.desktop-exact-home{display:block;position:relative;width:min(1448px,100vw);margin:0 auto;line-height:0;background:#06111d}.desktop-exact-home>img{display:block;width:100%;height:auto;max-width:1448px;margin:0 auto;image-rendering:auto}.desktop-exact-home .hotspot{position:absolute;display:block;z-index:4;border-radius:12px;line-height:normal;text-indent:-9999px;overflow:hidden}.desktop-exact-home .hotspot:focus-visible{outline:3px solid #68e0b4;outline-offset:2px;background:rgba(104,224,180,.10)}.hs-home{left:27.8%;top:5%;width:4.7%;height:4.5%}.hs-features{left:33%;top:5%;width:5.4%;height:4.5%}.hs-how{left:39.3%;top:5%;width:7%;height:4.5%}.hs-community{left:47.6%;top:5%;width:6.9%;height:4.5%}.hs-support{left:55.4%;top:5%;width:5.5%;height:4.5%}.hs-start{left:3.65%;top:61.25%;width:19.8%;height:6.2%}.hs-advanced{left:24.15%;top:61.25%;width:18.3%;height:6.2%}}
