@@ -117,6 +117,25 @@ requireText(serviceWorker, "k2e-forecast-rc40.js", "RC40 forecast layer is not c
 requireText(serviceWorker, "k2e-timeline-rc41.js", "RC41 timeline layer is not cached offline");
 requireText(serviceWorker, "k2e-goals-rc44.js", "RC44 goal layer is not cached offline");
 requireText(index, "v2.0.0-rc.45-consolidation", "Landing build metadata is stale");
+requireText(index, "k2e-landing-locked.png", "Locked landing artwork is missing");
+if (index.includes("k2e-internal-home-")) throw new Error("Internal household artwork leaked into the landing page");
+for (const home of ["default", "apartment", "townhome", "house", "custom"]) requireText(app, `k2e-internal-home-${home}-wide.png`, `Wide internal ${home} artwork is missing`);
+requireText(app, 'id="internalArtwork" class="hero-artwork" src="./assets/k2e-internal-home-default-wide.png?v=wide1"', "Approved full-scene image is not inside the welcome hero");
+requireText(app, "default:'./assets/k2e-internal-home-default-wide.png?v=wide1'", "Approved full-scene image is not wired into household rendering");
+if (app.includes("k2e-landing-locked.png")) throw new Error("Locked landing artwork leaked into the app");
+requireText(app, "const HOUSEHOLD_VISUALS=", "Direct household artwork mapping is missing");
+requireText(app, "artwork.src=HOUSEHOLD_VISUALS[household]", "Household selection does not update the hero image");
+requireText(app, "artwork.dataset.householdVisual=household", "Rendered household artwork state is not inspectable");
+requireText(app, ".overview-grid{grid-template-columns:minmax(0,1fr)}", "Old two-card overview layout remains");
+requireText(app, ".overview-grid .welcome-panel{display:grid;grid-template-columns:minmax(0,1fr) min(46%,520px);align-items:center;gap:0;padding:0;overflow:hidden}", "Hero has spacing around the artwork");
+requireText(app, ".hero-artwork{display:block;width:100%;height:auto;max-height:none;object-fit:contain;justify-self:end;align-self:center}", "Full-scene artwork does not meet the hero edges");
+requireText(app, "@media(min-width:901px) and (max-width:1180px){.welcome-copy{padding:14px 17px}", "Tablet hero text is not compact");
+requireText(app, "@media(max-width:900px){.overview-grid .welcome-panel{display:block}.hero-artwork{width:min(100%,520px);margin-left:auto}", "Tablet and mobile hero image sizing is missing");
+const overviewMarkup = app.split('<section class="overview-grid">')[1]?.split('</section>')[0] || '';
+if (/class="visual-panel"|class="visual-stage"/.test(overviewMarkup)) throw new Error("Separate artwork card remains in the overview");
+requireText(serviceWorker, "k2e-landing-locked.png", "Locked landing artwork is not cached offline");
+requireText(serviceWorker, "k2e-internal-home-custom-wide.png", "Wide household artwork family is not cached offline");
+if (index.includes("body>header,body>main,body>footer,body>.skip{display:none")) throw new Error("Flattened desktop screenshot override returned");
 
 
 requireText(app, 'function deviceIcon(name)', 'Device icon mapping is missing');

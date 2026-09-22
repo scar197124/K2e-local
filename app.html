@@ -286,6 +286,16 @@ html[data-household] .footer{border-top-color:color-mix(in srgb,var(--household-
   .overview-grid{gap:12px;margin-bottom:12px}
   .main-grid{gap:12px}
 }
+.quantrae-status{color:var(--accent);font-weight:900}.backup-panel{margin-top:18px;padding:16px;border:1px solid color-mix(in srgb,var(--accent2) 38%,var(--line));border-radius:18px;background:color-mix(in srgb,var(--panel2) 86%,var(--panel))}.backup-panel h3{margin:0}.backup-panel p{margin:7px 0 0;color:var(--muted);line-height:1.5}.backup-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.backup-status{margin-top:12px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:13px;line-height:1.45}.backup-status.success{border-color:color-mix(in srgb,var(--accent) 62%,var(--line));color:var(--text)}.backup-status.error{border-color:#cf7575;color:#ffb5b5}.backup-confirm{margin-top:10px}.backup-confirm[hidden]{display:none}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+/* The approved full scene lives inside the welcome hero; there is no separate artwork card. */
+.overview-grid{grid-template-columns:minmax(0,1fr)}
+.overview-grid .welcome-panel{display:grid;grid-template-columns:minmax(0,1fr) min(46%,520px);align-items:center;gap:0;padding:0;overflow:hidden}
+.welcome-copy{min-width:0;padding:18px 22px}
+.hero-artwork{display:block;width:100%;height:auto;max-height:none;object-fit:contain;justify-self:end;align-self:center}
+@media(min-width:901px) and (max-width:1180px){.welcome-copy{padding:14px 17px}.welcome-panel h1{font-size:clamp(32px,3.2vw,40px)}.welcome-panel p{font-size:14px;line-height:1.4}.onboard-pills{margin-top:10px;gap:6px}.onboard-pills span{padding:5px 8px;font-size:11px}}
+@media(max-width:900px){.overview-grid .welcome-panel{display:block}.hero-artwork{width:min(100%,520px);margin-left:auto}}
+@media(max-width:760px){.welcome-copy{padding:16px 14px 12px}}
 
 </style>
 </head>
@@ -300,7 +310,7 @@ html[data-household] .footer{border-top-color:color-mix(in srgb,var(--household-
     </div>
   </div>
   <div class="topbar-right">
-    <span class="status-pill">Runs locally</span>
+    <span class="status-pill quantrae-status">Quantrae · Local only</span>
     <span class="status-pill">No account</span>
     <span class="status-pill">Private by design</span>
     <div class="status-pill" id="shellClock" aria-live="polite"></div>
@@ -311,18 +321,17 @@ html[data-household] .footer{border-top-color:color-mix(in srgb,var(--household-
 
 <section class="overview-grid">
   <div class="welcome-panel">
-    <div class="welcome-kicker">Plan with clarity</div>
-    <h1>Build your home model.<span class="accent">Keep full control.</span></h1>
-    <p>K2E still begins with the simple questions that matter most — apartment, townhouse, house, or custom; bedrooms; people; and your electricity rate — then turns that into a clearer private energy picture.</p>
-    <div class="onboard-pills">
-      <span>Apartment · Townhouse · House · Custom</span>
-      <span>Simple setup first</span>
-      <span>Advanced tools when needed</span>
+    <div class="welcome-copy">
+      <div class="welcome-kicker">Plan with clarity</div>
+      <h1>Build your home model.<span class="accent">Keep full control.</span></h1>
+      <p>K2E still begins with the simple questions that matter most — apartment, townhouse, house, or custom; bedrooms; people; and your electricity rate — then turns that into a clearer private energy picture.</p>
+      <div class="onboard-pills">
+        <span>Apartment · Townhouse · House · Custom</span>
+        <span>Simple setup first</span>
+        <span>Advanced tools when needed</span>
+      </div>
     </div>
-  </div>
-  <div class="visual-panel">
-    <div class="visual-stage" aria-hidden="true"></div>
-
+    <img id="internalArtwork" class="hero-artwork" src="./assets/k2e-internal-home-default-wide.png?v=wide1" alt="Full energy-efficient home scene with a car, driveway and garden" width="1672" height="941">
   </div>
 </section>
 
@@ -439,7 +448,7 @@ html[data-household] .footer{border-top-color:color-mix(in srgb,var(--household-
 
   <div class="adv-section" data-adv-section="rates"><article class="workspace-card"><header><div><h2>Rates and schedules</h2><p>Fine-tune billing assumptions without changing the guided household setup.</p></div></header><div class="scroll-body"><div class="field-grid"><div class="field"><label for="days">Billing days</label><input id="days" type="number" min="28" max="31" value="30"></div><div class="field"><label for="peakRate">Peak rate ($/kWh)</label><input id="peakRate" type="number" min="0" step="0.001" value="0.24"></div><div class="field"><label for="offPeakRate">Off-peak rate ($/kWh)</label><input id="offPeakRate" type="number" min="0" step="0.001" value="0.12"></div><div class="field"><label for="peakShare">Energy used at peak (%)</label><input id="peakShare" type="number" min="0" max="100" value="40"></div></div><div class="metric"><span>Time-of-use estimate</span><strong id="touCost">$0.00</strong></div></div></article></div>
 
-  <div class="adv-section" data-adv-section="reports"><article class="workspace-card"><header><div><h2>Results and reports</h2><p>Detailed breakdowns and portable copies of your household plan.</p></div></header><div class="scroll-body tall"><h3>Where the energy goes</h3><div id="advancedBars" class="bar-list"></div><div class="actions"><button class="ghost" id="downloadData" type="button">Download plan data</button><button class="ghost" id="downloadReport" type="button">Download summary</button><button class="danger" id="resetAll" type="button">Start over</button></div></div></article></div>
+  <div class="adv-section" data-adv-section="reports"><article class="workspace-card"><header><div><h2>Results and reports</h2><p>Detailed breakdowns and portable copies of your household plan.</p></div><span class="mode-pill">Quantrae · Local only</span></header><div class="scroll-body tall"><h3>Where the energy goes</h3><div id="advancedBars" class="bar-list"></div><div class="backup-panel"><h3>Backup and recovery</h3><p>Create a complete copy of this K2E household, including history, goals, forecasts, missions, measurements, and solar settings. Quantrae keeps both backup and restore on this device—nothing is uploaded.</p><div class="backup-actions"><button class="ghost" id="downloadData" type="button">Download full backup</button><button class="ghost" id="chooseBackup" type="button">Choose backup to restore</button><input class="visually-hidden" id="backupFile" type="file" accept=".json,application/json" aria-describedby="backupStatus"></div><div class="backup-status" id="backupStatus" role="status" aria-live="polite">No backup selected.</div><button class="primary backup-confirm" id="confirmRestore" type="button" hidden>Restore this backup</button></div><div class="actions"><button class="ghost" id="downloadReport" type="button">Download summary</button><button class="danger" id="resetAll" type="button">Start over</button></div></div></article></div>
 </section>
 </section>
 
@@ -468,6 +477,13 @@ const groups={
 };
 const STATE_SCHEMA='rc45-full-wire-4';
 const defaultState={stateSchema:STATE_SCHEMA,theme:'dark',step:1,home:'',bedrooms:0,people:0,rate:0,rateEstimated:false,rateSource:'manual',rateImportName:'',rateImportMethod:'',rateImportDate:'',days:30,peakRate:0,offPeakRate:0,peakShare:0,smartThermostat:false,smartPlugs:false,smartLights:false,devices:[]};
+const HOUSEHOLD_VISUALS={
+ default:'./assets/k2e-internal-home-default-wide.png?v=wide1',
+ apartment:'./assets/k2e-internal-home-apartment-wide.png?v=wide1',
+ townhome:'./assets/k2e-internal-home-townhome-wide.png?v=wide1',
+ house:'./assets/k2e-internal-home-house-wide.png?v=wide1',
+ custom:'./assets/k2e-internal-home-custom-wide.png?v=wide1'
+};
 const TYPICAL_RATE=.18,TYPICAL_PEAK_RATE=.24,TYPICAL_OFFPEAK_RATE=.12,TYPICAL_PEAK_SHARE=40;
 function ensurePlanningRate(){if((Number(state.rate)||0)<=0){state.rate=TYPICAL_RATE;state.rateEstimated=true;state.rateSource='typical';state.rateImportName='';state.rateImportMethod='';state.rateImportDate=''}if((Number(state.peakRate)||0)<=0)state.peakRate=TYPICAL_PEAK_RATE;if((Number(state.offPeakRate)||0)<=0)state.offPeakRate=TYPICAL_OFFPEAK_RATE;if((Number(state.peakShare)||0)<=0)state.peakShare=TYPICAL_PEAK_SHARE;}
 let state=load();if(!state.home&&Array.isArray(state.devices)&&state.devices.length){state.home='custom';state.bedrooms=0}
@@ -558,7 +574,12 @@ function setDevicePicker(open){devicePicker.hidden=!open;addDevice.setAttribute(
 function deviceIcon(name){const n=String(name||'').toLowerCase();if(/fridge|freezer/.test(n))return '🧊';if(/microwave|oven|stove|dishwasher|air fryer/.test(n))return '🍽️';if(/coffee/.test(n))return '☕';if(/kettle/.test(n))return '🫖';if(/toaster/.test(n))return '🍞';if(/washer|dryer/.test(n))return '🧺';if(/iron/.test(n))return '♨️';if(/air conditioner/.test(n))return '❄️';if(/space heater|water heater/.test(n))return '🔥';if(/fan/.test(n))return '🌀';if(/dehumidifier|humidifier/.test(n))return '💧';if(/tv/.test(n))return '📺';if(/playstation|game console/.test(n))return '🎮';if(/soundbar|smart speaker/.test(n))return '🔊';if(/streaming box|router/.test(n))return '📡';if(/desktop|monitor/.test(n))return '🖥️';if(/laptop/.test(n))return '💻';if(/printer/.test(n))return '🖨️';if(/lights/.test(n))return '💡';if(/vacuum/.test(n))return '🧹';if(/hair dryer/.test(n))return '💨';if(/charger/.test(n))return '🔌';if(/security camera/.test(n))return '📷';return '⚙️'}
 function isTypicalDevice(d){const c=catalog[d.name];return !!(c&&Math.abs(Number(d.w)-c.w)<.01&&Math.abs(Number(d.h)-c.h)<.01&&Math.abs(Number(d.d)-c.d*100)<.01)}
 function renderTable(){deviceTable.innerHTML=state.devices.length?state.devices.map(d=>`<tr data-id="${d.id}"><td><div class="device-name-cell"><span class="device-icon" aria-hidden="true">${deviceIcon(d.name)}</span><div class="device-name-stack"><input data-key="name" aria-label="Device name" value="${String(d.name).replace(/"/g,'&quot;')}">${isTypicalDevice(d)?'<span class="typical-badge">Typical preset</span>':''}</div></div></td><td><input class="device-input-watts" data-key="w" aria-label="Watts" type="number" min="0" value="${d.w}"></td><td><input class="device-input-hours" data-key="h" aria-label="Hours per day" type="number" min="0" max="24" step=".1" value="${d.h}"></td><td><input class="device-input-qty" data-key="q" aria-label="Quantity" type="number" min="1" max="99" value="${d.q}"></td><td><input class="device-input-duty" data-key="d" aria-label="Duty cycle percent" type="number" min="0" max="100" value="${d.d}"></td><td class="device-monthly">${monthly(d).toFixed(1)}</td><td><button class="danger device-remove" data-remove="${d.id}" type="button" aria-label="Remove ${String(d.name).replace(/"/g,'&quot;')}">Remove</button></td></tr>`).join(''):'<tr><td class="device-empty-cell" colspan="7"><strong>No devices added yet</strong><span>Choose a home preset above or use “+ Add device” to build your household manually.</span></td></tr>'}
-function applyHouseholdAccent(){if(state.home){document.documentElement.dataset.household=state.home}else{delete document.documentElement.dataset.household}}
+function applyHouseholdAccent(){
+ const household=Object.hasOwn(HOUSEHOLD_VISUALS,state.home)?state.home:'default';
+ if(household!=='default'){document.documentElement.dataset.household=household}else{delete document.documentElement.dataset.household}
+ const artwork=document.getElementById('internalArtwork');
+ if(artwork){artwork.src=HOUSEHOLD_VISUALS[household];artwork.dataset.householdVisual=household}
+}
 function render(){
  applyHouseholdAccent();
  const hasHousehold=!!(state.home||(Array.isArray(state.devices)&&state.devices.length)||state.rateSource==='imported');globalReset.hidden=false;globalReset.disabled=!hasHousehold;globalReset.setAttribute('aria-disabled',String(!hasHousehold));if(!hasHousehold){globalReset.textContent='Start over';globalReset.dataset.confirm='false'}if(resetAll)resetAll.hidden=!hasHousehold;
@@ -672,7 +693,26 @@ function requestGlobalReset(){
  globalResetConfirmTimer=setTimeout(clearGlobalResetConfirm,2600);
 }
 resetAll.addEventListener('click',startOver);globalReset.addEventListener('click',requestGlobalReset);
-downloadData.addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='K2E-home-plan.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)});
+const BACKUP_FORMAT='k2e-local-backup',BACKUP_VERSION=1,BACKUP_MAX_BYTES=2*1024*1024;
+const BACKUP_KEYS=new Set(['k2e-v2-state','k2e-v2-history','k2e-v2-goal','k2e-v2-season-forecast','k2e-v2-missions','k2e-v2-solar-source','k2e-v2-measurements']);
+let pendingBackup=null;
+function localBackupStorage(){const storage={};BACKUP_KEYS.forEach(key=>{const value=localStorage.getItem(key);if(value!==null)storage[key]=value});return storage}
+function setBackupStatus(message,type=''){backupStatus.className=`backup-status${type?` ${type}`:''}`;backupStatus.textContent=message}
+function downloadJson(data,name){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+function validateBackup(data){
+ if(!data||typeof data!=='object'||Array.isArray(data)||data.format!==BACKUP_FORMAT||data.version!==BACKUP_VERSION)throw new Error('This is not a supported K2E full backup.');
+ if(!data.storage||typeof data.storage!=='object'||Array.isArray(data.storage))throw new Error('This backup does not contain K2E household data.');
+ const entries=Object.entries(data.storage);if(!entries.length||entries.length>BACKUP_KEYS.size)throw new Error('This backup has an invalid data set.');
+ for(const [key,value] of entries){if(!BACKUP_KEYS.has(key)||typeof value!=='string'||value.length>1024*1024)throw new Error('This backup contains an unsupported or oversized entry.');try{JSON.parse(value)}catch{throw new Error('This backup contains damaged data.')}}
+ const core=data.storage['k2e-v2-state'];if(typeof core!=='string')throw new Error('This backup is missing the household plan.');
+ const restored=JSON.parse(core);if(!restored||restored.stateSchema!==STATE_SCHEMA||!Array.isArray(restored.devices)||restored.devices.length>250)throw new Error('This backup was created by an incompatible K2E release.');
+ for(const device of restored.devices){if(!device||typeof device.name!=='string'||device.name.length>120||![device.w,device.h,device.q,device.d].every(Number.isFinite)||device.w<0||device.w>100000||device.h<0||device.h>24||device.q<0||device.q>1000||device.d<0||device.d>100)throw new Error('This backup contains an invalid device record.');}
+ return entries;
+}
+downloadData.addEventListener('click',()=>{save();const createdAt=new Date().toISOString();downloadJson({format:BACKUP_FORMAT,version:BACKUP_VERSION,appVersion:'2.0.0-rc.45',createdAt,storage:localBackupStorage()},`K2E-full-backup-${createdAt.slice(0,10)}.json`);setBackupStatus('Full backup created locally. Keep the downloaded file somewhere you control.','success')});
+chooseBackup.addEventListener('click',()=>backupFile.click());
+backupFile.addEventListener('change',async()=>{pendingBackup=null;confirmRestore.hidden=true;const file=backupFile.files&&backupFile.files[0];if(!file)return;try{if(file.size===0)throw new Error('This backup file is empty.');if(file.size>BACKUP_MAX_BYTES)throw new Error('This backup is larger than 2 MB and was not opened.');const data=JSON.parse(await file.text());validateBackup(data);pendingBackup=data;const date=data.createdAt?new Date(data.createdAt).toLocaleString('en-CA'):'date unavailable';setBackupStatus(`Ready to restore ${file.name} (${date}). Restoring will replace the current K2E household data. Nothing has changed yet.`,'success');confirmRestore.hidden=false}catch(err){setBackupStatus(err.message||'This backup could not be read.','error');backupFile.value=''}});
+confirmRestore.addEventListener('click',()=>{if(!pendingBackup)return;const rollback=localBackupStorage();try{const entries=validateBackup(pendingBackup);BACKUP_KEYS.forEach(key=>localStorage.removeItem(key));entries.forEach(([key,value])=>localStorage.setItem(key,value));setBackupStatus('Backup restored. Reloading K2E…','success');confirmRestore.hidden=true;setTimeout(()=>location.reload(),350)}catch(err){BACKUP_KEYS.forEach(key=>localStorage.removeItem(key));Object.entries(rollback).forEach(([key,value])=>localStorage.setItem(key,value));setBackupStatus(`${err.message||'Restore failed.'} Your previous household data was kept.`,'error')}});
 downloadReport.addEventListener('click',()=>{const list=sorted(),kwh=total(),text=[`K2E Home Energy Summary`,`Household: ${state.home==='custom'?'Custom household':`${state.bedrooms}-bedroom ${homeName(state.home)}`}`,`People: ${state.people}`,`Monthly energy: ${kwh.toFixed(1)} kWh`,`Estimated cost: ${money(kwh*state.rate)}`,`Largest loads: ${list.slice(0,3).map(x=>x.name).join(', ')||'None'}`].join('\n');const blob=new Blob([text],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='K2E-summary.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)});
 setTheme(state.theme);render();updateShellClock();setInterval(updateShellClock,60000);setSidebarActive(state.step===1?'setup':'estimate');
 })();
