@@ -141,3 +141,9 @@ html:not([data-theme="light"]) .visual-stage::before{content:none!important;disp
   background:var(--panel2);
   box-shadow:0 1px 0 var(--line);
 }
+
+/* Only narrow layouts need the sideways-scroll hint. */
+[data-adv-section="devices"] .mobile-scroll-cue{display:none}
+@media(max-width:1024px){
+  [data-adv-section="devices"] .mobile-scroll-cue{display:block}
+}
