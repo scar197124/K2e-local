@@ -119,3 +119,25 @@ html:not([data-theme="light"]) .visual-stage::before{content:none!important;disp
   .estimate-top{padding:11px 10px 9px}.estimate-body{padding:10px}.estimate-quality,.estimate-details,.simple-chart{margin-top:7px}
   .workspace-shell{margin-top:6px;padding:10px}.workspace-header{margin-bottom:5px}.adv-section{margin-top:7px}.workspace-card>header{padding:9px 10px}.scroll-body,.scroll-body.compact,.scroll-body.tall{padding:9px 10px}
 }
+
+/* Keep the device column labels visible while the device list scrolls. */
+[data-adv-section="devices"] .scroll-body.tall{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden!important;
+}
+[data-adv-section="devices"] .mobile-scroll-cue{flex:0 0 auto}
+[data-adv-section="devices"] .table-wrap{
+  flex:1 1 auto;
+  min-height:0;
+  overflow:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+[data-adv-section="devices"] .table-wrap thead th{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:var(--panel2);
+  box-shadow:0 1px 0 var(--line);
+}

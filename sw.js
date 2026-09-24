@@ -1,7 +1,7 @@
-const CACHE_NAME = 'k2e-local-v2.0.0-rc.45-internal-wide1';
+const CACHE_NAME = 'k2e-local-v2.0.0-rc.45-device-header-icon1';
 const APP_SHELL = [
   './','./index.html','./app.html','./manifest.json','./robots.txt','./sitemap.xml',
-  './icon-192.png','./icon-512.png',
+  './icon-192.png','./icon-512.png','./apple-touch-icon.png',
   './assets/k2e-local-brand-night.png','./assets/k2e-local-social-preview.png','./assets/k2e-local-home-visual-locked-dark-wide.jpg','./assets/k2e-local-home-visual-live-light.png','./assets/k2e-landing-locked.png','./assets/k2e-internal-home-default-wide.png','./assets/k2e-internal-home-apartment-wide.png','./assets/k2e-internal-home-townhome-wide.png','./assets/k2e-internal-home-house-wide.png','./assets/k2e-internal-home-custom-wide.png','./assets/k2e-logo-horizontal-dark.png','./assets/k2e-logo-horizontal-light.png',
   './assets/chart.umd.js',
   './assets/k2e-evolution-rc38.css','./assets/k2e-evolution-rc38.js',
