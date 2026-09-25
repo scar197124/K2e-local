@@ -1,6 +1,6 @@
 # K2E Local
 
-![K2E Local — Home energy planning artwork](assets/k2e-local-home-visual-live-dark.png)
+<img src="assets/k2e-local-home-visual-live-dark.png" alt="K2E Local — Home energy planning artwork" width="480">
 
 **Kilowatts to Efficiency**
 
