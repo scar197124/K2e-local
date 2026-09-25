@@ -1,6 +1,6 @@
 # K2E Local
 
-![K2E Local — Plan household energy privately and offline](assets/k2e-local-social-preview.png)
+![K2E Local — Home energy planning artwork](assets/k2e-local-home-visual-live-dark.png)
 
 **Kilowatts to Efficiency**
 
@@ -119,7 +119,7 @@ No open-source license has been selected. Add a `LICENSE` file before inviting u
 
 Current recommended asset: `assets/k2e-local-social-preview.png`.
 
-The README banner and site social metadata use the same approved artwork so the project presents consistently on GitHub and when shared.
+The site social metadata uses this share preview. The README displays the house energy artwork used on the live K2E Local landing page.
 
 
 ## Interface notes
