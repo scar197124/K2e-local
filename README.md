@@ -2,6 +2,8 @@
 
 <img src="assets/k2e-local-home-visual-live-dark.png" alt="K2E Local — Home energy planning artwork" width="480">
 
+*Illustrative artwork — K2E estimates usage from the details you enter.*
+
 **Kilowatts to Efficiency**
 
 K2E Local is a local-first household energy simulator for planning electricity use, estimating costs, comparing scenarios, and reviewing appliance insights privately on your device.
