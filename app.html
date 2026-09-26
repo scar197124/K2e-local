@@ -300,6 +300,86 @@ html[data-household] .footer{border-top-color:color-mix(in srgb,var(--household-
 @media(max-width:900px){.overview-grid .welcome-panel{display:block}.hero-artwork{width:min(100%,520px);margin-left:auto}}
 @media(max-width:760px){.welcome-copy{padding:16px 14px 12px}}
 
+/* Stronger panel outlines, using the selected home's existing accent color. */
+.topbar,.welcome-panel,.visual-panel,.surface-card,.workspace-shell,.workspace-card,.step{
+  border-width:2px;
+  border-color:color-mix(in srgb,var(--accent2) 62%,var(--line));
+}
+.field,.home-summary,.preset-note,.metric,.estimate-quality,.simple-chart,.estimate-fact,
+.table-wrap,.utility-import,.import-summary,.backup-panel,.advanced-nav button{
+  border-width:1.5px;
+  border-color:color-mix(in srgb,var(--accent2) 40%,var(--line));
+}
+.workspace-card>header,.estimate-top{border-bottom-width:2px;border-bottom-color:color-mix(in srgb,var(--accent2) 50%,var(--line))}
+html[data-household] .topbar,html[data-household] .welcome-panel,html[data-household] .visual-panel,
+html[data-household] .surface-card,html[data-household] .workspace-shell,html[data-household] .workspace-card,
+html[data-household] .step{border-color:color-mix(in srgb,var(--household-accent) 82%,var(--line))}
+html[data-household] .field,html[data-household] .home-summary,html[data-household] .preset-note,
+html[data-household] .metric,html[data-household] .estimate-quality,html[data-household] .simple-chart,
+html[data-household] .estimate-fact,html[data-household] .table-wrap,html[data-household] .utility-import,
+html[data-household] .import-summary,html[data-household] .backup-panel,
+html[data-household] .advanced-nav button{border-color:color-mix(in srgb,var(--household-accent) 60%,var(--line))}
+html[data-household] .workspace-card>header,html[data-household] .estimate-top{
+  border-bottom-color:color-mix(in srgb,var(--household-accent) 70%,var(--line));
+}
+[data-theme="light"] .topbar,[data-theme="light"] .welcome-panel,[data-theme="light"] .visual-panel,
+[data-theme="light"] .surface-card,[data-theme="light"] .workspace-shell,[data-theme="light"] .workspace-card,
+[data-theme="light"] .step{border-color:#607f96}
+[data-theme="light"] .field,[data-theme="light"] .home-summary,[data-theme="light"] .preset-note,
+[data-theme="light"] .metric,[data-theme="light"] .estimate-quality,[data-theme="light"] .simple-chart,
+[data-theme="light"] .estimate-fact,[data-theme="light"] .table-wrap,[data-theme="light"] .utility-import,
+[data-theme="light"] .import-summary,[data-theme="light"] .backup-panel,
+[data-theme="light"] .advanced-nav button{border-color:#7895a9}
+[data-theme="light"][data-household] .topbar,[data-theme="light"][data-household] .welcome-panel,
+[data-theme="light"][data-household] .visual-panel,[data-theme="light"][data-household] .surface-card,
+[data-theme="light"][data-household] .workspace-shell,[data-theme="light"][data-household] .workspace-card,
+[data-theme="light"][data-household] .step{border-color:color-mix(in srgb,var(--household-accent) 82%,#506c81)}
+[data-theme="light"][data-household] .field,[data-theme="light"][data-household] .home-summary,
+[data-theme="light"][data-household] .preset-note,[data-theme="light"][data-household] .metric,
+[data-theme="light"][data-household] .estimate-quality,[data-theme="light"][data-household] .simple-chart,
+[data-theme="light"][data-household] .estimate-fact,[data-theme="light"][data-household] .table-wrap,
+[data-theme="light"][data-household] .utility-import,[data-theme="light"][data-household] .import-summary,
+[data-theme="light"][data-household] .backup-panel,[data-theme="light"][data-household] .advanced-nav button{
+  border-color:color-mix(in srgb,var(--household-accent) 64%,#6c879a);
+}
+
+/* Give each header status and action its own visible space. */
+.topbar-right{display:flex;align-items:center;justify-content:flex-end;gap:10px;min-width:0}
+.topbar-status,.topbar-actions{display:flex;align-items:center;flex-wrap:wrap;gap:7px}
+.topbar-actions{flex-wrap:nowrap}
+.topbar .status-pill{display:inline-flex;min-height:34px;padding:6px 10px;border:1.5px solid color-mix(in srgb,var(--accent2) 48%,var(--line));border-radius:10px;background:color-mix(in srgb,var(--panel2) 86%,var(--panel));white-space:nowrap}
+.topbar #shellClock{padding:6px 10px;border:1.5px solid color-mix(in srgb,var(--accent2) 48%,var(--line))}
+.topbar-actions .ghost{min-height:34px;border-width:1.5px;border-color:color-mix(in srgb,var(--accent2) 52%,var(--line))}
+html[data-household] .topbar .status-pill,html[data-household] .topbar #shellClock,
+html[data-household] .topbar-actions .ghost{border-color:color-mix(in srgb,var(--household-accent) 62%,var(--line))}
+[data-theme="light"] .topbar .status-pill,[data-theme="light"] .topbar #shellClock,
+[data-theme="light"] .topbar-actions .ghost{border-color:#7895a9;background:#fff}
+[data-theme="light"][data-household] .topbar .status-pill,
+[data-theme="light"][data-household] .topbar #shellClock,
+[data-theme="light"][data-household] .topbar-actions .ghost{
+  border-color:color-mix(in srgb,var(--household-accent) 68%,#66859b);
+}
+@media(max-width:760px){
+  .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center}
+  .brand-block{grid-column:1;grid-row:1}
+  .brand-logo{width:min(140px,34vw)}
+  .topbar-right{display:contents!important}
+  .topbar-actions{grid-column:2;grid-row:1;gap:5px}
+  .topbar-status{grid-column:1/-1;grid-row:2;justify-content:flex-start;gap:5px}
+  .topbar .status-pill,.topbar #shellClock{display:inline-flex!important;min-height:28px;padding:4px 7px;font-size:10px}
+  .topbar-actions #themeBtn,.topbar-actions #globalReset{min-height:34px;padding:5px 7px;font-size:10px}
+}
+
+.adv-section .workspace-card{position:relative}
+.adv-section .workspace-card.has-scroll-more::after{
+  content:"Scroll for more ↓";
+  position:absolute;bottom:0;left:0;right:0;z-index:5;pointer-events:none;
+  padding:17px 12px 7px;text-align:center;font-size:12px;font-weight:900;
+  color:var(--accent2);background:linear-gradient(transparent,var(--panel) 64%);
+}
+html[data-household] .workspace-card.has-scroll-more::after{color:var(--household-accent)}
+[data-theme="light"] .workspace-card.has-scroll-more::after{background:linear-gradient(transparent,#fff 64%)}
+
 </style>
 </head>
 <body>
@@ -313,12 +393,16 @@ html[data-household] .footer{border-top-color:color-mix(in srgb,var(--household-
     </div>
   </div>
   <div class="topbar-right">
-    <span class="status-pill quantrae-status">Quantrae · Local only</span>
-    <span class="status-pill">No account</span>
-    <span class="status-pill">Private by design</span>
-    <div class="status-pill" id="shellClock" aria-live="polite"></div>
-    <button class="ghost" id="themeBtn" type="button">Light mode</button>
-    <button class="ghost" id="globalReset" type="button" title="Clear this household and start again">Start over</button>
+    <div class="topbar-status">
+      <span class="status-pill quantrae-status">Quantrae · Local only</span>
+      <span class="status-pill">No account</span>
+      <span class="status-pill">Private by design</span>
+      <div class="status-pill" id="shellClock" aria-live="polite"></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="ghost" id="themeBtn" type="button">Light mode</button>
+      <button class="ghost" id="globalReset" type="button" title="Clear this household and start again">Start over</button>
+    </div>
   </div>
 </header>
 
@@ -503,14 +587,17 @@ function bedroomLimit(home){return home==='apartment'?3:home==='townhome'?4:home
 function defaultBedrooms(home){return home==='apartment'?1:home==='townhome'?2:home==='house'?3:0}
 function homeName(home){return home==='custom'?'Custom household':presets.find(x=>x.id===home)?.name||'Household'}
 function recommendedNames(home){if(home==='custom')return [];const names=[...groups.essentials,'Wi‑Fi Router','TV'];if(state.people>1)names.push('Laptop');if(home!=='apartment')names.push('Dryer','Dishwasher');if(home==='house')names.push('Electric Water Heater');return [...new Set(names)]}
-function seedDevices(home){return recommendedNames(home).map(name=>{const c=catalog[name],q=name==='Lights'?Math.max(2,state.bedrooms*2):name==='TV'?Math.max(1,Math.ceil(state.people/2)):name==='Laptop'?Math.max(1,state.people):1;return {id:crypto.randomUUID(),name,w:c.w,h:c.h,q,d:c.d*100}})}
+function lightCount(){return 2+state.bedrooms*2+state.people}
+function seedDevices(home){return recommendedNames(home).map(name=>{const c=catalog[name],q=name==='Lights'?lightCount():name==='TV'?Math.max(1,Math.ceil(state.people/2)):name==='Laptop'?Math.max(1,state.people):1;return {id:crypto.randomUUID(),name,w:c.w,h:c.h,q,d:c.d*100}})}
+function isUntouchedPreset(){if(!state.home||state.home==='custom')return false;const expected=seedDevices(state.home);return state.devices.length===expected.length&&expected.every((d,i)=>['name','w','h','q','d'].every(key=>state.devices[i][key]===d[key]))}
+function isLegacyAccumulatedPreset(){if(!state.home||state.home==='custom'||state.bedrooms||state.people)return false;const names=new Set(recommendedNames('house'));const seen=new Set();return state.devices.length>=recommendedNames('apartment').length&&state.devices.every(d=>{const c=catalog[d.name];if(!names.has(d.name)||!c||seen.has(d.name)||d.w!==c.w||d.h!==c.h||d.q!==(d.name==='Lights'?2:1)||d.d!==c.d*100)return false;seen.add(d.name);return true})&&recommendedNames('apartment').every(name=>seen.has(name))}
 function chooseHome(id){
  if(id==='custom'){
   state.home='custom';state.bedrooms=0;ensurePlanningRate();save();render();return;
  }
- const existingCount=state.devices.length;
+ const replacePreset=!state.devices.length||isUntouchedPreset()||isLegacyAccumulatedPreset();
  state.home=id;state.bedrooms=0;ensurePlanningRate();
- if(!existingCount){
+ if(replacePreset){
   state.devices=seedDevices(id);
  }else{
   const existing=new Set(state.devices.map(d=>String(d.name).toLowerCase()));
@@ -519,7 +606,7 @@ function chooseHome(id){
  }
  save();render();
 }
-function setBedrooms(value){const next=Number(value)||0;state.bedrooms=next?Math.max(1,Math.min(bedroomLimit(state.home),next)):0;const lights=state.devices.find(d=>d.name==='Lights');if(lights&&state.bedrooms)lights.q=Math.max(2,state.bedrooms*2);save();render()}
+function setBedrooms(value){const wasPreset=isUntouchedPreset(),next=Number(value)||0;state.bedrooms=next?Math.max(1,Math.min(bedroomLimit(state.home),next)):0;if(wasPreset)state.devices=seedDevices(state.home);else{const lights=state.devices.find(d=>d.name==='Lights');if(lights)lights.q=lightCount()}save();render()}
 function setStep(n){state.step=Math.max(1,Math.min(2,n));save();document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('active',Number(x.dataset.screen)===state.step));document.querySelectorAll('.step').forEach(x=>x.classList.toggle('active',Number(x.dataset.step)===state.step));setSidebarActive(state.step===1?'setup':'estimate')}
 function renderHome(){homeChoices.innerHTML=presets.map(p=>{const selected=state.home===p.id;return `<button class="choice ${selected?'selected':''}" data-home="${p.id}" type="button" aria-pressed="${selected}" aria-label="${p.name} home preset${selected?', selected':''}"><strong>${p.name}</strong><span>${p.desc}</span></button>`}).join('')}
 function sorted(){return [...state.devices].map(d=>({...d,kwh:monthly(d)})).sort((a,b)=>b.kwh-a.kwh)}
@@ -635,7 +722,15 @@ function render(){
  if(!state.devices.length){insightTitle.textContent='Build your household.';insightText.textContent='Choose a home preset or add devices manually to begin.'}
  else{insightTitle.textContent=state.home==='custom'?'Custom household':`${homeName(state.home)} · ${state.bedrooms} bedroom${state.bedrooms===1?'':'s'}`;insightText.textContent=`${list[0].name} uses the most energy and represents about ${Math.round((list[0].kwh/kwh)*100)||0}% of this estimate. Check its runtime first.`}
 }
-function activateEnergyTool(name){document.querySelectorAll('[data-adv-tab]').forEach(x=>{const active=x.dataset.advTab===name;x.classList.toggle('active',active);x.setAttribute('aria-selected',String(active))});document.querySelectorAll('[data-adv-section]').forEach(x=>x.classList.toggle('active',x.dataset.advSection===name));setSidebarActive(name)}openTools.addEventListener('click',()=>energyTools.scrollIntoView({behavior:'smooth',block:'start'}));document.querySelectorAll('[data-adv-tab]').forEach(btn=>btn.addEventListener('click',()=>{activateEnergyTool(btn.dataset.advTab);setDevicePicker(false)}));document.querySelectorAll('[data-shell-nav]').forEach(btn=>btn.addEventListener('click',()=>{if(btn.dataset.shellNav==='setup')goToSetupStep(1);if(btn.dataset.shellNav==='estimate')goToSetupStep(2)}));document.querySelectorAll('[data-shell-tool]').forEach(btn=>btn.addEventListener('click',()=>{activateEnergyTool(btn.dataset.shellTool);energyTools.scrollIntoView({behavior:'smooth',block:'start'});setDevicePicker(false)}));themeBtn.addEventListener('click',()=>setTheme(state.theme==='dark'?'light':'dark'));unknownRate.addEventListener('click',()=>{state.rate=TYPICAL_RATE;state.rateEstimated=true;state.rateSource='typical';state.rateImportName='';state.rateImportMethod='';state.rateImportDate='';save();render()});
+let scrollCueFrame=0;
+function updateScrollCues(){scrollCueFrame=0;document.querySelectorAll('.adv-section .workspace-card').forEach(card=>{const body=card.querySelector('.scroll-body');const active=card.closest('.adv-section')?.classList.contains('active');card.classList.toggle('has-scroll-more',!!(active&&body&&body.scrollHeight-body.clientHeight>8&&body.scrollTop+body.clientHeight<body.scrollHeight-8))})}
+function scheduleScrollCues(){if(!scrollCueFrame)scrollCueFrame=requestAnimationFrame(updateScrollCues)}
+document.querySelector('.workspace-shell').addEventListener('scroll',e=>{if(e.target.classList.contains('scroll-body'))scheduleScrollCues()},true);
+window.addEventListener('resize',scheduleScrollCues);
+window.addEventListener('load',scheduleScrollCues);
+window.addEventListener('k2e-state-changed',scheduleScrollCues);
+new MutationObserver(scheduleScrollCues).observe(document.querySelector('.workspace-shell'),{subtree:true,childList:true,characterData:true});
+function activateEnergyTool(name){document.querySelectorAll('[data-adv-tab]').forEach(x=>{const active=x.dataset.advTab===name;x.classList.toggle('active',active);x.setAttribute('aria-selected',String(active))});document.querySelectorAll('[data-adv-section]').forEach(x=>x.classList.toggle('active',x.dataset.advSection===name));setSidebarActive(name);scheduleScrollCues()}openTools.addEventListener('click',()=>energyTools.scrollIntoView({behavior:'smooth',block:'start'}));document.querySelectorAll('[data-adv-tab]').forEach(btn=>btn.addEventListener('click',()=>{activateEnergyTool(btn.dataset.advTab);setDevicePicker(false)}));document.querySelectorAll('[data-shell-nav]').forEach(btn=>btn.addEventListener('click',()=>{if(btn.dataset.shellNav==='setup')goToSetupStep(1);if(btn.dataset.shellNav==='estimate')goToSetupStep(2)}));document.querySelectorAll('[data-shell-tool]').forEach(btn=>btn.addEventListener('click',()=>{activateEnergyTool(btn.dataset.shellTool);energyTools.scrollIntoView({behavior:'smooth',block:'start'});setDevicePicker(false)}));themeBtn.addEventListener('click',()=>setTheme(state.theme==='dark'?'light':'dark'));unknownRate.addEventListener('click',()=>{state.rate=TYPICAL_RATE;state.rateEstimated=true;state.rateSource='typical';state.rateImportName='';state.rateImportMethod='';state.rateImportDate='';save();render()});
 
 function numbersFromText(text){return (text.match(/-?\d+(?:[.,]\d+)?/g)||[]).map(x=>Number(x.replace(',','.'))).filter(Number.isFinite)}
 function findNamedNumber(text,names){for(const name of names){const re=new RegExp(`${name}[^0-9-]{0,40}(-?\\d+(?:[.,]\\d+)?)`,'i'),m=text.match(re);if(m)return Number(m[1].replace(',','.'))}return null}
@@ -657,7 +752,7 @@ replaceUtility.addEventListener('click',()=>setUtilityOpen(true));
 clearUtility.addEventListener('click',()=>{if(state.home||state.devices.length){state.rate=TYPICAL_RATE;state.rateEstimated=true;state.rateSource='typical'}else{state.rate=0;state.rateEstimated=false;state.rateSource='manual'}state.rateImportName='';state.rateImportMethod='';state.rateImportDate='';utilityFile.value='';importStatus.className='import-status';importStatus.textContent='No file selected.';save();render();rate.focus()});
 utilityFile.addEventListener('change',async()=>{const file=utilityFile.files&&utilityFile.files[0];if(!file)return;importStatus.className='import-status';importStatus.textContent=`Reading ${file.name} locally…`;try{const ext=(file.name.split('.').pop()||'').toLowerCase(),allowed=['xml','csv','json'];if(!allowed.includes(ext))throw new Error('Choose an XML, CSV, or JSON utility file.');if(file.size>5*1024*1024)throw new Error('This file is larger than 5 MB. Export a smaller billing-history file and try again.');if(file.size===0)throw new Error('This file is empty. Choose a utility export that contains billing data.');const text=await file.text();const result=deriveImportedRate(text,file.name);if(!result)throw new Error('K2E could not find enough billing or rate information in this file.');state.rate=Number(result.rate.toFixed(4));state.rateEstimated=false;state.rateSource='imported';state.rateImportName=file.name;state.rateImportMethod=result.usage&&result.cost?`${money(result.cost)} ÷ ${Number(result.usage).toFixed(1)} kWh`:result.method;state.rateImportDate=new Date().toISOString();save();render();importStatus.className='import-status success';importStatus.textContent=`Imported ${money(state.rate)}/kWh. Compare this effective rate with your latest bill.`;setUtilityOpen(false)}catch(err){importStatus.className='import-status error';importStatus.textContent=err.message||'This file could not be read.'}});
 document.addEventListener('click',e=>{const h=e.target.closest('[data-home]');if(h)chooseHome(h.dataset.home);const n=e.target.closest('[data-next]');if(n)setStep(Number(n.dataset.next));const b=e.target.closest('[data-back]');if(b)setStep(Number(b.dataset.back));const r=e.target.closest('[data-remove]');if(r){state.devices=state.devices.filter(d=>d.id!==r.dataset.remove);save();render()}});
-document.addEventListener('change',e=>{if(e.target.id==='people'){state.people=Number(e.target.value);const tv=state.devices.find(d=>d.name==='TV'),lap=state.devices.find(d=>d.name==='Laptop');if(tv)tv.q=Math.max(1,Math.ceil(state.people/2));if(lap)lap.q=Math.max(1,state.people);save();render()}if(e.target.id==='bedrooms'){setBedrooms(e.target.value)}if(e.target.id==='rate'){state.rate=Math.max(0,Number(e.target.value)||0);state.rateEstimated=false;state.rateSource='manual';state.rateImportName='';state.rateImportMethod='';state.rateImportDate='';save();render()}if(e.target.id==='days'){state.days=Math.min(31,Math.max(28,Number(e.target.value)||30));save();render()}if(e.target.id==='peakRate'){state.peakRate=Math.max(0,Number(e.target.value)||0);save();render()}if(e.target.id==='offPeakRate'){state.offPeakRate=Math.max(0,Number(e.target.value)||0);save();render()}if(e.target.id==='peakShare'){state.peakShare=Math.min(100,Math.max(0,Number(e.target.value)||0));save();render()}if(e.target.id==='smartThermostat'){state.smartThermostat=e.target.checked;save();render()}if(e.target.id==='smartPlugs'){state.smartPlugs=e.target.checked;save();render()}if(e.target.id==='smartLights'){state.smartLights=e.target.checked;save();render()}if(e.target.closest('#deviceTable')&&e.target.dataset.key){const row=e.target.closest('tr'),d=state.devices.find(x=>x.id===row.dataset.id);if(d){d[e.target.dataset.key]=e.target.dataset.key==='name'?e.target.value:Number(e.target.value);save();render()}}});
+document.addEventListener('change',e=>{if(e.target.id==='people'){const wasPreset=isUntouchedPreset();state.people=Number(e.target.value);if(wasPreset)state.devices=seedDevices(state.home);else{const lights=state.devices.find(d=>d.name==='Lights'),tv=state.devices.find(d=>d.name==='TV'),lap=state.devices.find(d=>d.name==='Laptop');if(lights)lights.q=lightCount();if(tv)tv.q=Math.max(1,Math.ceil(state.people/2));if(lap)lap.q=Math.max(1,state.people)}save();render()}if(e.target.id==='bedrooms'){setBedrooms(e.target.value)}if(e.target.id==='rate'){state.rate=Math.max(0,Number(e.target.value)||0);state.rateEstimated=false;state.rateSource='manual';state.rateImportName='';state.rateImportMethod='';state.rateImportDate='';save();render()}if(e.target.id==='days'){state.days=Math.min(31,Math.max(28,Number(e.target.value)||30));save();render()}if(e.target.id==='peakRate'){state.peakRate=Math.max(0,Number(e.target.value)||0);save();render()}if(e.target.id==='offPeakRate'){state.offPeakRate=Math.max(0,Number(e.target.value)||0);save();render()}if(e.target.id==='peakShare'){state.peakShare=Math.min(100,Math.max(0,Number(e.target.value)||0));save();render()}if(e.target.id==='smartThermostat'){state.smartThermostat=e.target.checked;save();render()}if(e.target.id==='smartPlugs'){state.smartPlugs=e.target.checked;save();render()}if(e.target.id==='smartLights'){state.smartLights=e.target.checked;save();render()}if(e.target.closest('#deviceTable')&&e.target.dataset.key){const row=e.target.closest('tr'),d=state.devices.find(x=>x.id===row.dataset.id);if(d){d[e.target.dataset.key]=e.target.dataset.key==='name'?e.target.value:Number(e.target.value);save();render()}}});
 addDevice.addEventListener('click',()=>setDevicePicker(devicePicker.hidden));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!devicePicker.hidden){setDevicePicker(false);addDevice.focus()}});document.addEventListener('click',e=>{if(!devicePicker.hidden&&!devicePicker.contains(e.target)&&e.target!==addDevice){setDevicePicker(false)}});cancelAddDevice.addEventListener('click',()=>setDevicePicker(false));devicePresetSelect.addEventListener('change',updateDevicePresetPreview);confirmAddDevice.addEventListener('click',()=>{const name=devicePresetSelect.value;if(!state.home){state.home='custom';state.bedrooms=0}ensurePlanningRate();if(name==='__custom__'){state.devices.push({id:crypto.randomUUID(),name:'Custom device',w:100,h:1,q:1,d:100})}else{const c=catalog[name];state.devices.push({id:crypto.randomUUID(),name,w:c.w,h:c.h,q:1,d:c.d*100})}save();render();setDevicePicker(false);activateEnergyTool('devices')});
 function clearK2EPlanningData(){
  try{localStorage.removeItem('k2e-v2-state')}catch{}

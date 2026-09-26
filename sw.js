@@ -31,7 +31,12 @@ self.addEventListener('fetch', event => {
         caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
       }
       return response;
-    }).catch(() => caches.match(request).then(hit => hit || (request.mode === 'navigate' ? caches.match('./app.html') || caches.match('./index.html') : undefined))));
+    }).catch(async () => {
+      const hit = await caches.match(request);
+      if (hit || request.mode !== 'navigate') return hit;
+      const path = new URL(request.url).pathname;
+      return caches.match(path.endsWith('/app.html') ? './app.html' : './index.html');
+    }));
     return;
   }
 
