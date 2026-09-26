@@ -133,7 +133,7 @@ The site social metadata uses this share preview. The README displays the house 
 
 ### Blank-start behavior
 
-A fresh RC45 session and **Start over** now begin with no selected home type, no sleeping-room selection, no people selection, a $0.00/kWh manual rate, no devices, 0.0 kWh monthly energy, and $0.00 estimated cost. The sleeping-room selector remains disabled until a home type is chosen. Custom allows up to six sleeping rooms without adding devices automatically. This build also uses a blank-start state schema so stale household data from earlier RC45 previews is not silently restored on first load.
+A fresh RC45 session and **Start over** now begin with no selected home type, no sleeping-room selection, no people selection, a $0.00/kWh manual rate, no devices, 0.0 kWh monthly energy, and $0.00 estimated cost. The sleeping-room selector remains disabled until a home type is chosen. Selecting Custom starts a blank household with zero energy and cost, clears the current setup's devices and rate, and lets the user choose up to six sleeping rooms before adding devices manually. This build also uses a blank-start state schema so stale household data from earlier RC45 previews is not silently restored on first load.
 
 - All internal views share the same local household state: the main estimate, Top Energy Users, Home Pulse, Advisor, Forecast, Smart Energy Hub, Goals, and reports refresh together after household changes.
 

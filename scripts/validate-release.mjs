@@ -145,14 +145,15 @@ requireText(app, 'device-input-hours', 'Compact hours/day field styling is missi
 requireText(app, 'max=\"24\"', 'Hours/day field is not bounded to 24 hours');
 requireText(app, 'device-input-qty', 'Compact quantity field styling is missing');
 
-if (/Start empty/i.test(app)) throw new Error('Duplicate Start Empty option remains in app.html');
+if (/\{id:'empty',name:'Start empty'/i.test(app)) throw new Error('Duplicate Start Empty home choice remains in app.html');
 requireText(app, "state.home='custom';state.bedrooms=0", 'Manual first-device entry does not activate Custom household');
 requireText(app, 'Custom household', 'Custom household state/copy is missing');
 requireText(app, 'Home presets are optional', 'Optional home-preset guidance is missing');
-requireText(app, "{id:'custom',name:'Custom',desc:'Build your setup manually'}", 'Visible Custom home choice is missing');
+requireText(app, "{id:'custom',name:'Custom',desc:'Start empty and add your own devices'}", 'Visible Custom home choice is missing');
 requireText(app, '.choice[data-home=\"custom\"]', 'Custom home accent styling is missing');
 requireText(app, '@media(min-width:761px){.choice-grid{grid-template-columns:repeat(4', 'Four-choice desktop home row is missing');
 requireText(app, "if(id==='custom')", 'Custom choice handling is missing');
+requireText(app, "state={...defaultState,theme:state.theme,step:1,home:'custom',devices:[]}", 'Custom selection must start with a blank household');
 requireText(app, "home==='custom'?6:0", 'Custom bedroom range is missing');
 requireText(app, 'bedrooms.disabled=!state.home', 'Custom bedroom selection is disabled');
 requireText(app, "else if(state.home!=='custom')", 'Custom bedroom changes must not alter manual devices');

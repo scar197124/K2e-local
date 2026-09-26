@@ -548,7 +548,7 @@ const presets=[
  {id:'apartment',name:'Apartment',desc:'Start with a typical apartment setup'},
  {id:'townhome',name:'Townhouse',desc:'Start with a typical townhouse setup'},
  {id:'house',name:'House',desc:'Start with a typical detached-home setup'},
- {id:'custom',name:'Custom',desc:'Build your setup manually'}
+ {id:'custom',name:'Custom',desc:'Start empty and add your own devices'}
 ];
 const catalog={
  'Fridge':{w:150,h:24,d:.35,cat:'Kitchen'},'Freezer':{w:120,h:24,d:.35,cat:'Kitchen'},'Microwave':{w:1200,h:.25,d:1,cat:'Kitchen'},'Electric Oven':{w:2400,h:1,d:1,cat:'Kitchen'},'Electric Stove':{w:1800,h:1,d:1,cat:'Kitchen'},'Dishwasher':{w:1400,h:1,d:1,cat:'Kitchen'},'Coffee Maker':{w:900,h:.25,d:1,cat:'Kitchen'},'Electric Kettle':{w:1500,h:.15,d:1,cat:'Kitchen'},'Toaster':{w:1000,h:.1,d:1,cat:'Kitchen'},'Air Fryer':{w:1500,h:.5,d:1,cat:'Kitchen'},
@@ -594,7 +594,7 @@ function isUntouchedPreset(){if(!state.home||state.home==='custom')return false;
 function isLegacyAccumulatedPreset(){if(!state.home||state.home==='custom'||state.bedrooms||state.people)return false;const names=new Set(recommendedNames('house'));const seen=new Set();return state.devices.length>=recommendedNames('apartment').length&&state.devices.every(d=>{const c=catalog[d.name];if(!names.has(d.name)||!c||seen.has(d.name)||d.w!==c.w||d.h!==c.h||d.q!==(d.name==='Lights'?2:1)||d.d!==c.d*100)return false;seen.add(d.name);return true})&&recommendedNames('apartment').every(name=>seen.has(name))}
 function chooseHome(id){
  if(id==='custom'){
-  state.home='custom';state.bedrooms=Math.min(state.bedrooms,bedroomLimit('custom'));ensurePlanningRate();save();render();return;
+  state={...defaultState,theme:state.theme,step:1,home:'custom',devices:[]};save();render();return;
  }
  const replacePreset=!state.devices.length||isUntouchedPreset()||isLegacyAccumulatedPreset();
  state.home=id;state.bedrooms=0;ensurePlanningRate();
@@ -680,7 +680,7 @@ function render(){
  bedrooms.disabled=!state.home;bedrooms.innerHTML=state.home?'<option value="0">Select sleeping rooms (optional)</option>'+Array.from({length:maxBeds},(_,i)=>`<option value="${i+1}">${i+1} sleeping room${i?'s':''}</option>`).join(''):'<option value="0">Select home type first</option>';
  if(state.home){bedrooms.value=String(state.bedrooms||0)}
  homeSummary.innerHTML=isCustom?`<strong>Custom household</strong> · ${state.bedrooms?`${state.bedrooms} sleeping room${state.bedrooms===1?'':'s'}`:'sleeping rooms optional'} · ${state.people?`${state.people} ${state.people===1?'person':'people'}`:'people optional'} · ${state.devices.length} device${state.devices.length===1?'':'s'} modeled manually.`:state.home?`<strong>${homeName(state.home)}</strong> · ${state.bedrooms?`${state.bedrooms} sleeping room${state.bedrooms===1?'':'s'}`:'choose sleeping rooms'} · ${state.people?`${state.people} ${state.people===1?'person':'people'}`:'choose people'}.`:'<strong>No preset selected.</strong> Choose Apartment, Townhouse, House, or Custom to begin.';
- presetNote.innerHTML=isCustom?'<strong>Custom setup active</strong><span>Sleeping rooms and people describe your home. Add devices to build its energy estimate.</span>':state.home?`<strong>Recommended setup ready</strong><span>${state.devices.length} common devices included. Fine-tune them anytime in Device Controls.</span>`:'<strong>Home presets are optional</strong><span>Choose one for common devices, or build your household manually.</span>';
+ presetNote.innerHTML=isCustom?'<strong>Custom starts empty</strong><span>Choose sleeping rooms and people if useful, then add devices to build an energy estimate. Selecting Custom again starts fresh.</span>':state.home?`<strong>Recommended setup ready</strong><span>${state.devices.length} common devices included. Fine-tune them anytime in Device Controls.</span>`:'<strong>Home presets are optional</strong><span>Choose one for common devices, or build your household manually.</span>';
  setStep(state.step||1);renderHome();renderTable();renderBars('simpleBars');renderBars('advancedBars');renderSavings();
  const coreSummary=renderCoreSummary(),kwh=coreSummary.kwh,cost=coreSummary.cost,list=coreSummary.list;deviceCount.textContent=`${state.devices.length} device${state.devices.length===1?'':'s'}`;deviceTabCount.textContent=state.devices.length;
  const climateLoads=list.filter(d=>/air conditioner|space heater|heat pump|furnace/i.test(d.name));
