@@ -23,7 +23,7 @@ K2E Local is a local-first household energy simulator for planning electricity u
 
 ## One guided application
 
-K2E Local now uses one connected experience instead of separate modes. The redesigned internal interface keeps the original low-friction setup — Apartment, Townhouse, House, or Custom; bedrooms; household size; and electricity rate — then reveals deeper tools only when the user asks for them.
+K2E Local now uses one connected experience instead of separate modes. The redesigned internal interface keeps the original low-friction setup — Apartment, Townhouse, House, or Custom; sleeping rooms (including rooms rented for sleeping); household size; and electricity rate — then reveals deeper tools only when the user asks for them.
 
 The internal presentation has been refreshed to match the new K2E Local front door while preserving the existing household model, calculations, persistence, device logic, forecast, timeline, goals, advisor, smart-home planning, and reporting behavior.
 
@@ -133,7 +133,7 @@ The site social metadata uses this share preview. The README displays the house 
 
 ### Blank-start behavior
 
-A fresh RC45 session and **Start over** now begin with no selected home type, no bedroom selection, no people selection, a $0.00/kWh manual rate, no devices, 0.0 kWh monthly energy, and $0.00 estimated cost. The bedroom selector remains disabled until Apartment, Townhouse, or House is chosen. This build also uses a blank-start state schema so stale household data from earlier RC45 previews is not silently restored on first load.
+A fresh RC45 session and **Start over** now begin with no selected home type, no sleeping-room selection, no people selection, a $0.00/kWh manual rate, no devices, 0.0 kWh monthly energy, and $0.00 estimated cost. The sleeping-room selector remains disabled until a home type is chosen. Custom allows up to six sleeping rooms without adding devices automatically. This build also uses a blank-start state schema so stale household data from earlier RC45 previews is not silently restored on first load.
 
 - All internal views share the same local household state: the main estimate, Top Energy Users, Home Pulse, Advisor, Forecast, Smart Energy Hub, Goals, and reports refresh together after household changes.
 
