@@ -153,6 +153,9 @@ requireText(app, "{id:'custom',name:'Custom',desc:'Build your setup manually'}",
 requireText(app, '.choice[data-home=\"custom\"]', 'Custom home accent styling is missing');
 requireText(app, '@media(min-width:761px){.choice-grid{grid-template-columns:repeat(4', 'Four-choice desktop home row is missing');
 requireText(app, "if(id==='custom')", 'Custom choice handling is missing');
+requireText(app, "home==='custom'?6:0", 'Custom bedroom range is missing');
+requireText(app, 'bedrooms.disabled=!state.home', 'Custom bedroom selection is disabled');
+requireText(app, "else if(state.home!=='custom')", 'Custom bedroom changes must not alter manual devices');
 requireText(app, 'const replacePreset=!state.devices.length||isUntouchedPreset()||isLegacyAccumulatedPreset()', 'Clean preset switching is missing');
 requireText(app, 'if(replacePreset){', 'Home switching does not recalculate untouched presets');
 requireText(app, 'state.devices=[...state.devices,...suggested]', 'Preset suggestions do not preserve existing devices');
