@@ -2,9 +2,9 @@
 
 K2E Local v2.0.0-rc.45 is a client-side static application. User-entered device information and preferences are stored locally in the browser unless a future feature explicitly states otherwise.
 
-## Quantrae privacy boundary
+## Qantrae privacy boundary
 
-Quantrae is K2E's privacy boundary. The current release operates in **Local only** mode: household planning, utility-file parsing, backup creation, and backup restoration happen on the user's device. K2E does not require an account and does not send household data to an online AI service.
+Qantrae is K2E's privacy boundary. The current release operates in **Local only** mode: household planning, utility-file parsing, backup creation, and backup restoration happen on the user's device. K2E does not require an account and does not send household data to an online AI service.
 
 Any future external data exchange must be off by default, identify the destination and purpose in plain language, and obtain explicit consent immediately before sending data. Connection for insights must never silently enable device control.
 
