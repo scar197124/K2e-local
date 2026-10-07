@@ -411,6 +411,10 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
 [data-theme="light"] .footer{margin-top:14px;padding-top:18px;border-top:1.5px solid #89a9bb;color:#365267;font-weight:700}
 @media(max-width:760px){.topbar-status{display:grid!important;grid-template-columns:minmax(0,1fr);justify-items:start;gap:6px!important;width:100%}.trust-strip{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.trust-strip .status-pill{justify-content:center;text-align:center;min-width:0!important;padding:5px 5px!important;font-size:10px!important}#shellClock{justify-self:start}[data-theme="light"] .topbar{border-color:#158fc8}}
 
+/* Locked header frame shared by both themes. */
+.trust-strip{border:1.5px solid color-mix(in srgb,var(--accent2) 52%,var(--line));border-radius:999px;background:color-mix(in srgb,var(--panel2) 86%,var(--panel));overflow:hidden}
+.topbar #shellClock{border-radius:999px}
+
 </style>
 </head>
 <body>
