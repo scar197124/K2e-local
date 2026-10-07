@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nrg-roan.vercel.app/sitemap.xml
+Sitemap: https://k2e-local-eazzys-projects-452df3e0.vercel.app/sitemap.xml
