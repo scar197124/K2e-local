@@ -8,7 +8,7 @@
 
 K2E Local is a local-first household energy simulator for planning electricity use, estimating costs, comparing scenarios, and reviewing appliance insights privately on your device.
 
-[**Launch K2E Local →**](https://nrg-roan.vercel.app/)
+[**Launch K2E Local →**](https://k2e-local-eazzys-projects-452df3e0.vercel.app/)
 
 **Local-first · Offline-capable · No account required**
 
@@ -52,7 +52,7 @@ This repository is prepared for GitHub Pages through the included GitHub Actions
 3. In **Settings → Pages**, select **GitHub Actions** as the source.
 4. GitHub Pages will publish the repository URL after the workflow completes.
 
-The current official hosted build is [https://nrg-roan.vercel.app/](https://nrg-roan.vercel.app/). GitHub Pages is an additional supported deployment path.
+The current official hosted build is [https://k2e-local-eazzys-projects-452df3e0.vercel.app/](https://k2e-local-eazzys-projects-452df3e0.vercel.app/). GitHub Pages is an additional supported deployment path.
 
 The public entry page is `index.html`; the simulator is `app.html`.
 
