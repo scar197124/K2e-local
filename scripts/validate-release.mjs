@@ -174,11 +174,11 @@ requireText(app, '.table-wrap{width:100%;max-width:100%;min-width:0;overflow-x:a
 requireText(app, 'html,body{max-width:100%;overflow-x:hidden}', 'Global mobile horizontal page-pan guard is missing');
 
 requireText(readme, `**v${expectedVersion}`, "README current release is stale");
-requireText(readme, "https://nrg-roan.vercel.app/", "README launch URL is incorrect");
+requireText(readme, "https://k2e-local-eazzys-projects-452df3e0.vercel.app/", "README launch URL is incorrect");
 if ((readme.match(/^# K2E Local$/gm) || []).length !== 1) throw new Error("README contains duplicate primary headings");
 
 requireText(workflow, "node scripts/validate-release.mjs", "Pages workflow does not run release validation");
-requireText(fs.readFileSync("robots.txt", "utf8"), "https://nrg-roan.vercel.app/sitemap.xml", "robots.txt production URL is stale");
-requireText(fs.readFileSync("sitemap.xml", "utf8"), "https://nrg-roan.vercel.app/app.html", "sitemap production URLs are stale");
+requireText(fs.readFileSync("robots.txt", "utf8"), "https://k2e-local-eazzys-projects-452df3e0.vercel.app/sitemap.xml", "robots.txt production URL is stale");
+requireText(fs.readFileSync("sitemap.xml", "utf8"), "https://k2e-local-eazzys-projects-452df3e0.vercel.app/app.html", "sitemap production URLs are stale");
 
 console.log(`K2E Local v${expectedVersion} release validation passed.`);
