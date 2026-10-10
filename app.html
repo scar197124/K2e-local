@@ -415,6 +415,16 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
 .trust-strip{border:1.5px solid color-mix(in srgb,var(--accent2) 52%,var(--line));border-radius:999px;background:color-mix(in srgb,var(--panel2) 86%,var(--panel));overflow:hidden}
 .topbar #shellClock{border-radius:999px}
 
+.privacy-card{margin-top:14px;border:1.5px solid rgba(65,224,231,.78);border-radius:14px;background:var(--panel);box-shadow:0 0 12px rgba(33,213,219,.15);scroll-margin-top:16px}
+.privacy-card summary{padding:16px 18px;cursor:pointer;font-weight:800;color:var(--text);line-height:1.5}
+.privacy-card summary span{display:block;margin-left:18px;font-size:12px;font-weight:400;color:var(--muted)}
+.privacy-card summary:focus-visible{outline:2px solid var(--accent2);outline-offset:3px;border-radius:12px}
+.privacy-content{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 12px 12px}
+.privacy-content article{padding:14px;border:1px solid rgba(65,224,231,.65);border-radius:12px}
+.privacy-content article:last-child{grid-column:1/-1}
+.privacy-content h2{font-size:15px;margin:0 0 8px}.privacy-content p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+[data-theme="light"] .privacy-card,[data-theme="light"] .privacy-content article{border-color:rgba(0,120,130,.72)}
+@media(max-width:600px){.privacy-content{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -569,7 +579,20 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
 </section>
 </section>
 
-<footer class="footer">K2E Local v2.0.0-rc.45 · Private planning tool · Estimates depend on the information entered. · <a href="./index.html#privacy">About &amp; Privacy</a></footer>
+    <section class="privacy-card" id="privacy" aria-label="About and privacy">
+      <details>
+        <summary>About &amp; Privacy <span>How K2E handles your information</span></summary>
+        <div class="privacy-content">
+          <article><h2>Your plan stays in this browser</h2><p>K2E saves household inputs, plans, and settings in this browser on this device. This version does not send those household values to an online account or an external AI service. Guidance is calculated locally.</p></article>
+          <article><h2>You control your data</h2><p>Use Start over in the planner and confirm to clear your saved household plan and related planning records. Download a backup first if you want to keep a copy. Downloaded files remain wherever you save them; clearing browser data does not delete those files.</p></article>
+          <article><h2>Planning estimates</h2><p>Results depend on the information and rates entered. They are educational planning estimates, not an official utility bill or a guarantee of savings. Compare them with your actual usage and provider rates.</p></article>
+          <article><h2>Offline use and online choices</h2><p>The hosted page needs a connection for its first load. Offline use depends on the app files being saved successfully in your browser. This version has no household-data cloud sync. Any future feature that sends household information online should explain what is sent and why, and ask for your consent first.</p></article>
+          <article><h2>Clear security information</h2><p>Local storage does not by itself encrypt your plan. People with access to your device or browser profile may be able to view it. This version does not provide a verified Quantrae security scan. The website host may process ordinary connection information when you visit the hosted page.</p></article>
+        </div>
+      </details>
+    </section>
+
+<footer class="footer">K2E Local v2.0.0-rc.45 · Private planning tool · Estimates depend on the information entered. · <a href="#privacy">About &amp; Privacy</a></footer>
 </div>
 <script>
 (()=>{
