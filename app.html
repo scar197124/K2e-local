@@ -425,6 +425,22 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
 .privacy-content h2{font-size:15px;margin:0 0 8px}.privacy-content p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
 [data-theme="light"] .privacy-card,[data-theme="light"] .privacy-content article{border-color:rgba(0,120,130,.72)}
 @media(max-width:600px){.privacy-content{grid-template-columns:1fr}}
+
+/* Approved planner hero: frame every text block. */
+.overview-grid .welcome-panel .welcome-copy{display:flex;flex-direction:column;gap:10px;min-width:0}
+.overview-grid .welcome-panel .welcome-copy>.welcome-kicker,
+.overview-grid .welcome-panel .welcome-copy>h1,
+.overview-grid .welcome-panel .welcome-copy>p,
+.overview-grid .welcome-panel .welcome-copy .onboard-pills>span{box-sizing:border-box;max-width:100%;margin:0;padding:12px 14px;border:1.5px solid rgba(65,224,231,.78);border-radius:12px;background:color-mix(in srgb,var(--panel) 88%,transparent);box-shadow:0 0 12px rgba(33,213,219,.15),inset 0 0 8px rgba(33,213,219,.05);overflow-wrap:break-word}
+.overview-grid .welcome-panel .welcome-copy>h1{padding:16px 14px;line-height:1.12}
+.overview-grid .welcome-panel .welcome-copy>p{line-height:1.5}
+.overview-grid .welcome-panel .welcome-copy .onboard-pills{margin:0;gap:8px}
+.overview-grid .welcome-panel .welcome-copy .onboard-pills>span{padding:8px 10px;line-height:1.35}
+[data-theme="light"] .overview-grid .welcome-panel .welcome-copy>.welcome-kicker,
+[data-theme="light"] .overview-grid .welcome-panel .welcome-copy>h1,
+[data-theme="light"] .overview-grid .welcome-panel .welcome-copy>p,
+[data-theme="light"] .overview-grid .welcome-panel .welcome-copy .onboard-pills>span{border-color:rgba(0,120,130,.72);box-shadow:0 0 10px rgba(0,120,130,.09)}
+@media(max-width:520px){.overview-grid .welcome-panel .welcome-copy{gap:8px}.overview-grid .welcome-panel .welcome-copy>h1{padding:14px 12px}.overview-grid .welcome-panel .welcome-copy>p{padding:12px;font-size:14px}}
 </style>
 </head>
 <body>
