@@ -442,7 +442,7 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
 [data-theme="light"] .overview-grid .welcome-panel .welcome-copy .onboard-pills>span{border-color:rgba(0,120,130,.72);box-shadow:0 0 10px rgba(0,120,130,.09)}
 @media(max-width:520px){.overview-grid .welcome-panel .welcome-copy{gap:8px}.overview-grid .welcome-panel .welcome-copy>h1{padding:14px 12px}.overview-grid .welcome-panel .welcome-copy>p{padding:12px;font-size:14px}}
 </style>
-</head>
+<style id="utility-import-guide-style">.utility-file-steps{padding-left:22px;margin:10px 0;display:grid;gap:8px;font-size:13px;line-height:1.5}.utility-rate-review{padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);margin-top:10px}.utility-rate-review[hidden]{display:none!important}.utility-rate-review p{font-size:13px;line-height:1.5;overflow-wrap:anywhere}.utility-rate-review .summary-actions{display:flex;gap:10px;flex-wrap:wrap}</style></head>
 <body>
 <div class="app" id="app">
 <header class="topbar">
@@ -499,7 +499,7 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
         <div class="form-cluster">
           <div class="field"><label for="bedrooms">Sleeping rooms</label><select id="bedrooms" aria-describedby="sleepingRoomHint" disabled><option value="">Optional home detail</option></select><small class="field-hint" id="sleepingRoomHint">Include bedrooms and rooms rented for sleeping.</small></div>
           <div class="field"><label for="people">People</label><select id="people"><option value="0" selected>Select people</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></div>
-          <div class="field rate-field"><label for="rate">Electricity price per kWh</label><div class="rate-row"><input id="rate" type="number" min="0" step="0.01" value="0.00" aria-describedby="rateHelp rateSource"><button class="ghost" id="unknownRate" type="button">I don’t know</button></div><div class="rate-meta"><small id="rateHelp" class="help" style="display:block;margin:0">Use the price shown on your electricity bill.</small><span class="rate-source" id="rateSource">Entered manually</span></div><div class="rate-tools"><button class="ghost" id="importUtilityBtn" type="button" aria-expanded="false" aria-controls="utilityImport">Import utility data</button></div><div class="import-summary" id="importSummary" hidden><strong id="importSummaryTitle">Utility rate imported</strong><span id="importSummaryText"></span><div class="summary-actions"><button class="ghost" id="replaceUtility" type="button">Replace file</button><button class="ghost" id="clearUtility" type="button">Clear imported rate</button></div></div><div class="utility-import" id="utilityImport" hidden><strong>Import a local utility file</strong><p>Select an XML, CSV, or JSON file downloaded from your electricity provider. Files stay in this browser. Maximum size: 5 MB.</p><input id="utilityFile" type="file" accept=".xml,.csv,.json,text/xml,text/csv,application/json" aria-describedby="importStatus"><div class="import-status" id="importStatus" role="status" aria-live="polite">No file selected.</div></div></div>
+          <div class="field rate-field"><label for="rate">Electricity price per kWh</label><div class="rate-row"><input id="rate" type="number" min="0" step="0.01" value="0.00" aria-describedby="rateHelp rateSource"><button class="ghost" id="unknownRate" type="button">I don’t know</button></div><div class="rate-meta"><small id="rateHelp" class="help" style="display:block;margin:0">Use the price shown on your electricity bill.</small><span class="rate-source" id="rateSource">Entered manually</span></div><div class="rate-tools"><button class="ghost" id="importUtilityBtn" type="button" aria-expanded="false" aria-controls="utilityImport">Use a file from my provider</button></div><div class="import-summary" id="importSummary" hidden><strong id="importSummaryTitle">Utility rate imported</strong><span id="importSummaryText"></span><div class="summary-actions"><button class="ghost" id="replaceUtility" type="button">Replace file</button><button class="ghost" id="clearUtility" type="button">Clear imported rate</button></div></div><div class="utility-import" id="utilityImport" hidden><strong>Find your rate using a provider file</strong><ol class="utility-file-steps"><li>Open your electricity provider’s website and sign in there.</li><li>Look for a billing or usage download. Choose XML, CSV or JSON for one billing period.</li><li>Choose that file below. Review the rate K2E finds, then select <b>Use this rate</b>.</li></ol><p>PDF bills and photos do not work here. Your provider may not offer a supported file—if not, enter the price per kWh from your bill (18 cents = 0.18 dollars), or use <b>I don’t know</b> for a typical planning estimate.</p><p>Your file is read on this device, not uploaded. Maximum file size: 5 MB. Your current rate stays unchanged until you confirm.</p><input id="utilityFile" type="file" accept=".xml,.csv,.json,text/xml,text/csv,application/json" aria-describedby="importStatus"><div class="import-status" id="importStatus" role="status" aria-live="polite">No file selected.</div><div class="utility-rate-review" id="utilityRateReview" hidden><b>Review before using</b><p id="utilityRateProposal"></p><p id="utilityRateBasis"></p><div class="summary-actions"><button class="primary" id="confirmUtilityRate" type="button">Use this rate</button><button class="ghost" id="cancelUtilityRate" type="button">Cancel — keep my rate</button></div></div></div></div>
         </div>
         <div class="setup-summary-grid">
           <div class="home-summary" id="homeSummary"><strong>No preset selected.</strong> Choose a home for a starting profile, or add devices manually to build a custom household.</div>
@@ -804,23 +804,100 @@ function activateEnergyTool(name){document.querySelectorAll('[data-adv-tab]').fo
 
 function numbersFromText(text){return (text.match(/-?\d+(?:[.,]\d+)?/g)||[]).map(x=>Number(x.replace(',','.'))).filter(Number.isFinite)}
 function findNamedNumber(text,names){for(const name of names){const re=new RegExp(`${name}[^0-9-]{0,40}(-?\\d+(?:[.,]\\d+)?)`,'i'),m=text.match(re);if(m)return Number(m[1].replace(',','.'))}return null}
+function utilityNumber(value){
+ if(typeof value==='number')return Number.isFinite(value)?value:null;
+ const text=String(value??'').trim().replace(/^[$£€]\s*/,'');
+ if(!/^-?\d+(?:\.\d+)?$/.test(text))return null;
+ return Number(text);
+}
+function utilityCsvRows(text){
+ const rows=[];let row=[],field='',quoted=false;
+ for(let i=0;i<text.length;i++){
+  const c=text[i];
+  if(c==='"'){if(quoted&&text[i+1]==='"'){field+='"';i++}else quoted=!quoted;}
+  else if(c===','&&!quoted){row.push(field.trim());field='';}
+  else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&text[i+1]==='\n')i++;row.push(field.trim());if(row.some(Boolean))rows.push(row);row=[];field='';}
+  else field+=c;
+ }
+ if(quoted)throw new Error('This CSV file could not be read. Try another export or enter your rate manually.');
+ row.push(field.trim());if(row.some(Boolean))rows.push(row);return rows;
+}
+function utilityFields(text,fileName){
+ const ext=fileName.split('.').pop().toLowerCase(),fields=[];
+ const add=(key,value)=>{const number=utilityNumber(value);if(number!==null)fields.push([String(key).toLowerCase().replace(/[^a-z0-9]/g,''),number]);};
+ if(ext==='json'){
+  let data;try{data=JSON.parse(text)}catch{throw new Error('This JSON file could not be read. Try another export or enter your rate manually.');}
+  const walk=(value,depth=0)=>{if(depth>20)throw new Error('This file is too complex. Enter your rate manually.');if(Array.isArray(value)){value.forEach(x=>walk(x,depth+1));return;}if(value&&typeof value==='object')for(const [key,v] of Object.entries(value)){if(v&&typeof v==='object')walk(v,depth+1);else add(key,v);}};
+  walk(data);
+ }else if(ext==='csv'){
+  const rows=utilityCsvRows(text.replace(/^\uFEFF/,''));
+  // Named columns, or two-column label/value exports. Never infer from bare numbers.
+  if(rows.length>1)for(const row of rows.slice(1))rows[0].forEach((key,i)=>add(key,row[i]));
+  for(const row of rows)if(row.length===2)add(row[0],row[1]);
+ }else if(ext==='xml'){
+  if(/<!DOCTYPE|<!ENTITY/i.test(text))throw new Error('This XML file contains unsupported declarations. Use CSV or JSON, or enter your rate manually.');
+  const xml=new DOMParser().parseFromString(text,'application/xml');
+  if(xml.querySelector('parsererror'))throw new Error('This XML file could not be read. Try another export or enter your rate manually.');
+  for(const node of xml.querySelectorAll('*'))if(!node.children.length)add(node.localName,node.textContent);
+ }
+ return fields;
+}
 function deriveImportedRate(text,fileName){
- let usage=findNamedNumber(text,['total.?kwh','energy.?used','consumption','usage','kilowatt.?hours','kwh']);
- let cost=findNamedNumber(text,['total.?charge','amount.?due','billing.?amount','total.?cost','energy.?charge','cost']);
- let direct=findNamedNumber(text,['price.?per.?kwh','rate.?per.?kwh','unit.?rate','effective.?rate']);
- if(direct!==null && direct>0 && direct<5)return {rate:direct,usage,cost,method:'direct rate'};
- if(usage!==null&&cost!==null&&usage>0&&cost>0){const rate=cost/usage;if(rate>0&&rate<5)return {rate,usage,cost,method:'cost divided by usage'}}
- const nums=numbersFromText(text).filter(n=>n>0);
- const plausibleRates=nums.filter(n=>n>=0.03&&n<=1);
- if(plausibleRates.length)return {rate:plausibleRates[0],usage:null,cost:null,method:'plausible rate found'};
+ const fields=utilityFields(text,fileName);
+ const rates=['priceperkwh','rateperkwh','unitrate','effectiverate'];
+ const usageKeys=['totalkwh','energyused','consumption','usage','kilowatthours','kwh'];
+ const costKeys=['totalcharge','amountdue','billingamount','totalcost','energycharge','cost'];
+ const unique=values=>[...new Set(values.map(n=>Number(n.toFixed(8))))];
+ const direct=unique(fields.filter(([key])=>rates.includes(key)).map(([,n])=>n));
+ const usage=unique(fields.filter(([key])=>usageKeys.includes(key)).map(([,n])=>n));
+ const cost=unique(fields.filter(([key])=>costKeys.includes(key)).map(([,n])=>n));
+ if(direct.length>1)throw new Error('This file contains more than one rate. Enter the rate from your bill manually, or use a single-period export.');
+ if(direct.length){if(direct[0]<=0||direct[0]>=5)throw new Error('The rate needs checking. Enter it manually in currency per kWh, not cents.');return {rate:direct[0],usage:null,cost:null,method:'direct rate'};}
+ if(usage.length===1&&cost.length===1&&usage[0]>0&&cost[0]>0){const rate=cost[0]/usage[0];if(rate>0&&rate<5)return {rate,usage:usage[0],cost:cost[0],method:'cost divided by usage'};}
+ if(usage.length>1||cost.length>1)throw new Error('This file has multiple totals or billing periods. Use a single-period export, or enter your rate manually.');
  return null;
 }
+
 function setUtilityOpen(open){utilityImport.hidden=!open;importUtilityBtn.setAttribute('aria-expanded',String(open));if(open)utilityFile.focus()}
 smartConnectInsights.addEventListener('click',()=>{smartConnectNote.textContent='Smart-provider connections are not enabled in this local release. K2E will keep using your manual setup; no device access or control has been granted.';smartConnectInsights.textContent='Connection not available yet';smartConnectInsights.disabled=true;setTimeout(()=>{smartConnectInsights.textContent='Connect for Smart Insights';smartConnectInsights.disabled=false},2200)});
 importUtilityBtn.addEventListener('click',()=>setUtilityOpen(utilityImport.hidden));
 replaceUtility.addEventListener('click',()=>setUtilityOpen(true));
 clearUtility.addEventListener('click',()=>{if(state.home||state.devices.length){state.rate=TYPICAL_RATE;state.rateEstimated=true;state.rateSource='typical'}else{state.rate=0;state.rateEstimated=false;state.rateSource='manual'}state.rateImportName='';state.rateImportMethod='';state.rateImportDate='';utilityFile.value='';importStatus.className='import-status';importStatus.textContent='No file selected.';save();render();rate.focus()});
-utilityFile.addEventListener('change',async()=>{const file=utilityFile.files&&utilityFile.files[0];if(!file)return;importStatus.className='import-status';importStatus.textContent=`Reading ${file.name} locally…`;try{const ext=(file.name.split('.').pop()||'').toLowerCase(),allowed=['xml','csv','json'];if(!allowed.includes(ext))throw new Error('Choose an XML, CSV, or JSON utility file.');if(file.size>5*1024*1024)throw new Error('This file is larger than 5 MB. Export a smaller billing-history file and try again.');if(file.size===0)throw new Error('This file is empty. Choose a utility export that contains billing data.');const text=await file.text();const result=deriveImportedRate(text,file.name);if(!result)throw new Error('K2E could not find enough billing or rate information in this file.');state.rate=Number(result.rate.toFixed(4));state.rateEstimated=false;state.rateSource='imported';state.rateImportName=file.name;state.rateImportMethod=result.usage&&result.cost?`${money(result.cost)} ÷ ${Number(result.usage).toFixed(1)} kWh`:result.method;state.rateImportDate=new Date().toISOString();save();render();importStatus.className='import-status success';importStatus.textContent=`Imported ${money(state.rate)}/kWh. Compare this effective rate with your latest bill.`;setUtilityOpen(false)}catch(err){importStatus.className='import-status error';importStatus.textContent=err.message||'This file could not be read.'}});
+let proposedUtilityRate=null;
+let utilityReadGeneration=0;
+const utilityReview=document.getElementById('utilityRateReview');
+function resetUtilityProposal(){utilityReadGeneration++;proposedUtilityRate=null;utilityReview.hidden=true;}
+document.getElementById('cancelUtilityRate').addEventListener('click',()=>{resetUtilityProposal();utilityFile.value='';importStatus.className='import-status';importStatus.textContent='Cancelled. Your rate has not changed.';});
+document.getElementById('confirmUtilityRate').addEventListener('click',()=>{
+ if(!proposedUtilityRate)return;
+ const {result,name}=proposedUtilityRate;
+ state.rate=Number(result.rate.toFixed(4));state.rateEstimated=result.method!=='direct rate';state.rateSource='imported';state.rateImportName=name;
+ state.rateImportMethod=result.method==='direct rate'?'Confirmed rate from provider file':`${money(result.cost)} ÷ ${Number(result.usage).toFixed(1)} kWh (estimated effective rate)`;
+ state.rateImportDate=new Date().toISOString();resetUtilityProposal();save();render();
+ importStatus.className='import-status success';importStatus.textContent='Confirmed rate applied. You can replace or clear it at any time.';setUtilityOpen(false);rate.focus();
+});
+clearUtility.addEventListener('click',resetUtilityProposal);
+utilityFile.addEventListener('change',async()=>{
+ resetUtilityProposal();const generation=utilityReadGeneration;
+ const file=utilityFile.files&&utilityFile.files[0];if(!file)return;
+ importStatus.className='import-status';importStatus.textContent=`Reading ${file.name} on this device…`;
+ try{
+  const ext=file.name.split('.').pop().toLowerCase();
+  if(!['xml','csv','json'].includes(ext))throw new Error('Choose XML, CSV or JSON. PDF bills and photos are not supported. You can enter your rate manually instead.');
+  if(file.size>5*1024*1024)throw new Error('This file is over 5 MB. Download one billing period, or enter your rate manually.');
+  if(file.size===0)throw new Error('This file is empty. Choose another file or enter your rate manually.');
+  const text=await file.text();if(generation!==utilityReadGeneration)return;
+  const result=deriveImportedRate(text,file.name);
+  if(!result)throw new Error('K2E could not identify a clear rate or matching cost and usage totals. Your rate has not changed. Enter it from your bill or use I don’t know.');
+  proposedUtilityRate={result,name:file.name};
+  document.getElementById('utilityRateProposal').textContent=`Proposed rate: ${result.rate.toFixed(4)} CAD per kWh. K2E uses Canadian dollars; check the currency and units against your bill.`;
+  document.getElementById('utilityRateBasis').textContent=result.method==='direct rate'
+   ? 'Found in a field labelled as a rate per kWh. Check the currency, units and billing period before confirming.'
+   : `Estimated from total cost ${money(result.cost)} ÷ ${result.usage} kWh. This may include fixed charges or taxes, so it is a planning average—not necessarily your provider’s energy-only price.`;
+  utilityReview.hidden=false;importStatus.textContent='Rate found for review. Nothing has been applied yet.';
+  document.getElementById('confirmUtilityRate').focus();
+ }catch(err){if(generation!==utilityReadGeneration)return;importStatus.className='import-status error';importStatus.textContent=err.message||'This file could not be read. Your rate has not changed.';}
+});
 document.addEventListener('click',e=>{const h=e.target.closest('[data-home]');if(h)chooseHome(h.dataset.home);const n=e.target.closest('[data-next]');if(n)setStep(Number(n.dataset.next));const b=e.target.closest('[data-back]');if(b)setStep(Number(b.dataset.back));const r=e.target.closest('[data-remove]');if(r){state.devices=state.devices.filter(d=>d.id!==r.dataset.remove);save();render()}});
 document.addEventListener('change',e=>{if(e.target.id==='people'){const wasPreset=isUntouchedPreset();state.people=Number(e.target.value);if(wasPreset)state.devices=seedDevices(state.home);else if(state.home!=='custom'){const lights=state.devices.find(d=>d.name==='Lights'),tv=state.devices.find(d=>d.name==='TV'),lap=state.devices.find(d=>d.name==='Laptop');if(lights)lights.q=lightCount();if(tv)tv.q=Math.max(1,Math.ceil(state.people/2));if(lap)lap.q=Math.max(1,state.people)}save();render()}if(e.target.id==='bedrooms'){setBedrooms(e.target.value)}if(e.target.id==='rate'){state.rate=Math.max(0,Number(e.target.value)||0);state.rateEstimated=false;state.rateSource='manual';state.rateImportName='';state.rateImportMethod='';state.rateImportDate='';save();render()}if(e.target.id==='days'){state.days=Math.min(31,Math.max(28,Number(e.target.value)||30));save();render()}if(e.target.id==='peakRate'){state.peakRate=Math.max(0,Number(e.target.value)||0);save();render()}if(e.target.id==='offPeakRate'){state.offPeakRate=Math.max(0,Number(e.target.value)||0);save();render()}if(e.target.id==='peakShare'){state.peakShare=Math.min(100,Math.max(0,Number(e.target.value)||0));save();render()}if(e.target.id==='smartThermostat'){state.smartThermostat=e.target.checked;save();render()}if(e.target.id==='smartPlugs'){state.smartPlugs=e.target.checked;save();render()}if(e.target.id==='smartLights'){state.smartLights=e.target.checked;save();render()}if(e.target.closest('#deviceTable')&&e.target.dataset.key){const row=e.target.closest('tr'),d=state.devices.find(x=>x.id===row.dataset.id);if(d){d[e.target.dataset.key]=e.target.dataset.key==='name'?e.target.value:Number(e.target.value);save();render()}}});
 addDevice.addEventListener('click',()=>setDevicePicker(devicePicker.hidden));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!devicePicker.hidden){setDevicePicker(false);addDevice.focus()}});document.addEventListener('click',e=>{if(!devicePicker.hidden&&!devicePicker.contains(e.target)&&e.target!==addDevice){setDevicePicker(false)}});cancelAddDevice.addEventListener('click',()=>setDevicePicker(false));devicePresetSelect.addEventListener('change',updateDevicePresetPreview);confirmAddDevice.addEventListener('click',()=>{const name=devicePresetSelect.value;if(!state.home){state.home='custom';state.bedrooms=0}ensurePlanningRate();if(name==='__custom__'){state.devices.push({id:crypto.randomUUID(),name:'Custom device',w:100,h:1,q:1,d:100})}else{const c=catalog[name];state.devices.push({id:crypto.randomUUID(),name,w:c.w,h:c.h,q:1,d:c.d*100})}save();render();setDevicePicker(false);activateEnergyTool('devices')});

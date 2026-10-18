@@ -142,3 +142,11 @@ A fresh RC45 session and **Start over** now begin with no selected home type, no
 RC45 now keeps the true blank-start behavior while ensuring cost-dependent views become live as soon as planning begins. Before a home or device is selected, household use, cost, rate, and projections remain at zero. When the user selects Apartment, Townhouse, House, Custom, or adds a device manually, K2E activates a typical planning rate of $0.18/kWh when no utility rate has been entered yet, along with typical time-of-use planning values (peak $0.24/kWh, off-peak $0.12/kWh, 40% peak share). The rate remains clearly labeled as a typical planning value and can be replaced at any time with a manual or imported utility rate.
 
 That same saved household state drives the primary estimate, cost per day, rate used, Home Pulse projected cost, Forecast baseline/projected bill, Goals, Advisor, Smart Home planning, solar comparison, and reports.
+
+## Utility-file import clarity update
+
+Use **Use a file from my provider** to read a local XML, CSV or JSON billing export (one billing period, maximum 5 MB). PDF bills and photos are not supported. K2E does not download a bill or contact the provider.
+
+Only clearly named rate fields, or a single cost/usage pair, are proposed. Unlabelled numbers and ambiguous rates are rejected. The current rate remains unchanged until **Use this rate** is selected. Cost divided by usage is labelled an estimated effective rate and can include fees or taxes. K2E uses CAD; users should check currency and units against their bill.
+
+Checks: `node scripts/test-utility-import.cjs`, `node scripts/validate-release.mjs`, and `node scripts/validate-full-wiring.mjs`. The import test stubs the browser XML DOM; real-provider exports and browser presentation still need manual review.

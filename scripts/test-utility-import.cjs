@@ -1,0 +1,23 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');const s=fs.readFileSync('app.html','utf8');for(const m of s.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g))new vm.Script(m[1]);
+const c={DOMParser:class{parseFromString(){return{querySelector:()=>null,querySelectorAll:()=>[{children:[],localName:'price_per_kwh',textContent:'0.21'}]}}}};vm.createContext(c);vm.runInContext(s.slice(s.indexOf('function utilityNumber('),s.indexOf('function setUtilityOpen(')),c);
+assert.equal(c.deriveImportedRate('{"price_per_kwh":0.18}','bill.json').rate,.18);
+assert.equal(c.deriveImportedRate('total_kwh,total_cost\n1000,180','bill.csv').rate,.18);
+assert.equal(c.deriveImportedRate('"unit_rate","usage"\n"0.22","500"','bill.csv').rate,.22);
+assert.equal(c.deriveImportedRate('total_kwh,1000\ntotal_cost,180','bill.csv').rate,.18);
+assert.equal(c.deriveImportedRate('{"year":2026,"account":"123","unrelated":0.18}','bill.json'),null);
+assert.throws(()=>c.deriveImportedRate('{"bills":[{"unit_rate":0.18},{"unit_rate":0.22}]}','bill.json'),/more than one/);
+assert.throws(()=>c.deriveImportedRate('{"unit_rate":18}','bill.json'),/not cents/);
+assert.throws(()=>c.deriveImportedRate('{"usage":100,"total_cost":30,"energy_charge":20}','bill.json'),/multiple totals/);
+assert.throws(()=>c.deriveImportedRate('{broken','bill.json'),/could not be read/);
+assert.throws(()=>c.deriveImportedRate('<!DOCTYPE x><rate/>','bill.xml'),/unsupported/);
+assert.equal(c.deriveImportedRate('<price_per_kwh>0.21</price_per_kwh>','bill.xml').rate,.21);
+let state={rate:.3},listeners={},heldResolve;const review={hidden:true},status={},fileInput={files:[],value:'test',addEventListener:(name,fn)=>listeners.file=fn};const controls={utilityRateReview:review,confirmUtilityRate:{addEventListener:(e,f)=>listeners.confirm=f,focus(){}},cancelUtilityRate:{addEventListener:(e,f)=>listeners.cancel=f},utilityRateProposal:{},utilityRateBasis:{}};
+const ui={state,document:{getElementById:id=>controls[id]},clearUtility:{addEventListener:(e,f)=>listeners.clear=f},utilityFile:fileInput,importStatus:status,deriveImportedRate:c.deriveImportedRate,money:n=>'$'+n,save(){},render(){},setUtilityOpen(){},rate:{focus(){}},Date};vm.createContext(ui);
+const start=s.indexOf('let proposedUtilityRate=null;'),end=s.indexOf("document.addEventListener('click',e=>",start);vm.runInContext(s.slice(start,end),ui);
+(async()=>{
+fileInput.files=[{name:'bill.json',size:30,text:async()=>'{"unit_rate":0.18}'}];await listeners.file();assert.equal(state.rate,.3);assert.equal(review.hidden,false);listeners.cancel();assert.equal(state.rate,.3);assert(review.hidden);
+await listeners.file();listeners.confirm();assert.equal(state.rate,.18);assert.equal(state.rateSource,'imported');assert.equal(state.rateEstimated,false);
+fileInput.files=[{name:'bill.csv',size:30,text:async()=>'usage,total_cost\n100,30'}];await listeners.file();assert.equal(state.rate,.18);listeners.confirm();assert.equal(state.rate,.3);assert.equal(state.rateEstimated,true);
+fileInput.files=[{name:'bill.json',size:30,text:()=>new Promise(r=>heldResolve=r)}];const pending=listeners.file();listeners.cancel();heldResolve('{"unit_rate":0.25}');await pending;listeners.confirm();assert.equal(state.rate,.3);assert(review.hidden);
+console.log('PASS: named JSON/CSV rates, cost average, ambiguous/unlabelled rejection, XML branch/declaration guard, preview/cancel/confirm and cancelled-read race. XML parsing uses the browser DOMParser; no browser visual test performed.');
+})().catch(e=>{console.error(e);process.exitCode=1});
