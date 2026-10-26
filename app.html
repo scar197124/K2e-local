@@ -596,6 +596,34 @@ html[data-theme="light"][data-household] #app .welcome-copy{
   background:radial-gradient(ellipse at center,color-mix(in srgb,var(--household-accent) 22%,transparent),transparent 75%),var(--panel);
 }
 </style>
+<style id="resizable-desktop-workspace">
+/* A resized mouse/trackpad window should not inherit portrait phone sizing. */
+@media(hover:hover) and (pointer:fine){
+  #app #homeChoices .choice{min-height:96px;padding:12px;min-width:0;justify-content:flex-start;gap:8px}
+  #app #homeChoices .choice strong{font-size:17px;line-height:1.2}
+  #app #homeChoices .choice span{font-size:13px;line-height:1.4;margin-top:0}
+}
+@media(min-width:720px) and (max-width:1180px) and (hover:hover) and (pointer:fine){
+  #app{width:100%;max-width:1392px;padding:12px}
+  #app .main-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:12px;align-items:start}
+  #app .main-grid>.surface-card{min-width:0}
+  #app .surface-card{padding:14px}
+  #app .estimate-panel{padding:0;position:static}
+  #app .estimate-top,#app .estimate-body{padding:14px}
+  #app .section-head h2,#app .estimate-top h2{font-size:26px}
+  #app .section-head{flex-direction:column;gap:8px}
+  #app #homeChoices.choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  #app .form-cluster,#app .setup-summary-grid{grid-template-columns:1fr;gap:10px}
+  #app .field{min-width:0;padding:10px}
+  #app .field input,#app .field select{min-width:0;max-width:100%}
+  #app .rate-row{flex-direction:column}
+  #app .estimate-metrics,#app .estimate-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  #app .metric{min-width:0;padding:10px}
+  #app .metric strong{font-size:clamp(23px,2.6vw,32px);overflow-wrap:anywhere}
+  #app .metric span{overflow-wrap:anywhere}
+  #app .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
 </head>
 <body>
 <div class="app" id="app">
