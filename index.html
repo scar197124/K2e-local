@@ -200,6 +200,40 @@ header{padding:10px 0 8px}
 }
 
 </style>
+<style id="desktop-family-layout">
+/* Match the compact internal planner on desktop without changing touch layouts. */
+@media (min-width:1024px) and (hover:hover) and (pointer:fine) {
+  .site{width:calc(100% - 84px);max-width:1356px}
+  header{padding:14px 0 10px}
+  .header-inner{padding:8px 12px;border-radius:20px;gap:10px}
+  .brand{padding:4px 6px;border:0;background:none;box-shadow:none}
+  .brand img{width:200px}
+  main{padding:4px 0 18px}
+  .hero-shell{grid-template-columns:repeat(2,minmax(0,1fr));min-height:0;border-radius:28px;align-items:stretch}
+  .hero-copy{padding:24px;gap:14px}
+  html[data-theme] .hero-copy .eyebrow,html[data-theme] .hero-copy h1,html[data-theme] .hero-copy .lead{padding:0;border:0;border-radius:0;background:none;box-shadow:none}
+  .hero-copy .eyebrow{font-size:12px;letter-spacing:.12em;gap:8px}
+  .hero-copy h1{font-size:clamp(32px,3.3vw,48px);line-height:1.08;letter-spacing:-.045em}
+  .hero-copy .lead{font-size:16px;line-height:1.5}
+  .hero-copy .cta-row{margin:0;gap:10px}
+  .hero-copy .cta{min-height:42px;padding:10px 14px;font-size:14px;border-radius:11px;gap:8px}
+  .hero-copy .micro-line{margin:0;padding:10px 0 0;border:0;border-top:1px solid var(--line-soft);border-radius:0;background:none;box-shadow:none;font-size:12px;gap:10px}
+  .hero-copy .micro-line::before{width:24px}
+  .hero-visual,[data-theme="light"] .hero-visual{min-height:380px!important;height:auto!important;aspect-ratio:auto!important;align-self:stretch;background-size:contain!important;background-position:center!important}
+  .feature-strip{margin-top:14px;padding:12px;border-radius:20px}
+  .feature{padding:4px 10px}
+  html[data-theme="dark"]{
+    --bg1:#0a1928;--bg2:#102338;--bg3:#18334b;
+    --panel:#11263a;--panel-2:#18334b;
+    --muted:#b4cadd;--line:#7ab9dd;--line-soft:#456b87;
+    --glass:rgba(17,38,58,.88);--glass-strong:#11263a;
+    --shadow:0 10px 26px rgba(0,0,0,.16);
+    --glow:inset 0 1px 0 rgba(199,234,255,.12),0 0 18px rgba(139,211,255,.09);
+  }
+  html[data-theme="dark"] .hero-shell{background:linear-gradient(135deg,var(--panel-2),var(--panel))}
+  html[data-theme="dark"] .hero-visual{background-color:var(--panel)}
+}
+</style>
 </head>
 <body>
 <div class="desktop-exact-home" aria-label="K2E Local desktop home">
