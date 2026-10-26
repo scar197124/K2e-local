@@ -568,6 +568,34 @@ html[data-theme="light"] #app :is(.section-kicker,.field label,.metric span,.est
   #app > .overview-grid .hero-artwork{width:100%;height:auto;align-self:center;object-fit:contain}
 }
 </style>
+<style id="light-household-surfaces">
+/* Carry the chosen household accent into pale light-mode surfaces. */
+html[data-theme="light"][data-household]{
+  --bg:color-mix(in srgb,var(--household-accent) 10%,#ffffff);
+  --bg2:color-mix(in srgb,var(--household-accent) 16%,#f7fbfd);
+  --panel:color-mix(in srgb,var(--household-accent) 5%,#ffffff);
+  --panel2:color-mix(in srgb,var(--household-accent) 11%,#ffffff);
+  --panel3:color-mix(in srgb,var(--household-accent) 18%,#ffffff);
+}
+html[data-theme="light"][data-household] body{
+  background:radial-gradient(ellipse at top right,color-mix(in srgb,var(--household-accent) 22%,transparent),transparent 60%),linear-gradient(180deg,var(--bg),var(--bg2));
+}
+html[data-theme="light"][data-household] #app :is(.topbar,.welcome-panel,.surface-card,.workspace-shell,.workspace-card,.step){
+  background:linear-gradient(135deg,color-mix(in srgb,var(--household-accent) 14%,#ffffff),var(--panel));
+}
+html[data-theme="light"][data-household] #app :is(.field,.metric,.estimate-quality,.estimate-fact,.simple-chart,.home-summary,.preset-note,.mini,.review-item,.backup-panel,.utility-import,.import-summary){
+  background:color-mix(in srgb,var(--household-accent) 9%,#ffffff);
+}
+html[data-theme="light"][data-household] #app :is(.workspace-card>header,.estimate-top){
+  background:linear-gradient(110deg,color-mix(in srgb,var(--household-accent) 20%,#ffffff),color-mix(in srgb,var(--household-accent) 8%,#ffffff));
+}
+html[data-theme="light"][data-household] #app :is(.choice.selected,.step.active){
+  background:color-mix(in srgb,var(--household-accent) 22%,#ffffff);
+}
+html[data-theme="light"][data-household] #app .welcome-copy{
+  background:radial-gradient(ellipse at center,color-mix(in srgb,var(--household-accent) 22%,transparent),transparent 75%),var(--panel);
+}
+</style>
 </head>
 <body>
 <div class="app" id="app">
