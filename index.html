@@ -239,6 +239,10 @@ header{padding:10px 0 8px}
   html[data-theme="dark"] .hero-visual{background-color:var(--panel)}
 }
 </style>
+<style id="phone-landing-entry">
+/* Keep the phone landing page focused on the two entry choices. */
+@media(max-width:860px){.hero-shell .hero-visual{display:none}.hero-shell{grid-template-columns:minmax(0,1fr);min-height:0}}
+</style>
 </head>
 <body>
 <div class="desktop-exact-home" aria-label="K2E Local desktop home">
