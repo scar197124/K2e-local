@@ -1,4 +1,4 @@
-const CACHE_NAME = 'k2e-local-v2.0.0-rc.45-taller-hero-text-20261026';
+const CACHE_NAME = 'k2e-local-v2.0.0-rc.45-shared-hero-glow-20261026';
 const APP_SHELL = [
   './','./index.html','./app.html','./manifest.json','./robots.txt','./sitemap.xml',
   './icon-192.png','./icon-512.png','./apple-touch-icon.png',

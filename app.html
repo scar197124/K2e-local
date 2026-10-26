@@ -557,6 +557,17 @@ html[data-theme="light"] #app :is(.section-kicker,.field label,.metric span,.est
   #app > .overview-grid .hero-artwork{width:100%;height:auto;max-height:none;align-self:center}
 }
 </style>
+<style id="shared-planner-hero">
+/* Approved sample: one shared frame, centered introduction and a soft glow. */
+@media(min-width:901px){
+  #app > .overview-grid .welcome-panel{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+  #app > .overview-grid .welcome-copy{width:auto;max-width:none;margin:0;padding:32px 24px;gap:0;align-self:stretch;justify-self:stretch;border:0;border-radius:0;box-shadow:none;align-items:center;text-align:center;background:radial-gradient(ellipse at 50% 48%,color-mix(in srgb,var(--accent3) 16%,transparent),transparent 72%),linear-gradient(130deg,var(--panel2),var(--panel))}
+  #app > .overview-grid .welcome-copy>.welcome-kicker{font-size:12px;letter-spacing:.18em;margin:0 0 18px;padding:0;text-align:center}
+  #app > .overview-grid .welcome-copy>h1{font-size:clamp(28px,3vw,40px);line-height:1.18;margin:0;padding:0;text-align:center}
+  #app > .overview-grid .welcome-copy>p{font-size:15px;line-height:1.6;max-width:31ch;margin:18px 0 0;padding:0;text-align:center}
+  #app > .overview-grid .hero-artwork{width:100%;height:auto;align-self:center;object-fit:contain}
+}
+</style>
 </head>
 <body>
 <div class="app" id="app">
