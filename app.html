@@ -527,17 +527,17 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
 </style>
 <style id="planner-artwork-and-light-readability">
 /* Keep artwork in the workspace without repeating the landing introduction. */
-#app > .overview-grid{display:block;margin:14px 0}
+#app > .overview-grid{display:block;width:min(100%,640px);margin:14px auto}
 #app > .overview-grid .welcome-panel{display:block;padding:0;overflow:hidden}
 #app > .overview-grid .welcome-copy{display:none}
-#app > .overview-grid .hero-artwork{position:static;inset:auto;display:block;width:auto;height:auto;max-width:100%;max-height:300px;object-fit:contain;margin:0 auto}
+#app > .overview-grid .hero-artwork{position:static;inset:auto;display:block;width:100%;height:auto;max-width:100%;max-height:none;object-fit:contain;margin:0}
 html[data-theme="light"]{--line:#7b9db5;--line2:#507f9e;--muted:#425c70}
 html[data-theme="light"] #app :is(.topbar,.welcome-panel,.surface-card,.workspace-shell,.workspace-card,.step,.field,.choice,.metric,.estimate-quality,.estimate-fact,.simple-chart,.home-summary,.preset-note,.table-wrap,.backup-panel,.utility-import,.import-summary,.mini,.review-item,.advanced-nav button){border-width:2px}
 html[data-theme="light"] #app :is(.field input,.field select,.ghost,.primary,.danger){border-width:2px}
 html[data-theme="light"] #app :is(.help,.rate-source,.rate-meta .help,.choice span,.section-head p,.estimate-top p,.simple-chart-head p,.workspace-header p,.brand-copy p,.home-summary,.preset-note,small){font-size:14px!important;line-height:1.5}
 html[data-theme="light"] #app :is(.section-kicker,.field label,.metric span,.estimate-fact span,.chart-badge,.workspace-meta,.section-badge,.brand-kicker){font-size:13px!important;line-height:1.4}
 @media(max-width:760px){
-  #app > .overview-grid{margin:10px 0}
+  #app > .overview-grid{margin:10px auto}
   #app > .overview-grid .hero-artwork{width:100%;max-height:none}
   html[data-theme="light"] #app .advanced-nav button{font-size:13px!important}
 }
