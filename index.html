@@ -200,6 +200,45 @@ header{padding:10px 0 8px}
 }
 
 </style>
+<style id="desktop-family-layout">
+/* Match the compact internal planner on desktop without changing touch layouts. */
+@media (min-width:1024px) and (hover:hover) and (pointer:fine) {
+  .site{width:calc(100% - 84px);max-width:1200px}
+  header{padding:14px 0 10px}
+  .header-inner{padding:8px 12px;border-radius:20px;gap:10px}
+  .brand{padding:4px 6px;border:0;background:none;box-shadow:none}
+  .brand img{width:200px}
+  main{padding:4px 0 18px}
+  .hero-shell{grid-template-columns:repeat(2,minmax(0,1fr));min-height:0;border-radius:28px;align-items:stretch}
+  .hero-copy{padding:28px;gap:18px}
+  html[data-theme] .hero-copy .eyebrow,html[data-theme] .hero-copy h1,html[data-theme] .hero-copy .lead{padding:0;border:0;border-radius:0;background:none;box-shadow:none}
+  .hero-copy .eyebrow{font-size:12px;letter-spacing:.12em;gap:8px}
+  .hero-copy h1{font-size:clamp(36px,4vw,54px);line-height:1.08;letter-spacing:-.045em}
+  .hero-copy .lead{font-size:17px;line-height:1.5}
+  .hero-copy .cta-row{margin:0;gap:10px}
+  .hero-copy .cta{min-height:46px;padding:11px 16px;font-size:15px;border-radius:11px;gap:8px}
+  .hero-copy .micro-line{margin:0;padding:10px 0 0;border:0;border-top:1px solid var(--line-soft);border-radius:0;background:none;box-shadow:none;font-size:12px;gap:10px}
+  .hero-copy .micro-line::before{width:24px}
+  .hero-visual,[data-theme="light"] .hero-visual{width:100%;min-height:0!important;height:auto!important;aspect-ratio:1/1!important;align-self:center;background-size:contain!important;background-position:center!important}
+  html[data-theme] .hero-copy .cta.secondary{background:transparent;border-color:var(--line-soft);box-shadow:none;color:var(--muted);font-weight:750}
+  html[data-theme] .hero-copy .cta.secondary:hover,html[data-theme] .hero-copy .cta.secondary:focus-visible{color:var(--text);border-color:var(--blue)}
+  .cta:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+  html[data-theme] .main-nav a,html[data-theme] .status-pill{border-color:var(--line-soft);box-shadow:none;background:transparent}
+  html[data-theme] .main-nav a.active{border-color:var(--green)}
+  .feature-strip{margin-top:14px;padding:12px;border-radius:20px;box-shadow:inset 0 1px 0 rgba(199,234,255,.08)}
+  .feature{padding:4px 10px}
+  html[data-theme="dark"]{
+    --bg1:#0a1928;--bg2:#102338;--bg3:#18334b;
+    --panel:#11263a;--panel-2:#18334b;
+    --muted:#b4cadd;--line:#7ab9dd;--line-soft:#456b87;
+    --glass:rgba(17,38,58,.88);--glass-strong:#11263a;
+    --shadow:0 10px 26px rgba(0,0,0,.16);
+    --glow:inset 0 1px 0 rgba(199,234,255,.12),0 0 18px rgba(139,211,255,.09);
+  }
+  html[data-theme="dark"] .hero-shell{background:linear-gradient(135deg,var(--panel-2),var(--panel))}
+  html[data-theme="dark"] .hero-visual{background-color:var(--panel)}
+}
+</style>
 </head>
 <body>
 <div class="desktop-exact-home" aria-label="K2E Local desktop home">
@@ -231,7 +270,7 @@ header{padding:10px 0 8px}
       <div class="hero-copy">
         <div class="eyebrow">Private home <span>energy planner</span></div>
         <h1 id="page-title">Plan your<br>household energy <span class="accent">with confidence.</span></h1>
-        <p class="lead">K2E Local helps you plan, monitor, and optimize your home energy use — all on your device. No account required. Your data stays private, and your insights stay with you.</p>
+        <p class="lead">Estimate your household electricity use and explore ways to save. Your plan stays on your device. No account required.</p>
         <div class="cta-row">
           <a class="cta primary" href="./app.html">Start Simple <span aria-hidden="true">→</span></a>
           <a class="cta secondary" href="./app.html#energyTools">Explore Advanced Tools</a>

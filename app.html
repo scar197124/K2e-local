@@ -442,7 +442,84 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
 [data-theme="light"] .overview-grid .welcome-panel .welcome-copy .onboard-pills>span{border-color:rgba(0,120,130,.72);box-shadow:0 0 10px rgba(0,120,130,.09)}
 @media(max-width:520px){.overview-grid .welcome-panel .welcome-copy{gap:8px}.overview-grid .welcome-panel .welcome-copy>h1{padding:14px 12px}.overview-grid .welcome-panel .welcome-copy>p{padding:12px;font-size:14px}}
 </style>
-<style id="utility-import-guide-style">.utility-file-steps{padding-left:22px;margin:10px 0;display:grid;gap:8px;font-size:13px;line-height:1.5}.utility-rate-review{padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);margin-top:10px}.utility-rate-review[hidden]{display:none!important}.utility-rate-review p{font-size:13px;line-height:1.5;overflow-wrap:anywhere}.utility-rate-review .summary-actions{display:flex;gap:10px;flex-wrap:wrap}</style></head>
+<style id="utility-import-guide-style">.utility-file-steps{padding-left:22px;margin:10px 0;display:grid;gap:8px;font-size:13px;line-height:1.5}.utility-rate-review{padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);margin-top:10px}.utility-rate-review[hidden]{display:none!important}.utility-rate-review p{font-size:13px;line-height:1.5;overflow-wrap:anywhere}.utility-rate-review .summary-actions{display:flex;gap:10px;flex-wrap:wrap}</style>
+<style id="desktop-compact-layout">
+/* Compact desktop presentation; touch and narrow layouts retain their sizing. */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .app{max-width:1392px;width:calc(100% - 48px);padding:14px 18px 22px}
+  .topbar{padding:8px 12px;gap:10px}
+  .overview-grid{margin:14px 0;gap:14px}
+  .overview-grid .welcome-panel{position:relative;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+  .overview-grid .welcome-panel .welcome-copy{grid-column:1;padding:24px;gap:14px;justify-content:center;text-align:left}
+  .overview-grid .welcome-panel .welcome-copy>.welcome-kicker,
+  .overview-grid .welcome-panel .welcome-copy>h1,
+  .overview-grid .welcome-panel .welcome-copy>p,
+  .overview-grid .welcome-panel .welcome-copy .onboard-pills>span{border:0;background:none;box-shadow:none;border-radius:0}
+  .overview-grid .welcome-panel .hero-artwork{position:absolute;inset:0 0 0 50%;width:50%;height:100%;max-height:none;object-fit:contain;object-position:center;align-self:stretch}
+  .overview-grid .welcome-panel .welcome-copy>.welcome-kicker{padding:0;font-size:12px}
+  .overview-grid .welcome-panel .welcome-copy>h1{font-size:clamp(32px,3.3vw,48px);padding:0;line-height:1.08}
+  .overview-grid .welcome-panel .welcome-copy>p{font-size:16px;line-height:1.5;padding:0}
+  .overview-grid .welcome-panel .welcome-copy .onboard-pills{gap:6px 14px;padding-top:12px;border-top:1px solid var(--line)}
+  .overview-grid .welcome-panel .welcome-copy .onboard-pills>span{padding:0;font-size:12px}
+  .steps{gap:10px;margin-bottom:14px}
+  .step{padding:10px 14px;gap:10px}
+  .step b{width:30px;height:30px;border-radius:10px}
+  .main-grid{gap:14px}
+  .surface-card{padding:18px}
+  .section-head{gap:12px;margin-bottom:14px}
+  .section-head h2{font-size:30px}
+  .section-head p{line-height:1.4}
+  .section-badge{padding:6px 10px}
+  .setup-layout{gap:12px}
+  .choice-grid{gap:10px}
+  #homeChoices .choice{padding:14px;min-height:100px}
+  #homeChoices .choice strong{font-size:18px}
+  .form-cluster{gap:10px}
+  .field{padding:11px}
+  .field label{margin-bottom:6px}
+  .field input,.field select{min-height:42px;padding:8px 10px}
+  .setup-summary-grid{gap:10px;margin-top:10px}
+  .home-summary,.preset-note{padding:12px}
+  .actions{margin-top:14px}
+  .actions button{min-height:46px}
+  .ghost,.primary,.danger{border-radius:11px;padding:10px 14px}
+  button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
+  .estimate-top{padding:16px 18px}
+  .estimate-top h2{font-size:28px}
+  .estimate-body{padding:18px}
+  .estimate-metrics,.estimate-facts{gap:10px}
+  .metric{padding:12px}
+  .metric strong{font-size:34px}
+  .estimate-quality,.estimate-facts .estimate-fact,.simple-chart{padding:12px}
+  .workspace-shell{padding:18px;margin-top:14px}
+  .workspace-header h2{font-size:30px}
+  .workspace-header{margin-bottom:12px}
+  .advanced-nav button{padding:8px 10px;min-height:38px}
+}
+</style>
+<style id="desktop-card-lighting">
+/* Lift dark desktop surfaces while retaining home-type accents and light mode. */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  html[data-theme="dark"] {
+    --bg:#0a1928;--bg2:#102338;
+    --panel:#11263a;--panel2:#18334b;--panel3:#20425e;
+    --line:#456b87;--line2:#6395b8;--muted:#b4cadd;
+  }
+  html[data-theme="dark"] :is(.topbar,.surface-card,.workspace-shell,.workspace-card,.step) {
+    border-color:color-mix(in srgb,var(--household-accent,var(--accent2)) 76%,var(--line));
+    box-shadow:inset 0 1px 0 rgba(199,234,255,.12),0 0 18px color-mix(in srgb,var(--household-accent,var(--accent2)) 9%,transparent),0 10px 26px rgba(0,0,0,.16);
+  }
+  html[data-theme="dark"] :is(.field,.home-summary,.preset-note,.metric,.estimate-quality,.simple-chart,.estimate-fact,.table-wrap,.utility-import,.import-summary,.backup-panel,.advanced-nav button,.mini,.review-item) {
+    border-color:color-mix(in srgb,var(--household-accent,var(--accent2)) 36%,var(--line));
+    box-shadow:inset 0 1px 0 rgba(199,234,255,.07);
+  }
+  html[data-theme="dark"] :is(.workspace-card>header,.estimate-top) {
+    background:linear-gradient(135deg,rgba(139,211,255,.10),rgba(47,214,222,.03));
+    border-bottom-color:color-mix(in srgb,var(--household-accent,var(--accent2)) 65%,var(--line));
+  }
+}
+</style>
+</head>
 <body>
 <div class="app" id="app">
 <header class="topbar">
