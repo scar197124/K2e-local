@@ -481,7 +481,9 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
   .setup-summary-grid{gap:10px;margin-top:10px}
   .home-summary,.preset-note{padding:12px}
   .actions{margin-top:14px}
-  .actions button{min-height:42px}
+  .actions button{min-height:46px}
+  .ghost,.primary,.danger{border-radius:11px;padding:10px 14px}
+  button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
   .estimate-top{padding:16px 18px}
   .estimate-top h2{font-size:28px}
   .estimate-body{padding:18px}
@@ -508,8 +510,8 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
     box-shadow:inset 0 1px 0 rgba(199,234,255,.12),0 0 18px color-mix(in srgb,var(--household-accent,var(--accent2)) 9%,transparent),0 10px 26px rgba(0,0,0,.16);
   }
   html[data-theme="dark"] :is(.field,.home-summary,.preset-note,.metric,.estimate-quality,.simple-chart,.estimate-fact,.table-wrap,.utility-import,.import-summary,.backup-panel,.advanced-nav button,.mini,.review-item) {
-    border-color:color-mix(in srgb,var(--household-accent,var(--accent2)) 58%,var(--line));
-    box-shadow:inset 0 1px 0 rgba(199,234,255,.09),0 0 12px color-mix(in srgb,var(--household-accent,var(--accent2)) 6%,transparent);
+    border-color:color-mix(in srgb,var(--household-accent,var(--accent2)) 36%,var(--line));
+    box-shadow:inset 0 1px 0 rgba(199,234,255,.07);
   }
   html[data-theme="dark"] :is(.workspace-card>header,.estimate-top) {
     background:linear-gradient(135deg,rgba(139,211,255,.10),rgba(47,214,222,.03));

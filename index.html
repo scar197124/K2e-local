@@ -220,7 +220,12 @@ header{padding:10px 0 8px}
   .hero-copy .micro-line{margin:0;padding:10px 0 0;border:0;border-top:1px solid var(--line-soft);border-radius:0;background:none;box-shadow:none;font-size:12px;gap:10px}
   .hero-copy .micro-line::before{width:24px}
   .hero-visual,[data-theme="light"] .hero-visual{width:100%;min-height:0!important;height:auto!important;aspect-ratio:1/1!important;align-self:center;background-size:contain!important;background-position:center!important}
-  .feature-strip{margin-top:14px;padding:12px;border-radius:20px}
+  html[data-theme] .hero-copy .cta.secondary{background:transparent;border-color:var(--line-soft);box-shadow:none;color:var(--muted);font-weight:750}
+  html[data-theme] .hero-copy .cta.secondary:hover,html[data-theme] .hero-copy .cta.secondary:focus-visible{color:var(--text);border-color:var(--blue)}
+  .cta:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+  html[data-theme] .main-nav a,html[data-theme] .status-pill{border-color:var(--line-soft);box-shadow:none;background:transparent}
+  html[data-theme] .main-nav a.active{border-color:var(--green)}
+  .feature-strip{margin-top:14px;padding:12px;border-radius:20px;box-shadow:inset 0 1px 0 rgba(199,234,255,.08)}
   .feature{padding:4px 10px}
   html[data-theme="dark"]{
     --bg1:#0a1928;--bg2:#102338;--bg3:#18334b;
@@ -265,7 +270,7 @@ header{padding:10px 0 8px}
       <div class="hero-copy">
         <div class="eyebrow">Private home <span>energy planner</span></div>
         <h1 id="page-title">Plan your<br>household energy <span class="accent">with confidence.</span></h1>
-        <p class="lead">K2E Local helps you plan, monitor, and optimize your home energy use — all on your device. No account required. Your data stays private, and your insights stay with you.</p>
+        <p class="lead">Estimate your household electricity use and explore ways to save. Your plan stays on your device. No account required.</p>
         <div class="cta-row">
           <a class="cta primary" href="./app.html">Start Simple <span aria-hidden="true">→</span></a>
           <a class="cta secondary" href="./app.html#energyTools">Explore Advanced Tools</a>
