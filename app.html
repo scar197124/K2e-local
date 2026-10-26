@@ -495,6 +495,28 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
   .advanced-nav button{padding:8px 10px;min-height:38px}
 }
 </style>
+<style id="desktop-card-lighting">
+/* Lift dark desktop surfaces while retaining home-type accents and light mode. */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  html[data-theme="dark"] {
+    --bg:#0a1928;--bg2:#102338;
+    --panel:#11263a;--panel2:#18334b;--panel3:#20425e;
+    --line:#456b87;--line2:#6395b8;--muted:#b4cadd;
+  }
+  html[data-theme="dark"] :is(.topbar,.surface-card,.workspace-shell,.workspace-card,.step) {
+    border-color:color-mix(in srgb,var(--household-accent,var(--accent2)) 76%,var(--line));
+    box-shadow:inset 0 1px 0 rgba(199,234,255,.12),0 0 18px color-mix(in srgb,var(--household-accent,var(--accent2)) 9%,transparent),0 10px 26px rgba(0,0,0,.16);
+  }
+  html[data-theme="dark"] :is(.field,.home-summary,.preset-note,.metric,.estimate-quality,.simple-chart,.estimate-fact,.table-wrap,.utility-import,.import-summary,.backup-panel,.advanced-nav button,.mini,.review-item) {
+    border-color:color-mix(in srgb,var(--household-accent,var(--accent2)) 58%,var(--line));
+    box-shadow:inset 0 1px 0 rgba(199,234,255,.09),0 0 12px color-mix(in srgb,var(--household-accent,var(--accent2)) 6%,transparent);
+  }
+  html[data-theme="dark"] :is(.workspace-card>header,.estimate-top) {
+    background:linear-gradient(135deg,rgba(139,211,255,.10),rgba(47,214,222,.03));
+    border-bottom-color:color-mix(in srgb,var(--household-accent,var(--accent2)) 65%,var(--line));
+  }
+}
+</style>
 </head>
 <body>
 <div class="app" id="app">
