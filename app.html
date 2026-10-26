@@ -542,6 +542,18 @@ html[data-theme="light"] #app :is(.section-kicker,.field label,.metric span,.est
   html[data-theme="light"] #app .advanced-nav button{font-size:13px!important}
 }
 </style>
+<style id="balanced-planner-header">
+@media(min-width:901px){
+  #app > .overview-grid{width:100%;margin:14px 0}
+  #app > .overview-grid .welcome-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+  #app > .overview-grid .welcome-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:24px 28px;gap:12px;text-align:left}
+  #app > .overview-grid .welcome-copy>.welcome-kicker{padding:0;border:0;background:none;box-shadow:none;font-size:12px}
+  #app > .overview-grid .welcome-copy>h1{padding:0;border:0;background:none;box-shadow:none;margin:0;font-size:clamp(28px,2.8vw,38px);line-height:1.12}
+  #app > .overview-grid .welcome-copy>p{padding:0;border:0;background:none;box-shadow:none;margin:0;font-size:16px;line-height:1.5;max-width:42ch}
+  #app > .overview-grid .welcome-copy .onboard-pills{display:none}
+  #app > .overview-grid .hero-artwork{width:100%;height:auto;max-height:none;align-self:center}
+}
+</style>
 </head>
 <body>
 <div class="app" id="app">
@@ -566,8 +578,8 @@ html[data-theme="light"] #app :is(.section-kicker,.field label,.metric span,.est
   <div class="welcome-panel">
     <div class="welcome-copy">
       <div class="welcome-kicker">Plan with clarity</div>
-      <h1>Build your home model.<span class="accent">Keep full control.</span></h1>
-      <p>K2E still begins with the simple questions that matter most — apartment, townhouse, house, or custom; sleeping rooms; people; and your electricity rate — then turns that into a clearer private energy picture.</p>
+      <h1>Your home.<span class="accent">Your energy plan.</span></h1>
+      <p>Choose your home type below, add your household details, and see your energy estimate take shape. Your plan stays on this device.</p>
       <div class="onboard-pills">
         <span>Apartment · Townhouse · House · Custom</span>
         <span>Simple setup first</span>
