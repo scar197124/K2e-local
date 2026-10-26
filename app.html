@@ -448,7 +448,9 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
 @media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
   .app{max-width:1392px;width:calc(100% - 48px);padding:14px 18px 22px}
   .topbar{padding:8px 12px;gap:10px}
-  .overview-grid{margin:14px 0;gap:14px}
+  /* The welcome artwork belongs to the landing page; desktop planner starts at setup. */
+  .overview-grid{display:none}
+  .steps{margin-top:14px}
   .overview-grid .welcome-panel{position:relative;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
   .overview-grid .welcome-panel .welcome-copy{grid-column:1;padding:24px;gap:14px;justify-content:center;text-align:left}
   .overview-grid .welcome-panel .welcome-copy>.welcome-kicker,
