@@ -630,47 +630,48 @@ html[data-theme="light"][data-household] #app .welcome-copy{
 <style>
 .screen[data-screen="2"] {
   --insight-border-color: color-mix(in srgb, var(--household-accent) 72%, var(--line));
-}
-.screen[data-screen="2"] .section-head,
-.screen[data-screen="2"] .savings-head {
-  display: block;
-}
-.screen[data-screen="2"] :is(.section-head, .insight-hero, .savings-head, .insight-tile, .saving-tip) {
   text-align: center;
 }
-.screen[data-screen="2"] :is(.section-head p, .insight-copy, .insight-tile p) {
-  margin-inline: auto;
+.screen[data-screen="2"] :is(.section-head, .savings-head) {
+  display: block;
+  margin-bottom: 8px;
 }
-</style><style>
-.screen[data-screen="2"] .savings-head {
-  width: fit-content;
-  max-width: 100%;
-  margin-inline: auto;
-}
-.screen[data-screen="2"] :is(.section-head, .insight-hero, .insight-copy, .savings-card, .savings-head, .insight-tile, .saving-tip) {
+.screen[data-screen="2"] :is(.insight-hero, .savings-card) {
   border: 1px solid var(--insight-border-color);
-}
-.screen[data-screen="2"] :is(.section-head, .insight-copy, .savings-head, .insight-tile, .saving-tip) {
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 10px 14px;
 }
-.screen[data-screen="2"] .savings-head {
-  padding-block: 5px;
+.screen[data-screen="2"] :is(.section-head p, .insight-copy) {
+  margin-inline: auto;
 }
-.screen[data-screen="2"] .savings-head h3 {
+.screen[data-screen="2"] .insight-copy {
+  margin-top: 6px;
+}
+.screen[data-screen="2"] :is(.savings-head h3, .savings-head p, .insight-tile p) {
   margin: 0;
-  line-height: 1.25;
 }
-.screen[data-screen="2"] .savings-head p {
-  margin: 2px 0 0;
-  line-height: 1.3;
+.screen[data-screen="2"] :is(.insights-grid, .savings-tips) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
 }
-.screen[data-screen="2"] .insight-tile strong {
+.screen[data-screen="2"] :is(.insight-tile, .saving-tip) {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  padding: 2px 0;
+}
+.screen[data-screen="2"] :is(.insight-tile strong, .saving-tip strong) {
   display: block;
+  margin-bottom: 2px;
 }
-.screen[data-screen="2"] .saving-tip strong {
-  display: block;
-  margin-bottom: 4px;
+.screen[data-screen="2"] .savings-tips {
+  margin-top: 8px;
+}
+@media (max-width: 540px) {
+  .screen[data-screen="2"] :is(.insights-grid, .savings-tips) {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 </style></head>
 <body>
