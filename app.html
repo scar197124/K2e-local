@@ -628,6 +628,9 @@ html[data-theme="light"][data-household] #app .welcome-copy{
 }
 </style>
 <style>
+.screen[data-screen="2"] {
+  --insight-border-color: color-mix(in srgb, var(--household-accent) 72%, var(--line));
+}
 .screen[data-screen="2"] .section-head,
 .screen[data-screen="2"] .savings-head {
   display: block;
@@ -644,10 +647,26 @@ html[data-theme="light"][data-household] #app .welcome-copy{
   max-width: 100%;
   margin-inline: auto;
 }
-.screen[data-screen="2"] :is(.savings-head, .saving-tip) {
-  border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line));
+.screen[data-screen="2"] :is(.section-head, .insight-hero, .insight-copy, .savings-card, .savings-head, .insight-tile, .saving-tip) {
+  border: 1px solid var(--insight-border-color);
+}
+.screen[data-screen="2"] :is(.section-head, .insight-copy, .savings-head, .insight-tile, .saving-tip) {
   border-radius: 12px;
   padding: 10px 14px;
+}
+.screen[data-screen="2"] .savings-head {
+  padding-block: 5px;
+}
+.screen[data-screen="2"] .savings-head h3 {
+  margin: 0;
+  line-height: 1.25;
+}
+.screen[data-screen="2"] .savings-head p {
+  margin: 2px 0 0;
+  line-height: 1.3;
+}
+.screen[data-screen="2"] .insight-tile strong {
+  display: block;
 }
 .screen[data-screen="2"] .saving-tip strong {
   display: block;
