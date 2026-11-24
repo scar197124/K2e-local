@@ -673,7 +673,27 @@ html[data-theme="light"][data-household] #app .welcome-copy{
     grid-template-columns: minmax(0, 1fr);
   }
 }
-</style></head>
+</style>
+<style>
+.screen[data-screen="2"] .always-devices {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--insight-border-color);
+  border-radius: 14px;
+}
+.always-devices h3, .always-devices p { margin: 0; }
+.always-devices p { color: var(--muted); font-size: .85rem; }
+.always-devices-scroll { max-height: 12rem; overflow: auto; margin: 6px 0; }
+.always-devices table { width: 100%; min-width: 0; table-layout: fixed; }
+.always-devices col:last-child { width: min(8rem, 45%); }
+.always-devices :is(th, td) { padding: 6px; text-align: left; overflow-wrap: anywhere; }
+.always-devices :is(th, td):last-child { text-align: right; }
+.always-devices tbody th { font-weight: normal; }
+.always-devices :is(thead, tfoot) :is(th, td) { position: sticky; background: var(--panel); }
+.always-devices thead th { top: 0; border-bottom: 1px solid var(--insight-border-color); }
+.always-devices tfoot :is(th, td) { bottom: 0; border-top: 1px solid var(--insight-border-color); font-weight: bold; }
+</style>
+</head>
 <body>
 <div class="app" id="app">
 <header class="topbar">
@@ -758,6 +778,22 @@ html[data-theme="light"][data-household] #app .welcome-copy{
           <div class="insight-tile insight-model"><span>Household model</span><strong id="modelInsightTitle">Build your home profile</strong><p id="modelInsightText">K2E will show how much of the model still uses typical presets.</p></div>
         </div>
         <div class="savings-tips" id="savingTips"></div>
+      </section>
+      <section class="always-devices" aria-labelledby="alwaysDevicesTitle">
+        <h3 id="alwaysDevicesTitle">Always-on devices</h3>
+        <p id="alwaysDevicesEmpty">Devices set to run 24 hours a day will appear here.</p>
+        <div id="alwaysDevicesDetails" hidden>
+          <p id="alwaysDevicesRate"></p>
+          <div class="always-devices-scroll" role="region" aria-label="Annual costs by device" tabindex="0">
+            <table>
+              <colgroup><col><col></colgroup>
+              <thead><tr><th scope="col">Device</th><th scope="col">Cost per year</th></tr></thead>
+              <tbody id="alwaysDevicesRows"></tbody>
+              <tfoot><tr><th scope="row">Total per year</th><td id="alwaysDevicesTotal"></td></tr></tfoot>
+            </table>
+          </div>
+          <p id="alwaysDevicesShare"></p>
+        </div>
       </section>
       <div class="actions"><button class="ghost" data-back="1" type="button">Change home details</button><button class="primary" id="openTools" type="button">Open detailed tools</button></div>
     </div>
@@ -876,7 +912,7 @@ let state=load();if(!state.home&&Array.isArray(state.devices)&&state.devices.len
 function load(){try{const raw=JSON.parse(localStorage.getItem('k2e-v2-state')||'{}');if(raw.stateSchema!==STATE_SCHEMA)return {...defaultState};return {...defaultState,...raw}}catch{return {...defaultState}}}
 function save(){localStorage.setItem('k2e-v2-state',JSON.stringify(state));queueMicrotask(()=>window.dispatchEvent(new CustomEvent('k2e-state-changed',{detail:{stateSchema:state.stateSchema}})))}
 function money(v){return new Intl.NumberFormat('en-CA',{style:'currency',currency:'CAD'}).format(v||0)}
-function monthly(d){return (Number(d.w)||0)*(Number(d.h)||0)*(Number(d.q)||1)*((Number(d.d)||100)/100)/1000*(Number(state.days)||30)}
+function monthly(d,days=Number(state.days)||30){return (Number(d.w)||0)*(Number(d.h)||0)*(Number(d.q)||1)*((Number(d.d)||100)/100)/1000*days}
 function total(){return state.devices.reduce((s,d)=>s+monthly(d),0)}
 function setTheme(theme){state.theme=theme;document.documentElement.dataset.theme=theme;themeBtn.textContent=theme==='dark'?'Light mode':'Dark mode';if(brandLogo)brandLogo.src=theme==='dark'?'./assets/k2e-logo-horizontal-dark.png':'./assets/k2e-logo-horizontal-light.png';save()}
 function updateShellClock(){if(!shellClock)return;const now=new Date();const date=now.toLocaleDateString('en-CA',{weekday:'short',month:'short',day:'numeric'});const time=now.toLocaleTimeString('en-CA',{hour:'numeric',minute:'2-digit'});shellClock.textContent=`${date} · ${time}`}
@@ -912,8 +948,36 @@ function renderHome(){homeChoices.innerHTML=presets.map(p=>{const selected=state
 function sorted(){return [...state.devices].map(d=>({...d,kwh:monthly(d)})).sort((a,b)=>b.kwh-a.kwh)}
 function renderBars(id){const list=sorted(),max=Math.max(1,...list.map(x=>x.kwh)),limit=id==='simpleBars'?5:8;document.getElementById(id).innerHTML=list.length?list.slice(0,limit).map(d=>`<div class="bar-row"><span>${d.name}</span><div class="track" aria-label="${d.name}: ${d.kwh.toFixed(1)} kilowatt-hours"><div class="fill" style="width:${Math.max(3,d.kwh/max*100)}%"></div></div><strong>${d.kwh.toFixed(1)} kWh</strong></div>`).join(''):'<p class="help">Add devices to see the biggest energy users.</p>'}
 function renderCoreSummary(){const kwh=total(),cost=kwh*(Number(state.rate)||0),list=sorted(),days=Math.max(1,Number(state.days)||30);monthlyKwh.textContent=`${kwh.toFixed(1)} kWh`;monthlyCost.textContent=money(cost);dailyUsage.textContent=`${(kwh/days).toFixed(1)} kWh`;dailyCost.textContent=money(cost/days);topShare.textContent=list.length&&kwh?`${Math.round((list[0].kwh/kwh)*100)}%`:'0%';rateDisplay.textContent=`${money(state.rate)}/kWh`;return{kwh,cost,list,days}}
+function renderAlwaysOnDevices(list){
+ const devices=list.filter(device=>Number(device.h)===24);
+ document.getElementById('alwaysDevicesEmpty').hidden=devices.length>0;
+ document.getElementById('alwaysDevicesDetails').hidden=devices.length===0;
+ const rows=document.getElementById('alwaysDevicesRows');
+ const rate=Number(state.rate)||0;
+ const annualKwh=devices.reduce((sum,device)=>sum+monthly(device,365),0);
+ const householdKwh=list.reduce((sum,device)=>sum+device.kwh,0);
+ const alwaysKwh=devices.reduce((sum,device)=>sum+device.kwh,0);
+ rows.replaceChildren(...devices.map(device=>{
+  const row=document.createElement('tr');
+  const name=document.createElement('th');
+  name.scope='row';
+  name.textContent=device.name;
+  const cost=document.createElement('td');
+  cost.textContent=money(monthly(device,365)*rate);
+  row.append(name,cost);
+  return row;
+ }));
+ document.getElementById('alwaysDevicesRate').textContent=rate>0
+  ? `Devices set to 24 hours a day · Estimated at ${new Intl.NumberFormat('en-CA',{style:'currency',currency:'CAD',maximumFractionDigits:4}).format(rate)}/kWh`
+  : 'Enter an electricity rate to estimate yearly costs.';
+ document.getElementById('alwaysDevicesTotal').textContent=money(annualKwh*rate);
+ document.getElementById('alwaysDevicesShare').textContent=householdKwh
+  ? `About ${Math.round(100*alwaysKwh/householdKwh)}% of your estimated electricity use.`
+  : '';
+}
 function renderSavings(){
  const title=document.getElementById('savingMainTitle'),text=document.getElementById('savingMainText'),tips=document.getElementById('savingTips'),list=sorted();
+ renderAlwaysOnDevices(list);
  const context=document.getElementById('savingMainContext'),reason=document.getElementById('savingMainReason'),action=document.getElementById('savingMainAction');
  context.hidden=action.hidden=!list.length;
  const accuracyTitle=document.getElementById('accuracyInsightTitle'),accuracyText=document.getElementById('accuracyInsightText');
