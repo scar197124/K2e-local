@@ -676,6 +676,11 @@ html[data-theme="light"][data-household] #app .welcome-copy{
 </style>
 <style>
 .screen[data-screen="2"] .always-devices {
+  box-sizing: border-box;
+  block-size: 15rem;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
   margin-top: 10px;
   padding: 10px 14px;
   border: 1px solid var(--insight-border-color);
@@ -683,7 +688,8 @@ html[data-theme="light"][data-household] #app .welcome-copy{
 }
 .always-devices h3, .always-devices p { margin: 0; }
 .always-devices p { color: var(--muted); font-size: .85rem; }
-.always-devices-scroll { max-height: 12rem; overflow: auto; margin: 6px 0; }
+#alwaysDevicesDetails:not([hidden]) { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.always-devices-scroll { flex: 1; min-height: 0; overflow: auto; scrollbar-gutter: stable; margin: 6px 0; }
 .always-devices table { width: 100%; min-width: 0; table-layout: fixed; }
 .always-devices col:last-child { width: min(8rem, 45%); }
 .always-devices :is(th, td) { padding: 6px; text-align: left; overflow-wrap: anywhere; }
@@ -781,7 +787,7 @@ html[data-theme="light"][data-household] #app .welcome-copy{
       </section>
       <section class="always-devices" aria-labelledby="alwaysDevicesTitle">
         <h3 id="alwaysDevicesTitle">Always-on devices</h3>
-        <p id="alwaysDevicesEmpty">Devices set to run 24 hours a day will appear here.</p>
+        <p id="alwaysDevicesEmpty">Add a fridge, freezer, router, or camera from the device presets, or set a device to 24 hours a day. It will appear here automatically.</p>
         <div id="alwaysDevicesDetails" hidden>
           <p id="alwaysDevicesRate"></p>
           <div class="always-devices-scroll" role="region" aria-label="Annual costs by device" tabindex="0">
