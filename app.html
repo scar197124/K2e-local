@@ -441,6 +441,9 @@ html[data-household] .workspace-card.has-scroll-more::after{color:var(--househol
 [data-theme="light"] .overview-grid .welcome-panel .welcome-copy>p,
 [data-theme="light"] .overview-grid .welcome-panel .welcome-copy .onboard-pills>span{border-color:rgba(0,120,130,.72);box-shadow:0 0 10px rgba(0,120,130,.09)}
 @media(max-width:520px){.overview-grid .welcome-panel .welcome-copy{gap:8px}.overview-grid .welcome-panel .welcome-copy>h1{padding:14px 12px}.overview-grid .welcome-panel .welcome-copy>p{padding:12px;font-size:14px}}
+.insight-copy{margin-top:10px;max-width:62ch}
+.insight-copy b{font-size:.85rem;color:var(--text)}
+.insight-copy p{margin:3px 0 0}
 </style>
 <style id="utility-import-guide-style">.utility-file-steps{padding-left:22px;margin:10px 0;display:grid;gap:8px;font-size:13px;line-height:1.5}.utility-rate-review{padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);margin-top:10px}.utility-rate-review[hidden]{display:none!important}.utility-rate-review p{font-size:13px;line-height:1.5;overflow-wrap:anywhere}.utility-rate-review .summary-actions{display:flex;gap:10px;flex-wrap:wrap}</style>
 <style id="desktop-compact-layout">
@@ -624,7 +627,33 @@ html[data-theme="light"][data-household] #app .welcome-copy{
   #app .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 </style>
-</head>
+<style>
+.screen[data-screen="2"] .section-head,
+.screen[data-screen="2"] .savings-head {
+  display: block;
+}
+.screen[data-screen="2"] :is(.section-head, .insight-hero, .savings-head, .insight-tile, .saving-tip) {
+  text-align: center;
+}
+.screen[data-screen="2"] :is(.section-head p, .insight-copy, .insight-tile p) {
+  margin-inline: auto;
+}
+</style><style>
+.screen[data-screen="2"] .savings-head {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.screen[data-screen="2"] :is(.savings-head, .saving-tip) {
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line));
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+.screen[data-screen="2"] .saving-tip strong {
+  display: block;
+  margin-bottom: 4px;
+}
+</style></head>
 <body>
 <div class="app" id="app">
 <header class="topbar">
@@ -694,15 +723,14 @@ html[data-theme="light"][data-household] #app .welcome-copy{
     <div class="screen" data-screen="2">
       <div class="section-head">
         <div>
-          <span class="section-kicker">K2E insights</span>
           <h2>K2E Insights</h2>
-          <p>Once the home profile is set, K2E turns it into plain-language insights instead of dropping you into a confusing wall of controls. Your estimate is explained simply.</p>
+          <p>See what drives your estimate and where to start.</p>
         </div>
-        <div class="section-badge">Plain language</div>
       </div>
-      <div class="insight-hero"><span>Top household insight</span><strong id="savingMainTitle">Choose a home to begin.</strong><p id="savingMainText">K2E will suggest a practical energy-saving action.</p></div>
+      <div class="insight-hero"><span>Top household insight</span><strong id="savingMainTitle">Choose a home to begin.</strong><div class="insight-copy" id="savingMainContext" hidden><b>Why it matters</b><p id="savingMainReason"></p></div>
+        <div class="insight-copy"><b id="savingMainAction" hidden>Try this first</b><p id="savingMainText">K2E will suggest a practical energy-saving action.</p></div></div>
       <section class="savings-card" aria-labelledby="savingsTitle">
-        <div class="savings-head"><div><h3 id="savingsTitle">Household insight cards</h3><p>A practical interpretation of your current household model.</p></div><span class="chart-badge">K2E</span></div>
+        <div class="savings-head"><div><h3 id="savingsTitle">Household insight cards</h3><p>Four checks based on your current household model.</p></div></div>
         <div class="insights-grid" id="insightsGrid" aria-label="K2E household insights">
           <div class="insight-tile insight-accuracy"><span>Accuracy check</span><strong id="accuracyInsightTitle">Waiting for your household</strong><p id="accuracyInsightText">Power, usage time, and quantity checks will appear here.</p></div>
           <div class="insight-tile insight-schedule"><span>Schedule check</span><strong id="scheduleInsightTitle">Review when devices run</strong><p id="scheduleInsightText">K2E will flag long runtimes and schedule opportunities.</p></div>
@@ -866,6 +894,8 @@ function renderBars(id){const list=sorted(),max=Math.max(1,...list.map(x=>x.kwh)
 function renderCoreSummary(){const kwh=total(),cost=kwh*(Number(state.rate)||0),list=sorted(),days=Math.max(1,Number(state.days)||30);monthlyKwh.textContent=`${kwh.toFixed(1)} kWh`;monthlyCost.textContent=money(cost);dailyUsage.textContent=`${(kwh/days).toFixed(1)} kWh`;dailyCost.textContent=money(cost/days);topShare.textContent=list.length&&kwh?`${Math.round((list[0].kwh/kwh)*100)}%`:'0%';rateDisplay.textContent=`${money(state.rate)}/kWh`;return{kwh,cost,list,days}}
 function renderSavings(){
  const title=document.getElementById('savingMainTitle'),text=document.getElementById('savingMainText'),tips=document.getElementById('savingTips'),list=sorted();
+ const context=document.getElementById('savingMainContext'),reason=document.getElementById('savingMainReason'),action=document.getElementById('savingMainAction');
+ context.hidden=action.hidden=!list.length;
  const accuracyTitle=document.getElementById('accuracyInsightTitle'),accuracyText=document.getElementById('accuracyInsightText');
  const scheduleTitle=document.getElementById('scheduleInsightTitle'),scheduleText=document.getElementById('scheduleInsightText');
  const alwaysTitle=document.getElementById('alwaysInsightTitle'),alwaysText=document.getElementById('alwaysInsightText');
@@ -892,8 +922,10 @@ function renderSavings(){
   'wi-fi router':['Review always-on equipment','Keep the router on when needed, but check other devices that stay powered all day.']
  };
  const match=Object.keys(advice).find(k=>name.includes(k));
- const main=match?advice[match]:[`Review ${top.name} first`,`It is the largest estimated load. Check its runtime, quantity, and efficiency before replacing equipment.`];
- title.textContent=main[0];text.textContent=main[1];
+ const main=match?advice[match]:[`Review ${top.name} first`,`Check its runtime, quantity, and efficiency before replacing equipment.`];
+ title.textContent=main[0];
+ reason.textContent=`${top.name} is the largest electricity user in your current estimate.`;
+ text.textContent=main[1];
  const presetLike=state.devices.filter(d=>{const c=catalog[d.name];return c&&Math.abs(Number(d.w)-c.w)<.01&&Math.abs(Number(d.h)-c.h)<.01&&Math.abs(Number(d.d)-c.d*100)<.01}).length;
  const changed=state.devices.length-presetLike;
  accuracyTitle.textContent=presetLike?`${presetLike} device${presetLike===1?'':'s'} still use typical presets`:'Your device values are customized';
